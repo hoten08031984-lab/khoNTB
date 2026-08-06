@@ -1,0 +1,13 @@
+báo cáo.xlsx
+extract_data.py
+debug*.py
+*.log
+.env
+__pycache__/
+.vscode/
+.agents/
+.gemini/
+
+node_modules/
+debug_counts.txt
+check_*.py

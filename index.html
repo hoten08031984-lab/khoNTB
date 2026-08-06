@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Báo Cáo Kho & Vận Tải</title>
+  <link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+
+  <div class="dashboard-container">
+
+    <!-- Header Panel -->
+    <header class="dashboard-header glass-panel">
+      <div class="header-title-group">
+        <h1>
+          <span>📊 BÁO CÁO KHO NAM TRUNG BỘ</span>
+          <span class="header-badge">Multi-Report Ready</span>
+        </h1>
+        <p>Hệ thống đánh giá tổng quan số liệu hằng ngày cần theo dõi <span id="last-updated-time" style="margin-left:15px; font-weight:600; color:var(--primary); background:rgba(37,99,235,0.1); padding:2px 8px; border-radius:4px; font-size:0.85rem;"></span></p>
+      </div>
+      <button id="btn-reset-filters" class="btn-action">
+        <span>🔄 Thao Tác Lại Bộ Lọc</span>
+      </button>
+    </header>
+
+    <!-- Filter Toolbar Panel – Global, always on top -->
+    <section class="filter-toolbar glass-panel">
+      <div class="section-title-bar">
+        <span class="section-title">🎛️ Nhân Viên Kho chọn Mã Kho, Ngày, Loại hàng Tương ứng</span>
+        <span id="active-filter-summary" style="font-size: 0.72rem; color: var(--text-muted);">Đã chọn: Tất cả</span>
+      </div>
+
+      <div class="filter-grid">
+
+        <!-- Filter 1: Mã Kho -->
+        <div class="filter-group" id="group-kho">
+          <label class="filter-label">1. Mã Kho</label>
+          <div class="dropdown-trigger" onclick="toggleDropdown('menu-kho')">
+            <span id="label-kho">Đã chọn: 4/4 kho</span>
+            <span class="dropdown-count-badge" id="count-kho">4</span>
+          </div>
+          <div class="dropdown-menu" id="menu-kho">
+            <div class="dropdown-controls">
+              <button class="btn-link" onclick="selectAll('kho', true)">Chọn tất cả</button>
+              <button class="btn-link" onclick="selectAll('kho', false)">Bỏ chọn tất cả</button>
+            </div>
+            <div class="checkbox-list" id="list-kho"></div>
+          </div>
+        </div>
+
+
+
+        <!-- Filter 3: Nhóm Hàng -->
+        <div class="filter-group" id="group-nhomhang">
+          <label class="filter-label">2. Nhóm Hàng</label>
+          <div class="dropdown-trigger" onclick="toggleDropdown('menu-nhomhang')">
+            <span id="label-nhomhang">Đã chọn: 3/3 nhóm</span>
+            <span class="dropdown-count-badge" id="count-nhomhang">3</span>
+          </div>
+          <div class="dropdown-menu" id="menu-nhomhang">
+            <div class="dropdown-controls">
+              <button class="btn-link" onclick="selectAll('nhomhang', true)">Chọn tất cả</button>
+              <button class="btn-link" onclick="selectAll('nhomhang', false)">Bỏ chọn tất cả</button>
+            </div>
+            <div class="checkbox-list" id="list-nhomhang"></div>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- Report Nav Pills – Tab Navigation -->
+    <nav class="report-nav-bar" id="report-nav-bar">
+      <a class="report-nav-pill active" id="pill-bc1" href="#" onclick="switchReport('bc1'); return false;">📋 Báo Cáo 1: Kế Hoạch Leg 1 Đầu Ngày</a>
+      <a class="report-nav-pill" id="pill-bc2" href="#" onclick="switchReport('bc2'); return false;">⏳ Báo Cáo 2: Hàng Gần Hết Hạn</a>
+      <a class="report-nav-pill" id="pill-bc3" href="#" onclick="switchReport('bc3'); return false;">📍 Báo Cáo 3: NVDL kiểm tra Pallet</a>
+      <a class="report-nav-pill" id="pill-bc6" href="#" onclick="switchReport('bc6'); return false;">📊 Báo Cáo 6: Hàng gửi theo tháng</a>
+      <a class="report-nav-pill" id="pill-bc4" href="#" onclick="switchReport('bc4'); return false;">📈 Báo Cáo 4: Phân Tích Nhập / Xuất</a>
+      <a class="report-nav-pill" id="pill-bc5" href="#" onclick="switchReport('bc5'); return false;">📦 Báo Cáo 5: Phân Tích Tồn Kho</a>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════
+         BÁO CÁO 1: KẾ HOẠCH LEG 1
+    ═══════════════════════════════════════════════ -->
+    <div id="report-bc1" class="report-section">
+      <div class="report-section-header">
+        <span class="report-section-number">01</span>
+        <div>
+          <div class="report-section-title">📋 Kế Hoạch Leg 1 Đầu Ngày</div>
+          <div class="report-section-sub">Theo dõi các chuyến hàng đang đi đường và đã đến kho</div>
+        </div>
+      </div>
+
+      <!-- KPI B1/B2 -->
+      <section class="glass-panel kpi-excel-box">
+        <div class="kpi-excel-row">
+          <span class="kpi-excel-label">
+            <span class="badge-tag arrived">B1</span> Số chuyến Đã đến
+          </span>
+          <span class="kpi-excel-value count-b1" id="val-b1">0</span>
+        </div>
+        <div class="kpi-excel-row">
+          <span class="kpi-excel-label">
+            <span class="badge-tag new">B2</span> Số chuyến đang đi đường
+          </span>
+          <span class="kpi-excel-value count-b2" id="val-b2">0</span>
+        </div>
+      </section>
+
+      <!-- Bảng chi tiết BC1 -->
+      <section class="glass-panel table-container-card">
+        <div class="table-header-bar">
+          <div class="table-title">
+            <span>📋 BẢNG CHI TIẾT KẾ HOẠCH NHẬP HÀNG LEG 1 (DẠNG BẢNG EXCEL GỌN)</span>
+            <span class="header-badge" id="records-count">0 Dòng</span>
+          </div>
+          <div>
+            <input type="text" id="table-search" class="table-search-input" placeholder="🔍 Tìm nhanh số xe, mã hàng, kho...">
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="excel-table" id="table-bc1">
+            <thead>
+              <tr>
+                <th style="width: 40px;" class="text-center">STT</th>
+                <th style="width: 140px; cursor: pointer;" onclick="handleSort('TRẠNG THÁI')" title="Bấm để sắp xếp theo Trạng thái">
+                  TRẠNG THÁI <span id="sort-TRẠNG THÁI" class="sort-icon">▲</span>
+                </th>
+                <th style="width: 150px; cursor: pointer;" onclick="handleSort('KHO XUẤT')" title="Bấm để sắp xếp theo Kho xuất">
+                  KHO XUẤT <span id="sort-KHO XUẤT" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 110px; cursor: pointer;" onclick="handleSort('SỐ XE')" title="Bấm để sắp xếp theo Số xe">
+                  SỐ XE <span id="sort-SỐ XE" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 120px; cursor: pointer;" onclick="handleSort('MÃ HÀNG')" title="Bấm để sắp xếp theo Mã hàng">
+                  MÃ HÀNG <span id="sort-MÃ HÀNG" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 90px; cursor: pointer;" onclick="handleSort('ĐƠN VỊ TÍNH')" title="Bấm để sắp xếp">
+                  ĐVT <span id="sort-ĐƠN VỊ TÍNH" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 110px; cursor: pointer;" class="text-right" onclick="handleSort('SỐ LƯỢNG')" title="Bấm để sắp xếp theo Số lượng">
+                  SỐ LƯỢNG <span id="sort-SỐ LƯỢNG" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 110px; cursor: pointer;" class="text-right" onclick="handleSort('SỐ LƯỢNG PL')" title="Bấm để sắp xếp theo Số lượng PL">
+                  SL PL <span id="sort-SỐ LƯỢNG PL" class="sort-icon">↕</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tbody-bc1"></tbody>
+            <tfoot id="tfoot-bc1"></tfoot>
+          </table>
+        </div>
+      </section>
+
+    </div><!-- end report-bc1 -->
+
+    <!-- ═══════════════════════════════════════════════
+         BÁO CÁO 2: HÀNG GẦN HẾT HẠN SỬ DỤNG (HSD > 60%)
+    ═══════════════════════════════════════════════ -->
+    <div id="report-bc2" class="report-section" style="display: none;">
+      <div class="report-section-header">
+        <span class="report-section-number bc2-num">02</span>
+        <div>
+          <div class="report-section-title">⏳ Hàng Gần Hết Hạn Sử Dụng</div>
+          <div class="report-section-sub">Danh sách mã hàng có % HSD còn lại dưới 60% cần theo dõi</div>
+        </div>
+      </div>
+
+      <!-- KPI BC2 -->
+      <section class="glass-panel kpi-excel-box">
+        <div class="kpi-excel-row">
+          <span class="kpi-excel-label">
+            <span class="badge-tag hsd-warn">⚠️ CẢNH BÁO</span> Mã hàng có % HSD còn lại &lt; 60%
+          </span>
+          <span class="kpi-excel-value count-hsd-warn" id="val-bc2-count">0</span>
+        </div>
+        <div class="kpi-excel-row">
+          <span class="kpi-excel-label">
+            <span class="badge-tag hsd-qty">📦 TỒN KHO</span> Tổng số lượng hàng cần thủ kho kiểm tra thực tế (KET/THÙNG)
+          </span>
+          <span class="kpi-excel-value count-hsd-qty" id="val-bc2-qty">0</span>
+        </div>
+      </section>
+
+      <!-- Bảng HSD BC2 -->
+      <section class="glass-panel table-container-card">
+        <div class="table-header-bar">
+          <div class="table-title">
+            <span>⏳ DANH SÁCH HÀNG GẦN HẾT HẠN — % HSD CÒN LẠI &lt; 60%</span>
+            <span class="header-badge hsd-badge" id="records-count-bc2">0 Dòng</span>
+          </div>
+          <div>
+            <input type="text" id="table-search-bc2" class="table-search-input" placeholder="🔍 Tìm mã hàng, tên hàng, kho...">
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="excel-table" id="table-bc2">
+            <thead>
+              <tr>
+                <th style="width: 40px;" class="text-center">STT</th>
+                <th style="width: 80px; cursor:pointer;" onclick="handleSortBC2('MÃ KHO')">
+                  MÃ KHO <span id="sort2-MÃ KHO" class="sort-icon">▲</span>
+                </th>
+                <th style="width: 110px; cursor:pointer;" onclick="handleSortBC2('MÃ HÀNG')">
+                  MÃ HÀNG <span id="sort2-MÃ HÀNG" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 18%; cursor:pointer;" onclick="handleSortBC2('TÊN HÀNG')">
+                  TÊN HÀNG <span id="sort2-TÊN HÀNG" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 13%; cursor:pointer;" class="text-right" onclick="handleSortBC2('SỐ LƯỢNG')">
+                  SỐ LƯỢNG <span id="sort2-SỐ LƯỢNG" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 14%; cursor:pointer;" onclick="handleSortBC2('NSX')">
+                  NSX <span id="sort2-NSX" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 14%; cursor:pointer;" onclick="handleSortBC2('HSD')">
+                  HSD <span id="sort2-HSD" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 13%; cursor:pointer;" class="text-center" onclick="handleSortBC2('SỐ NGÀY CÒN LẠI')">
+                  CÒN LẠI <span id="sort2-SỐ NGÀY CÒN LẠI" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 12%; cursor:pointer;" class="text-center" onclick="handleSortBC2('(%) HSD')">
+                  % HSD <span id="sort2-(%) HSD" class="sort-icon">⇕</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tbody-bc2"></tbody>
+            <tfoot id="tfoot-bc2"></tfoot>
+          </table>
+        </div>
+      </section>
+
+    </div><!-- end report-bc2 -->
+
+    <!-- ═══════════════════════════════════════════════
+         BÁO CÁO 3: VỊ TRÍ
+    ═══════════════════════════════════════════════ -->
+    <div id="report-bc3" class="report-section" style="display: none;">
+      <div class="report-section-header">
+        <span class="report-section-number">03</span>
+        <div>
+          <div class="report-section-title">📍 Báo Cáo 3: NVDL kiểm tra Pallet phù hơp</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+        <!-- Bảng Pivot -->
+        <section class="glass-panel" style="flex: 1; min-width: 300px; margin-bottom: 24px;">
+          <h3 style="margin-top:0; color:var(--text-light); font-size:14px; margin-bottom:12px;">Pallet trên hệ thống SWM</h3>
+          <div class="table-responsive">
+            <table class="excel-table" id="table-bc3-pivot" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th style="width: 25%;">MÃ KHO <span class="sort-icon">↕</span></th>
+                  <th style="width: 25%;">VỊ TRÍ <span class="sort-icon">↕</span></th>
+                  <th style="width: 25%;">MÃ HÀNG <span class="sort-icon">↕</span></th>
+                  <th style="width: 25%;" class="text-right">SỐ LƯỢNG <span class="sort-icon">↕</span></th>
+                </tr>
+              </thead>
+              <tbody id="tbody-bc3-pivot"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Bảng Chi Tiết -->
+        <section class="glass-panel" style="flex: 1.5; min-width: 450px; margin-bottom: 24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="margin:0; color:var(--text-light); font-size:14px;">Bảng Chi tiết ước tính</h3>
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="table-search-bc3" placeholder="Tìm theo Mã Kho, Tên Hàng...">
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="excel-table" id="table-bc3-detail" style="width: 100%;">
+              <thead id="thead-bc3-detail">
+              </thead>
+              <tbody id="tbody-bc3-detail"></tbody>
+              <tfoot id="tfoot-bc3-detail"></tfoot>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div><!-- end report-bc3 -->
+
+    <!-- ═══════════════════════════════════════════════
+         BÁO CÁO 4: PHÂN TÍCH NHẬP / XUẤT
+    ═══════════════════════════════════════════════ -->
+    <div id="report-bc4" class="report-section" style="display: none;">
+      <div class="report-section-header">
+        <span class="report-section-number">04</span>
+        <div>
+          <div class="report-section-title">📈 Phân Tích Nhập / Xuất</div>
+          <div class="report-section-sub">Thống kê lưu lượng giao dịch và hiệu suất vận hành</div>
+        </div>
+      </div>
+
+      <!-- BỘ LỌC NGÀY CHO BÁO CÁO 4 -->
+      <div class="filter-toolbar glass-panel" style="margin-bottom: 20px; position: relative; z-index: 90; display: inline-block;">
+        <div class="filter-grid" style="display: flex; gap: 15px;">
+          <div class="filter-group" id="group-ngay-bc4">
+            <label class="filter-label">05 Ngày gần nhất ( có thể chọn nhiều ngày)</label>
+            <div class="dropdown-trigger" onclick="toggleDropdown('menu-ngay-bc4')">
+              <span id="label-ngay-bc4">Đã chọn: Tất cả ngày</span>
+              <span class="dropdown-count-badge" id="count-ngay-bc4">0</span>
+            </div>
+            <div class="dropdown-menu" id="menu-ngay-bc4">
+              <div class="dropdown-controls">
+                <button class="btn-link" onclick="selectAllBC4Ngay(true)">Chọn tất cả</button>
+                <button class="btn-link" onclick="selectAllBC4Ngay(false)">Bỏ chọn tất cả</button>
+              </div>
+              <div class="checkbox-list" id="list-ngay-bc4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Báo cáo Tổng Quát -->
+      <div class="charts-grid" style="margin-bottom: 24px;">
+        <!-- Chart Tổng Quát 1: Cột chồng Nhập/Xuất theo Kho -->
+        <div class="glass-panel chart-card chart-large">
+          <div class="chart-header">🏢 Tổng quan Nhập / Xuất của Kv Nam Trung Bộ (gồm 4 kho)</div>
+          <div class="chart-canvas-wrapper"><canvas id="chart-tq-kho"></canvas></div>
+        </div>
+        <!-- Chart Tổng Quát 2: Line chart 3 ngày gần nhất -->
+        <div class="glass-panel chart-card chart-large">
+          <div class="chart-header">📈 Xu hướng Nhập/ Xuất ( Chọn ngày hoặc nhiều ngày )</div>
+          <div class="chart-canvas-wrapper"><canvas id="chart-tq-ngay"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Charts Grid -->
+      <div class="charts-grid">
+        <!-- Chart 1A: Nhập/Xuất Theo Nhóm Hàng -->
+        <div class="glass-panel chart-card">
+          <div class="chart-header">📊 Nhập/Xuất Theo Nhóm Hàng</div>
+          <div class="chart-canvas-wrapper"><canvas id="chart-nhapxuat-nhomhang"></canvas></div>
+        </div>
+        <!-- Chart 1B: Nhập/Xuất Theo Đơn Vị Tính -->
+        <div class="glass-panel chart-card">
+          <div class="chart-header">📦 Nhập/Xuất Theo Đơn Vị Tính</div>
+          <div class="chart-canvas-wrapper"><canvas id="chart-nhapxuat-dvt"></canvas></div>
+        </div>
+        <!-- Chart 3: Top 5 KH - FULL WIDTH -->
+        <div class="glass-panel chart-card chart-large">
+          <div class="chart-header">🏆 Top 5 Nhà Phân Phối Xuất Thành Phẩm (TP) Cao Nhất</div>
+          <div class="chart-canvas-wrapper chart-canvas-tall"><canvas id="chart-horizontal-bar"></canvas></div>
+        </div>
+        <!-- Chart 4A: Top 5 Mã Hàng Nhập -->
+        <div class="glass-panel chart-card">
+          <div class="chart-header">⬇️ Top 5 Mã Hàng (TP) Nhập Nhiều Nhất</div>
+          <div class="chart-canvas-wrapper"><canvas id="chart-top-mahang-nhap"></canvas></div>
+        </div>
+        <!-- Chart 4B: Top 5 Mã Hàng Xuất -->
+        <div class="glass-panel chart-card">
+          <div class="chart-header">⬆️ Top 5 Mã Hàng (TP) Xuất Nhiều Nhất</div>
+          <div class="chart-canvas-wrapper"><canvas id="chart-top-mahang-xuat"></canvas></div>
+        </div>
+      </div>
+    </div><!-- end report-bc4 -->
+
+    <!-- ═══════════════════════════════════════════════
+         BÁO CÁO 5: TỒN KHO THỰC TẾ
+    ═══════════════════════════════════════════════ -->
+    <div id="report-bc5" class="report-section" style="display: none;">
+      <div class="report-section-header">
+        <span class="report-section-number">05</span>
+        <div>
+          <div class="report-section-title">📦 Báo Cáo 5: Phân Tích Tồn Kho Thực Tế</div>
+          <div class="report-section-sub">Thống kê lượng tồn kho theo Kho và top các Mã Hàng (TP & BB)</div>
+        </div>
+      </div>
+
+      <!-- Bảng Chi Tiết BC5 -->
+      <section class="glass-panel table-container-card" style="margin-bottom: 24px;">
+        <div class="table-header-bar">
+          <div class="table-title">
+            <span class="icon">📋</span> Bảng Dữ Liệu Tồn Kho Chi Tiết
+          </div>
+          <div class="table-actions">
+            <input type="text" id="table-search-bc5" class="table-search-input" placeholder="🔍 Tìm mã hàng, tên hàng, kho...">
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="excel-table" id="table-bc5">
+            <thead>
+              <tr>
+                <th onclick="sortBC5Table(0)">MÃ KHO <span class="sort-icon"></span></th>
+                <th onclick="sortBC5Table(1)">NHÓM HÀNG <span class="sort-icon"></span></th>
+                <th onclick="sortBC5Table(2)">MÃ HÀNG <span class="sort-icon"></span></th>
+                <th onclick="sortBC5Table(3)">ĐVT <span class="sort-icon"></span></th>
+                <th onclick="sortBC5Table(4)" style="text-align: right;">TỔNG GỬI <span class="sort-icon"></span></th>
+                <th onclick="sortBC5Table(5)" style="text-align: right;">BÁN ĐƯỢC <span class="sort-icon"></span></th>
+                <th onclick="sortBC5Table(6)" style="text-align: right;">TỒN THỰC TẾ <span class="sort-icon"></span></th>
+              </tr>
+            </thead>
+            <tbody id="tbody-bc5">
+              <!-- JS rendered -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Charts Grid -->
+      <div class="charts-grid" style="margin-bottom: 24px;">
+        <!-- Chart 1: Tồn kho theo kho (Stacked Bar) - Toàn màn hình -->
+        <div class="glass-panel chart-card chart-large">
+          <div class="chart-header">🏬 Tổng Quan Tồn Kho Thực Tế Các Kho</div>
+          <div class="chart-canvas-wrapper"><canvas id="chart-bc5-kho"></canvas></div>
+        </div>
+        
+        <!-- Chart 2: Top 5 TP Tồn -->
+        <div class="glass-panel chart-card">
+          <div class="chart-header">⬇️ Top 5 Mã Hàng (TP) Tồn Nhiều Nhất</div>
+          <div class="chart-canvas-wrapper"><canvas id="chart-bc5-top-tp"></canvas></div>
+        </div>
+        
+        <!-- Chart 3: Top 5 TP Tồn Ít Nhất -->
+        <div class="glass-panel chart-card">
+          <div class="chart-header">⬆️ Top 5 Mã Hàng (TP) Tồn Ít Nhất</div>
+          <div class="chart-canvas-wrapper"><canvas id="chart-bc5-bottom-tp"></canvas></div>
+        </div>
+        <!-- Chart 4: So sánh Pallet -->
+        <div class="glass-panel chart-card chart-large">
+          <div class="chart-header">📦 So Sánh Tồn Hàng Gửi & Tồn Thực Tế (Quy Ra Pallet) Giữa Các Kho</div>
+          <div class="chart-canvas-wrapper"><canvas id="chart-bc5-pallet"></canvas></div>
+        </div>
+      </div>
+    </div><!-- end report-bc5 -->
+
+    <!-- ═══════════════════════════════════════════════
+         BÁO CÁO 6: BẢNG PHÂN TÍCH C1
+    ═══════════════════════════════════════════════ -->
+    <div id="report-bc6" class="report-section" style="display: none;">
+      <div class="report-section-header">
+        <span class="report-section-number">06</span>
+        <div>
+          <h2>Bảng phân tích hàng gửi C1 theo Tháng</h2>
+          <p>Phân tích số lượng hàng gửi còn lại theo Kho và Tháng ra Hóa Đơn</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <!-- Bảng Tổng Hợp C1 -->
+        <div class="glass-panel" style="flex: 1.2; min-width: 350px; overflow-x: auto;">
+          <h3 style="margin-bottom: 10px; color: var(--text-color);">Tổng Hợp Theo Tháng</h3>
+          <table class="excel-table" id="table-bc6">
+            <thead>
+              <tr id="bc6-thead-row">
+                <!-- Dynamically populated -->
+              </tr>
+            </thead>
+            <tbody id="bc6-tbody">
+               <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Bảng Chi Tiết Theo Tháng -->
+        <div class="glass-panel" style="flex: 1; min-width: 350px; overflow-x: auto;">
+          <div style="display: flex; justify-content: flex-start; gap: 15px; align-items: center; margin-bottom: 10px;">
+            <h3 style="margin: 0; color: var(--text-color);">Chi tiết mã hàng theo tháng</h3>
+            <select id="bc6-month-filter" style="padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-light); color: var(--text-color); font-weight: bold; cursor: pointer;">
+              <!-- Options populated via JS -->
+            </select>
+          </div>
+          <table class="excel-table" id="table-bc6-detail">
+            <thead>
+              <tr>
+                <th onclick="sortTable('table-bc6-detail', 0)">Kho ↕</th>
+                <th onclick="sortTable('table-bc6-detail', 1)">Mã Hàng ↕</th>
+                <th onclick="sortTable('table-bc6-detail', 2)">Số Lượng ↕</th>
+              </tr>
+            </thead>
+            <tbody id="bc6-detail-tbody">
+               <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- end report-bc6 -->
+
+  </div>
+
+  <script src="chart.umd.min.js"></script>
+  <script src="chartjs-plugin-datalabels.min.js"></script>
+  <script src="data.js?v=1785742800000"></script>
+  <script src="app.js?v=1785742800000"></script>
+</body>
+</html>
