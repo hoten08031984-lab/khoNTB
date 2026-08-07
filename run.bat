@@ -26,6 +26,8 @@ if errorlevel 1 (
     git add index.html app.js styles.css data.js >nul 2>&1
     if exist img\ git add img\ >nul 2>&1
     git add run.bat >nul 2>&1
+    git config user.name "AutoBot" >nul 2>&1
+    git config user.email "bot@example.com" >nul 2>&1
     git commit -m "Auto update dashboard data %date% %time%" >nul 2>&1
     git push origin main
     echo.
