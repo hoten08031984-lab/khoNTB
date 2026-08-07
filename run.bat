@@ -1,4 +1,5 @@
-:: Windows CRLF fix
+:: Windows CRLF fix
+
 @echo off
 chcp 65001 >nul
 
@@ -24,6 +25,7 @@ if errorlevel 1 (
     echo Vao trang https://git-scm.com/downloads de tai Git.
     echo Du lieu van da duoc luu o file excel và trang web local!
 ) else (
+    git pull origin main --rebase --no-edit >nul 2>&1
     git add index.html app.js styles.css data.js >nul 2>&1
     if exist img\ git add img\ >nul 2>&1
     git add run.bat >nul 2>&1
