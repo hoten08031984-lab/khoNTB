@@ -1,12 +1,24 @@
+# File Excel goc - KHONG dua len GitHub (du lieu nhy cam)
 báo cáo.xlsx
+
+# File debug - chi dung tren may local
 debug*.py
+debug_counts.txt
+check_*.py
+
+# File log va cache Python
 *.log
-.env
 __pycache__/
+
+# File cau hinh IDE
 .vscode/
 .agents/
 .gemini/
 
+# Package manager
 node_modules/
-debug_counts.txt
-check_*.py
+package-lock.json
+package.json
+
+# File moi truong (chua API key, mat khau)
+.env
