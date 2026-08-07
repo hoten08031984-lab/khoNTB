@@ -760,6 +760,10 @@ def main():
             try: excel.Quit()
             except: pass
         pythoncom.CoUninitialize()
+        # Dọn sạch Excel zombie để Task Scheduler nhận biết tiến trình đã kết thúc
+        import time
+        time.sleep(2)
+        os.system("taskkill /F /IM EXCEL.EXE >nul 2>&1")
         
     # Phase 2: Export to data.js
     export_to_js()
