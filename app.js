@@ -477,6 +477,17 @@ function sortRows(rows, column, order) {
     let valA = a[column] !== undefined && a[column] !== null ? a[column] : '';
     let valB = b[column] !== undefined && b[column] !== null ? b[column] : '';
 
+    if (column === 'MÃ KHO') {
+      const ORDER = ["052", "05NT", "05KH", "SKH"];
+      let ia = ORDER.indexOf(valA);
+      let ib = ORDER.indexOf(valB);
+      if(ia === -1) ia = 999;
+      if(ib === -1) ib = 999;
+      if (ia !== ib) {
+        return order === 'asc' ? ia - ib : ib - ia;
+      }
+    }
+
     if (column === 'SỐ LƯỢNG' || column === 'SỐ LƯỢNG PL') {
       const numA = parseFloat(valA) || 0;
       const numB = parseFloat(valB) || 0;
@@ -605,6 +616,17 @@ function applyFiltersAndRenderBC3() {
       valA = parseFloat(valA) || 0;
       valB = parseFloat(valB) || 0;
       return currentSortOrderBC3 === 'asc' ? valA - valB : valB - valA;
+    }
+
+    if (currentSortColumnBC3 === 'MÃ KHO') {
+      const ORDER = ["052", "05NT", "05KH", "SKH"];
+      let ia = ORDER.indexOf(valA);
+      let ib = ORDER.indexOf(valB);
+      if(ia === -1) ia = 999;
+      if(ib === -1) ib = 999;
+      if (ia !== ib) {
+        return currentSortOrderBC3 === 'asc' ? ia - ib : ib - ia;
+      }
     }
     
     valA = String(valA || '').toLowerCase();
@@ -941,6 +963,18 @@ function sortRowsGeneric(rows, column, order) {
   return [...rows].sort((a, b) => {
     let valA = a[column] !== undefined && a[column] !== null ? a[column] : '';
     let valB = b[column] !== undefined && b[column] !== null ? b[column] : '';
+    
+    if (column === 'MÃ KHO') {
+      const ORDER = ["052", "05NT", "05KH", "SKH"];
+      let ia = ORDER.indexOf(valA);
+      let ib = ORDER.indexOf(valB);
+      if(ia === -1) ia = 999;
+      if(ib === -1) ib = 999;
+      if (ia !== ib) {
+        return order === 'asc' ? ia - ib : ib - ia;
+      }
+    }
+    
     const numA = parseFloat(valA);
     const numB = parseFloat(valB);
     if (!isNaN(numA) && !isNaN(numB)) {
@@ -962,18 +996,31 @@ function sortRowsBC2(rows) {
     const order = currentSortOrderBC2;
     let valA = a[col] !== undefined && a[col] !== null ? a[col] : '';
     let valB = b[col] !== undefined && b[col] !== null ? b[col] : '';
-    const numA = parseFloat(valA);
-    const numB = parseFloat(valB);
+    
     let cmp = 0;
-    if (!isNaN(numA) && !isNaN(numB)) {
-      cmp = order === 'asc' ? numA - numB : numB - numA;
+    if (col === 'MÃ KHO') {
+      const ORDER = ["052", "05NT", "05KH", "SKH"];
+      let ia = ORDER.indexOf(valA);
+      let ib = ORDER.indexOf(valB);
+      if(ia === -1) ia = 999;
+      if(ib === -1) ib = 999;
+      if (ia !== ib) {
+        cmp = order === 'asc' ? ia - ib : ib - ia;
+      }
     } else {
-      const strA = String(valA).toLowerCase();
-      const strB = String(valB).toLowerCase();
-      cmp = strA < strB ? (order === 'asc' ? -1 : 1)
-          : strA > strB ? (order === 'asc' ?  1 : -1)
-          : 0;
+      const numA = parseFloat(valA);
+      const numB = parseFloat(valB);
+      if (!isNaN(numA) && !isNaN(numB)) {
+        cmp = order === 'asc' ? numA - numB : numB - numA;
+      } else {
+        const strA = String(valA).toLowerCase();
+        const strB = String(valB).toLowerCase();
+        cmp = strA < strB ? (order === 'asc' ? -1 : 1)
+            : strA > strB ? (order === 'asc' ?  1 : -1)
+            : 0;
+      }
     }
+    
     if (cmp !== 0) return cmp;
 
     // --- Secondary sort: (%) HSD tăng dần — nguy cấp nhất (% nhỏ) lên đầu ---
@@ -1856,7 +1903,7 @@ function renderBC5Table(data) {
   filtered.sort(function(a, b) {
     var getVal = function(r) {
       switch(currentSortColumnBC5) {
-        case 'MÃ KHO': return String(getSafeValue(r, ['MÃ KHO']) || '').toLowerCase();
+        case 'MÃ KHO': return String(getSafeValue(r, ['MÃ KHO']) || '');
         case 'NHÓM HÀNG': return String(getSafeValue(r, ['NHÓM HÀNG']) || '').toLowerCase();
         case 'MÃ HÀNG': return String(getSafeValue(r, ['MÃ HÀNG']) || '').toLowerCase();
         case 'ĐVT': return String(getSafeValue(r, ['ĐƠN VỊ TÍNH', 'ĐVT']) || '').toLowerCase();
@@ -1868,6 +1915,18 @@ function renderBC5Table(data) {
     };
     var valA = getVal(a);
     var valB = getVal(b);
+    
+    if (currentSortColumnBC5 === 'MÃ KHO') {
+      const ORDER = ["052", "05NT", "05KH", "SKH"];
+      let ia = ORDER.indexOf(valA);
+      let ib = ORDER.indexOf(valB);
+      if(ia === -1) ia = 999;
+      if(ib === -1) ib = 999;
+      if (ia !== ib) {
+        return currentSortOrderBC5 === 'asc' ? ia - ib : ib - ia;
+      }
+    }
+    
     if (valA < valB) return currentSortOrderBC5 === 'asc' ? -1 : 1;
     if (valA > valB) return currentSortOrderBC5 === 'asc' ? 1 : -1;
     return 0;
