@@ -33,7 +33,8 @@ if errorlevel 1 (
     git config user.name "AutoBot" >nul 2>&1
     git config user.email "bot@example.com" >nul 2>&1
     git commit -m "Auto update dashboard data %date% %time%" >nul 2>&1
-    git push origin main
+    set GIT_TERMINAL_PROMPT=0
+    git push origin main >nul 2>&1
     echo.
     echo =======================================================
     echo HOAN TAT! DASHBOARD DA DUOC CAP NHAT TREN GITHUB.
