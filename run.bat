@@ -9,7 +9,8 @@ echo.
 echo =======================================================
 echo 2. DONG BO WEB DASHBOARD LEN GITHUB...
 echo =======================================================
-git add index.html app.js styles.css data.js img/ >nul 2>&1
+git add index.html app.js styles.css data.js >nul 2>&1
+if exist img\ git add img\ >nul 2>&1
 git add run.bat >nul 2>&1
 git commit -m "Auto update dashboard data %date% %time%"
 git push origin main
