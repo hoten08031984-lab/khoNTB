@@ -708,8 +708,15 @@ def main():
         
         log("Làm mới Power Query Data Connections (Gộp bảng Append1)...")
         try:
+            import time
             wb.RefreshAll()
-            excel.CalculateUntilAsyncQueriesDone()
+            # Chờ tối đa 60 giây, tránh treo vô hạn trên VPS không có GUI
+            for _ in range(60):
+                try:
+                    excel.CalculateUntilAsyncQueriesDone()
+                    break
+                except:
+                    time.sleep(1)
         except: pass
 
         log("Làm mới Pivot Tables và căn chỉnh giao diện...")
@@ -736,7 +743,8 @@ def main():
                 sheet_obj.Columns.AutoFit()
             except: pass
             
-        excel.CalculateUntilAsyncQueriesDone()
+        try: excel.CalculateUntilAsyncQueriesDone()
+        except: pass
         
         excel.ScreenUpdating = True
         wb.Save()
