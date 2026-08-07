@@ -699,38 +699,76 @@ function updateSortIconsBC3() {
 function renderTableBC3Pivot(pivotMap, khoCols, grandTotalRow, grandTotalAll) {
   const thead = document.getElementById('thead-bc3-pivot');
   const tbody = document.getElementById('tbody-bc3-pivot');
-  if (!displayData || displayData.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="4" class="text-center">Không có dữ liệu</td></tr>`;
+  if (!thead || !tbody) return;
+  
+  // Render Thead
+  let thHtml = `<tr>
+    <th style="width: 20%;">VỊ TRÍ</th>
+    <th style="width: 20%;">MÃ HÀNG</th>`;
+  khoCols.forEach(k => {
+      thHtml += `<th class="text-right">${k}</th>`;
+  });
+  thHtml += `<th class="text-right">Grand Total</th></tr>`;
+  thead.innerHTML = thHtml;
+
+  tbody.innerHTML = '';
+  
+  const viTriKeys = Object.keys(pivotMap).sort();
+  if (viTriKeys.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="${khoCols.length + 3}" class="text-center">Không có dữ liệu</td></tr>`;
     return;
   }
   
-  displayData.forEach(row => {
-    const maKho = getSafeValue(row, ['Unnamed: 1']) || '';
-    const viTri = getSafeValue(row, ['Unnamed: 2']) || '';
-    const maHang = getSafeValue(row, ['Unnamed: 3']) || '';
-    const soLuong = getSafeValue(row, ['Unnamed: 4']) || '';
-    
-    let tr = document.createElement('tr');
-    
-    if (row.isSubtotal) {
-      tr.style.fontWeight = 'bold';
-      tr.style.backgroundColor = 'rgba(0,0,0,0.06)';
-      const label = getSafeValue(row, ['Unnamed: 2']) || getSafeValue(row, ['Unnamed: 1']);
-      tr.innerHTML = `
-        <td></td>
-        <td colspan="2">${label}</td>
-        <td class="text-right">${formatNumber(soLuong)}</td>
-      `;
-    } else {
-      tr.innerHTML = `
-        <td>${maKho}</td>
-        <td>${viTri}</td>
-        <td>${maHang}</td>
-        <td class="text-right">${formatNumber(soLuong)}</td>
-      `;
-    }
-    tbody.appendChild(tr);
+  let html = '';
+  viTriKeys.forEach(viTri => {
+      const maHangKeys = Object.keys(pivotMap[viTri]).sort();
+      let first = true;
+      let viTriTotal = { _all: 0 };
+      
+      maHangKeys.forEach(maHang => {
+          html += `<tr>`;
+          if (first) {
+              html += `<td rowspan="${maHangKeys.length + 1}" style="vertical-align: middle; font-weight: bold; background: rgba(0,0,0,0.02);">${viTri}</td>`;
+          }
+          html += `<td>${maHang}</td>`;
+          
+          let rowTotal = 0;
+          khoCols.forEach(k => {
+              const qty = pivotMap[viTri][maHang][k] || 0;
+              rowTotal += qty;
+              
+              if (!viTriTotal[k]) viTriTotal[k] = 0;
+              viTriTotal[k] += qty;
+              
+              html += `<td class="text-right">${qty > 0 ? formatNumber(qty) : ''}</td>`;
+          });
+          
+          viTriTotal._all += rowTotal;
+          html += `<td class="text-right" style="background: rgba(0,0,0,0.01); font-weight: 500;">${rowTotal > 0 ? formatNumber(rowTotal) : ''}</td>`;
+          html += `</tr>`;
+          first = false;
+      });
+      
+      // Subtotal cho Vị Trí (Giống RONG Total, TP Total)
+      html += `<tr style="background: rgba(0,0,0,0.03); font-weight: bold;">
+          <td>${viTri} Total</td>`;
+      khoCols.forEach(k => {
+          html += `<td class="text-right">${viTriTotal[k] > 0 ? formatNumber(viTriTotal[k]) : ''}</td>`;
+      });
+      html += `<td class="text-right">${viTriTotal._all > 0 ? formatNumber(viTriTotal._all) : ''}</td>
+      </tr>`;
   });
+  
+  // Grand Total Row
+  html += `<tr style="background: rgba(0,0,0,0.05); font-weight: bold;">
+      <td colspan="2">Grand Total</td>`;
+  khoCols.forEach(k => {
+      html += `<td class="text-right">${grandTotalRow[k] > 0 ? formatNumber(grandTotalRow[k]) : ''}</td>`;
+  });
+  html += `<td class="text-right">${grandTotalAll > 0 ? formatNumber(grandTotalAll) : ''}</td>
+  </tr>`;
+
+  tbody.innerHTML = html;
 }
 
 function renderTableBC3Detail(data) {
