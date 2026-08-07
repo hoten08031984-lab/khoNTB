@@ -1,3 +1,4 @@
+:: Windows CRLF fix
 @echo off
 chcp 65001 >nul
 
