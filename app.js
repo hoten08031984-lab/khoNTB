@@ -615,11 +615,13 @@ function applyFiltersAndRenderBC3() {
     return 0;
   });
 
-  // BẢNG PALLET TRÊN HỆ THỐNG SWM (LÀM LẠI CHỈ LỌC PL TỪ DATA5)
+  // BẢNG PALLET TRÊN HỆ THỐNG SWM (LÀM LẠI CHỈ LỌC PL TỪ DATA5 VÀ CHUYỂN MÃ KHO THÀNH CỘT)
   const palletRawData = window.DASHBOARD_DATA['data5-tồn kho theo PL, ví trí'] || [];
-  let filteredPivot = [];
-  let viTriMap = {};
-  let grandTotal = 0;
+  
+  let pivotMap = {}; // { 'TP': { 'NP': { '052': 100 } } }
+  let khoSet = new Set();
+  let grandTotalRow = {}; // { '052': 100, ... }
+  let grandTotalAll = 0;
 
   palletRawData.forEach(row => {
       const kho = getKhoValue(row);
@@ -633,60 +635,43 @@ function applyFiltersAndRenderBC3() {
         passKho = selectedKho.has(kho);
       }
       
-      // Bảng này chỉ lọc đối tượng theo cột Nhóm Hàng là PL
       let passNhom = (nhomHang === 'PL');
-      // Nếu người dùng có dùng bộ lọc chung mà KHÔNG chọn PL thì ẩn hết
       if (selectedNhomHang.size > 0 && !selectedNhomHang.has('PL')) {
         passNhom = false;
       }
       
       if (passKho && passNhom) {
-          const khoViTri = kho + '|' + viTri;
-          if (!viTriMap[khoViTri]) {
-              viTriMap[khoViTri] = { kho: kho, vitri: viTri, items: {}, total: 0 };
+          khoSet.add(kho);
+          
+          if (!pivotMap[viTri]) {
+              pivotMap[viTri] = {};
           }
-          if (!viTriMap[khoViTri].items[maHang]) {
-              viTriMap[khoViTri].items[maHang] = 0;
+          if (!pivotMap[viTri][maHang]) {
+              pivotMap[viTri][maHang] = {};
           }
-          viTriMap[khoViTri].items[maHang] += qty;
-          viTriMap[khoViTri].total += qty;
-          grandTotal += qty;
+          if (!pivotMap[viTri][maHang][kho]) {
+              pivotMap[viTri][maHang][kho] = 0;
+          }
+          pivotMap[viTri][maHang][kho] += qty;
+          
+          if (!grandTotalRow[kho]) grandTotalRow[kho] = 0;
+          grandTotalRow[kho] += qty;
+          grandTotalAll += qty;
       }
   });
 
-  Object.keys(viTriMap).sort().forEach(key => {
-      const group = viTriMap[key];
-      let first = true;
-      Object.keys(group.items).sort().forEach(maHang => {
-          filteredPivot.push({
-              'Unnamed: 1': first ? group.kho : '',
-              'Unnamed: 2': first ? group.vitri : '',
-              'Unnamed: 3': maHang,
-              'Unnamed: 4': group.items[maHang]
-          });
-          first = false;
-      });
-      
-      filteredPivot.push({
-          'Unnamed: 1': '',
-          'Unnamed: 2': group.vitri + ' Total',
-          'Unnamed: 4': group.total,
-          isSubtotal: true
-      });
+  const ORDER = ["052", "05NT", "05KH", "SKH"];
+  let khoCols = Array.from(khoSet).sort((a, b) => {
+      let ia = ORDER.indexOf(a);
+      let ib = ORDER.indexOf(b);
+      if(ia === -1) ia = 999;
+      if(ib === -1) ib = 999;
+      return ia - ib;
   });
-
-  if (filteredPivot.length > 0) {
-      filteredPivot.push({
-          'Unnamed: 1': '',
-          'Unnamed: 2': 'Grand Total',
-          'Unnamed: 4': grandTotal,
-          isSubtotal: true
-      });
-  }
 
   // Cập nhật lên UI
   renderTableBC3Detail(filteredData);
-  renderTableBC3Pivot(filteredPivot);
+  renderTableBC3Pivot(pivotMap, khoCols, grandTotalRow, grandTotalAll);
 }
 
 function handleSortBC3(column) {
@@ -701,6 +686,7 @@ function handleSortBC3(column) {
 }
 
 function updateSortIconsBC3() {
+  // Sort này chỉ dùng cho Bảng Chi Tiết Ước Tính
   document.querySelectorAll('th span[id^="sort3-"]').forEach(span => {
     span.textContent = '⇕';
   });
@@ -710,11 +696,9 @@ function updateSortIconsBC3() {
   }
 }
 
-function renderTableBC3Pivot(displayData) {
+function renderTableBC3Pivot(pivotMap, khoCols, grandTotalRow, grandTotalAll) {
+  const thead = document.getElementById('thead-bc3-pivot');
   const tbody = document.getElementById('tbody-bc3-pivot');
-  if (!tbody) return;
-  tbody.innerHTML = '';
-  
   if (!displayData || displayData.length === 0) {
     tbody.innerHTML = `<tr><td colspan="4" class="text-center">Không có dữ liệu</td></tr>`;
     return;
