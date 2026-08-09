@@ -113,6 +113,25 @@
         </div>
       </section>
 
+      <!-- Biểu đồ BC1 (2 biểu đồ hình cột song song) -->
+      <div class="charts-grid" style="margin-bottom: 20px; width: 100%; min-width: 0; align-items: start;">
+        <!-- Biểu đồ 1: Mã hàng và Số lượng -->
+        <div class="glass-panel chart-card" style="min-width: 0;">
+          <div class="chart-header">📊 Số Lượng Kế Hoạch Theo Mã Hàng</div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="chart-bc1-mahang"></canvas>
+          </div>
+        </div>
+
+        <!-- Biểu đồ 2: Đơn vị tính và Số lượng -->
+        <div class="glass-panel chart-card" style="min-width: 0;">
+          <div class="chart-header">📦 Số Lượng Kế Hoạch Theo Đơn Vị Tính</div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="chart-bc1-dvt"></canvas>
+          </div>
+        </div>
+      </div>
+
       <!-- Bảng chi tiết BC1 -->
       <section class="glass-panel table-container-card">
         <div class="table-header-bar">
@@ -232,6 +251,46 @@
             </thead>
             <tbody id="tbody-bc2"></tbody>
             <tfoot id="tfoot-bc2"></tfoot>
+          </table>
+        </div>
+      </section>
+
+      <!-- Bảng Tồn Kho Vị Trí Function từ Data5 -->
+      <section class="glass-panel table-container-card" style="margin-top: 20px;">
+        <div class="table-header-bar">
+          <div class="table-title">
+            <span>📌 BẢNG TỒN KHO HƯ HỎNG</span>
+            <span class="header-badge hsd-badge" id="records-count-bc2-function">0 Dòng</span>
+          </div>
+          <div>
+            <input type="text" id="table-search-bc2-function" class="table-search-input" placeholder="🔍 Tìm mã hàng, tên hàng, kho...">
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="excel-table" id="table-bc2-function">
+            <thead>
+              <tr>
+                <th style="width: 40px;" class="text-center">STT</th>
+                <th style="width: 90px; cursor:pointer;" onclick="handleSortBC2Function('MÃ KHO')">
+                  MÃ KHO <span id="sort2func-MÃ KHO" class="sort-icon">▲</span>
+                </th>
+                <th style="width: 140px; cursor:pointer;" onclick="handleSortBC2Function('MÃ HÀNG')">
+                  MÃ HÀNG <span id="sort2func-MÃ HÀNG" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 250px; cursor:pointer;" onclick="handleSortBC2Function('TÊN HÀNG')">
+                  TÊN HÀNG <span id="sort2func-TÊN HÀNG" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 110px; cursor:pointer;" class="text-center" onclick="handleSortBC2Function('VỊ TRÍ')">
+                  VỊ TRÍ <span id="sort2func-VỊ TRÍ" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 100px;" class="text-center">ĐVT</th>
+                <th style="width: 130px; cursor:pointer;" class="text-right" onclick="handleSortBC2Function('SỐ LƯỢNG')">
+                  SỐ LƯỢNG <span id="sort2func-SỐ LƯỢNG" class="sort-icon">↕</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tbody-bc2-function"></tbody>
+            <tfoot id="tfoot-bc2-function"></tfoot>
           </table>
         </div>
       </section>

@@ -60,6 +60,11 @@ let searchQueryBC2 = '';
 let currentSortColumnBC2 = 'MÃ KHO';   // Mặc định sắp theo Kho
 let currentSortOrderBC2 = 'asc';      // A→Z
 
+// BC2 Function state
+let searchQueryBC2Function = '';
+let currentSortColumnBC2Function = 'MÃ KHO';
+let currentSortOrderBC2Function = 'asc';
+
 // BC5 state
 let rawDataBC5 = [];
 let searchQueryBC5 = '';
@@ -143,6 +148,14 @@ function initDashboard() {
     searchInputBC2.addEventListener('input', (e) => {
       searchQueryBC2 = e.target.value.trim().toLowerCase();
       applyFiltersAndRenderBC2();
+    });
+  }
+
+  const searchInputBC2Func = document.getElementById('table-search-bc2-function');
+  if (searchInputBC2Func) {
+    searchInputBC2Func.addEventListener('input', (e) => {
+      searchQueryBC2Function = e.target.value.trim().toLowerCase();
+      renderBC2FunctionTable();
     });
   }
 
@@ -460,6 +473,180 @@ function applyFiltersAndRender() {
 
   // Render Table & Grand Total Footer
   renderTable(searchRows, totalQty, totalPL);
+  
+  // Render Biểu đồ hình cột BC1 (Mã hàng & ĐVT)
+  renderBC1Charts(searchRows);
+}
+
+// ==========================================
+// BIỂU ĐỒ BÁO CÁO 1 (2 Biểu đồ hình cột)
+// ==========================================
+var bc1Charts = {};
+
+function bc1GetOrCreate(chartId, config) {
+  if (typeof Chart === 'undefined') return;
+  var ctx = document.getElementById(chartId);
+  if (!ctx) return;
+  if (bc1Charts[chartId]) {
+    bc1Charts[chartId].destroy();
+    delete bc1Charts[chartId];
+  }
+  try {
+    bc1Charts[chartId] = new Chart(ctx, config);
+  } catch(e) {
+    console.error('Lỗi tạo chart BC1:', chartId, e);
+  }
+}
+
+function renderBC1Charts(rows) {
+  if (!rows || rows.length === 0) {
+    bc1DrawChartMaHang([]);
+    bc1DrawChartDVT([]);
+    return;
+  }
+
+  var maHangMap = {};
+  var dvtMap = {};
+
+  rows.forEach(function(row) {
+    var maHang = getSafeValue(row, ['MÃ HÀNG']) ? String(getSafeValue(row, ['MÃ HÀNG'])).trim() : 'N/A';
+    var dvt = getSafeValue(row, ['ĐƠN VỊ TÍNH', 'ĐVT']) ? String(getSafeValue(row, ['ĐƠN VỊ TÍNH', 'ĐVT'])).trim() : 'N/A';
+    var qty = parseFloat(getSafeValue(row, ['SỐ LƯỢNG'])) || 0;
+
+    if (maHang && maHang !== 'N/A') {
+      maHangMap[maHang] = (maHangMap[maHang] || 0) + qty;
+    }
+    if (dvt && dvt !== 'N/A') {
+      dvtMap[dvt] = (dvtMap[dvt] || 0) + qty;
+    }
+  });
+
+  var sortedMaHang = Object.keys(maHangMap).map(function(k) {
+    return { label: k, value: maHangMap[k] };
+  }).sort(function(a, b) { return b.value - a.value; });
+
+  var sortedDVT = Object.keys(dvtMap).map(function(k) {
+    return { label: k, value: dvtMap[k] };
+  }).sort(function(a, b) { return b.value - a.value; });
+
+  bc1DrawChartMaHang(sortedMaHang);
+  bc1DrawChartDVT(sortedDVT);
+}
+
+function bc1DrawChartMaHang(data) {
+  var datalabelsPlugin = (typeof ChartDataLabels !== 'undefined') ? [ChartDataLabels] : [];
+  var labels = data.map(function(d) { return d.label; });
+  var values = data.map(function(d) { return d.value; });
+
+  var config = {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Số Lượng',
+        data: values,
+        backgroundColor: '#3b82f6',
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
+    plugins: datalabelsPlugin,
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return 'Số lượng: ' + formatNumber(ctx.raw);
+            }
+          }
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          color: '#1e293b',
+          font: { size: 10, weight: 'bold' },
+          formatter: function(v) {
+            return v > 0 ? formatNumber(v) : '';
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: '#475569', font: { size: 10, weight: '600' }, maxRotation: 45 }
+        },
+        y: {
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { color: '#475569', font: { size: 10 } },
+          beginAtZero: true
+        }
+      }
+    }
+  };
+  bc1GetOrCreate('chart-bc1-mahang', config);
+}
+
+function bc1DrawChartDVT(data) {
+  var datalabelsPlugin = (typeof ChartDataLabels !== 'undefined') ? [ChartDataLabels] : [];
+  var labels = data.map(function(d) { return d.label; });
+  var values = data.map(function(d) { return d.value; });
+
+  var colors = ['#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#3b82f6'];
+
+  var config = {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Số Lượng',
+        data: values,
+        backgroundColor: function(ctx) {
+          return colors[ctx.dataIndex % colors.length];
+        },
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
+    plugins: datalabelsPlugin,
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return 'Số lượng: ' + formatNumber(ctx.raw);
+            }
+          }
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          color: '#1e293b',
+          font: { size: 10, weight: 'bold' },
+          formatter: function(v) {
+            return v > 0 ? formatNumber(v) : '';
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: '#475569', font: { size: 11, weight: 'bold' } }
+        },
+        y: {
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { color: '#475569', font: { size: 10 } },
+          beginAtZero: true
+        }
+      }
+    }
+  };
+  bc1GetOrCreate('chart-bc1-dvt', config);
 }
 
 function handleSort(colName) {
@@ -752,7 +939,17 @@ function renderTableBC3Pivot(pivotMap, khoCols, grandTotalRow, grandTotalAll) {
 
   tbody.innerHTML = '';
   
-  const viTriKeys = Object.keys(pivotMap).sort();
+  const VI_TRI_ORDER = ["TP", "RONG", "RỖNG", "FUNCTION"];
+  const viTriKeys = Object.keys(pivotMap).sort((a, b) => {
+    const normA = String(a).toUpperCase().trim();
+    const normB = String(b).toUpperCase().trim();
+    let indexA = VI_TRI_ORDER.findIndex(o => normA.includes(o));
+    let indexB = VI_TRI_ORDER.findIndex(o => normB.includes(o));
+    if (indexA === -1) indexA = 999;
+    if (indexB === -1) indexB = 999;
+    if (indexA !== indexB) return indexA - indexB;
+    return normA.localeCompare(normB);
+  });
   if (viTriKeys.length === 0) {
     tbody.innerHTML = `<tr><td colspan="${khoCols.length + 2}" class="text-center">Không có dữ liệu</td></tr>`;
     return;
@@ -949,8 +1146,11 @@ function applyFiltersAndRenderBC2() {
   if (valCount) valCount.textContent = uniqueMaHang;
   if (valQty) valQty.textContent = formatNumber(totalQty);
 
-  // Render bảng
+  // Render bảng HSD
   renderTableBC2(searchRows, totalQty);
+
+  // Render bảng Vị Trí FUNCTION từ Data5
+  renderBC2FunctionTable();
 }
 
 function handleSortBC2(colName) {
@@ -1117,6 +1317,124 @@ function renderTableBC2(rows, totalQty) {
     </tr>
   `;
 }
+
+// ==========================================
+// BẢNG TỒN KHO VỊ TRÍ FUNCTION (DATA5)
+// ==========================================
+function renderBC2FunctionTable() {
+  const tbody = document.getElementById('tbody-bc2-function');
+  const tfoot = document.getElementById('tfoot-bc2-function');
+  const countBadge = document.getElementById('records-count-bc2-function');
+
+  if (!tbody) return;
+
+  const data5 = window.DASHBOARD_DATA ? (window.DASHBOARD_DATA['data5-tồn kho theo PL, ví trí'] || []) : [];
+
+  // Lọc VỊ TRÍ = FUNCTION và theo selectedKho
+  let filtered = data5.filter(r => {
+    const maKho = getKhoValue(r);
+    const passKho = selectedKho.size > 0 ? selectedKho.has(maKho) : true;
+
+    const vt = String(getSafeValue(r, ['VỊ TRÍ']) || '').trim().toUpperCase();
+    const passFunc = vt === 'FUNCTION' || vt.includes('FUNC');
+
+    return passKho && passFunc;
+  });
+
+  // Tìm kiếm nếu người dùng nhập ô search
+  if (searchQueryBC2Function && filtered.length > 0) {
+    filtered = filtered.filter(row => {
+      const text = [
+        getSafeValue(row, ['MÃ KHO']),
+        getSafeValue(row, ['MÃ HÀNG']),
+        getSafeValue(row, ['TÊN HÀNG']),
+        getSafeValue(row, ['VỊ TRÍ']),
+        getSafeValue(row, ['ĐƠN VỊ TÍNH'])
+      ].join(' ').toLowerCase();
+      return text.includes(searchQueryBC2Function);
+    });
+  }
+
+  // Sắp xếp
+  filtered = sortRowsGeneric(filtered, currentSortColumnBC2Function, currentSortOrderBC2Function);
+
+  if (countBadge) countBadge.textContent = `${filtered.length} Dòng Hiển Thị`;
+  tbody.innerHTML = '';
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7" class="text-center" style="padding: 24px; color: var(--text-muted);">
+          Không có dữ liệu tồn kho hư hỏng phù hợp
+        </td>
+      </tr>`;
+    if (tfoot) tfoot.innerHTML = '';
+    return;
+  }
+
+  let totalQty = 0;
+  let html = '';
+
+  filtered.forEach((r, idx) => {
+    const maKho = getKhoValue(r);
+    const maHang = getSafeValue(r, ['MÃ HÀNG']) || 'N/A';
+    const tenHang = getSafeValue(r, ['TÊN HÀNG']) || '';
+    const viTri = getSafeValue(r, ['VỊ TRÍ']) || 'FUNCTION';
+    const dvt = getSafeValue(r, ['ĐƠN VỊ TÍNH']) || '';
+    const qty = parseFloat(getSafeValue(r, ['SỐ LƯỢNG'])) || 0;
+
+    totalQty += qty;
+
+    html += `
+      <tr>
+        <td class="text-center" style="font-weight:600; color:var(--text-muted);">${idx + 1}</td>
+        <td class="text-center font-bold">${escapeHtml(maKho)}</td>
+        <td style="font-weight: 700; color: var(--primary);">${escapeHtml(maHang)}</td>
+        <td style="font-size:0.85rem;">${escapeHtml(tenHang)}</td>
+        <td class="text-center font-bold"><span class="badge-tag hsd-warn">${escapeHtml(viTri)}</span></td>
+        <td class="text-center">${escapeHtml(dvt)}</td>
+        <td class="text-right font-bold" style="color: var(--accent-blue);">${qty > 0 ? formatNumber(qty) : '0'}</td>
+      </tr>`;
+  });
+
+  tbody.innerHTML = html;
+
+  if (tfoot) {
+    tfoot.innerHTML = `
+      <tr style="background: rgba(0, 0, 0, 0.04); font-weight: bold;">
+        <td colspan="6" class="text-right" style="padding-right: 16px; color: var(--primary);">TỔNG SỐ LƯỢNG TỒN KHO HƯ HỎNG:</td>
+        <td class="text-right" style="color: var(--primary); font-size: 0.95rem;">${formatNumber(totalQty)}</td>
+      </tr>`;
+  }
+}
+
+function handleSortBC2Function(colName) {
+  if (currentSortColumnBC2Function === colName) {
+    currentSortOrderBC2Function = currentSortOrderBC2Function === 'asc' ? 'desc' : 'asc';
+  } else {
+    currentSortColumnBC2Function = colName;
+    currentSortOrderBC2Function = 'asc';
+  }
+  updateSortIconsBC2Function();
+  renderBC2FunctionTable();
+}
+
+function updateSortIconsBC2Function() {
+  const cols = ['MÃ KHO', 'MÃ HÀNG', 'TÊN HÀNG', 'VỊ TRÍ', 'SỐ LƯỢNG'];
+  cols.forEach(col => {
+    const iconEl = document.getElementById('sort2func-' + col);
+    if (iconEl) {
+      if (col === currentSortColumnBC2Function) {
+        iconEl.textContent = currentSortOrderBC2Function === 'asc' ? '▲' : '▼';
+        iconEl.style.color = 'var(--accent-blue)';
+      } else {
+        iconEl.textContent = '⇕';
+        iconEl.style.color = 'var(--text-muted)';
+      }
+    }
+  });
+}
+
 
 
 
