@@ -1,5 +1,5 @@
 // Auto-generated data file from báo cáo.xlsx
-window.LAST_UPDATED_TIME = '09/08/2026 10:23:17';
+window.LAST_UPDATED_TIME = '09/08/2026 10:24:19';
 window.DASHBOARD_DATA = {
   "baocao1": [
     {
@@ -46,24 +46,6 @@ window.DASHBOARD_DATA = {
       "Unnamed: 4": "Két",
       "Unnamed: 5": 864,
       "Unnamed: 6": 16
-    },
-    {
-      "Unnamed: 0": "NEW",
-      "Số chuyến Đã đến": "NM BSG Cù Chi",
-      "0": "50H93213",
-      "Unnamed: 3": "LAKC",
-      "Unnamed: 4": "Két",
-      "Unnamed: 5": 864,
-      "Unnamed: 6": 16
-    },
-    {
-      "Unnamed: 0": "NEW",
-      "Số chuyến Đã đến": "NM BSG Cù Chi",
-      "0": "50H93830",
-      "Unnamed: 3": "LAKC",
-      "Unnamed: 4": "Két",
-      "Unnamed: 5": 1404,
-      "Unnamed: 6": 26
     },
     {
       "Unnamed: 0": "NEW",
@@ -139,6 +121,24 @@ window.DASHBOARD_DATA = {
     },
     {
       "Unnamed: 0": "NEW",
+      "Số chuyến Đã đến": "NM BSG Cù Chi",
+      "0": "50H93213",
+      "Unnamed: 3": "LAKC",
+      "Unnamed: 4": "Két",
+      "Unnamed: 5": 864,
+      "Unnamed: 6": 16
+    },
+    {
+      "Unnamed: 0": "NEW",
+      "Số chuyến Đã đến": "NM BSG Cù Chi",
+      "0": "50H93830",
+      "Unnamed: 3": "LAKC",
+      "Unnamed: 4": "Két",
+      "Unnamed: 5": 1404,
+      "Unnamed: 6": 26
+    },
+    {
+      "Unnamed: 0": "NEW",
       "Số chuyến Đã đến": "NM BSG Cần Thơ",
       "0": "50H05106",
       "Unnamed: 3": "LNP5",
@@ -202,6 +202,342 @@ window.DASHBOARD_DATA = {
     },
     {
       "Unnamed: 0": "052",
+      "Unnamed: 1": "CHCR",
+      "Unnamed: 2": "14/06/2026",
+      "bia % HSD <60%": 79.4872,
+      "Unnamed: 4": 157
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CHCR_26R2",
+      "Unnamed: 2": "22/07/2026",
+      "bia % HSD <60%": 93.4066,
+      "Unnamed: 4": 700
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CHLC_26R2",
+      "Unnamed: 2": "24/07/2026",
+      "bia % HSD <60%": 95.6164,
+      "Unnamed: 4": 1190
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "EXLC_26LE",
+      "Unnamed: 2": "22/05/2026",
+      "bia % HSD <60%": 78.3562,
+      "Unnamed: 4": 3120
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "07/06/2026",
+      "bia % HSD <60%": 82.7397,
+      "Unnamed: 4": 2028
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LAKC",
+      "Unnamed: 2": "21/07/2026",
+      "bia % HSD <60%": 94.7945,
+      "Unnamed: 4": 1566
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "23/07/2026",
+      "bia % HSD <60%": 95.3425,
+      "Unnamed: 4": 5778
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "03/07/2026",
+      "bia % HSD <60%": 89.863,
+      "Unnamed: 4": 2520
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "13/07/2026",
+      "bia % HSD <60%": 92.6027,
+      "Unnamed: 4": 1269
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "14/07/2026",
+      "bia % HSD <60%": 92.8767,
+      "Unnamed: 4": 1620
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "15/07/2026",
+      "bia % HSD <60%": 93.1507,
+      "Unnamed: 4": 567
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "16/07/2026",
+      "bia % HSD <60%": 93.4247,
+      "Unnamed: 4": 2592
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "17/07/2026",
+      "bia % HSD <60%": 93.6986,
+      "Unnamed: 4": 2806
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "18/07/2026",
+      "bia % HSD <60%": 93.9726,
+      "Unnamed: 4": 5618
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "19/07/2026",
+      "bia % HSD <60%": 94.2466,
+      "Unnamed: 4": 4860
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "20/07/2026",
+      "bia % HSD <60%": 94.5205,
+      "Unnamed: 4": 7452
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "22/07/2026",
+      "bia % HSD <60%": 95.0685,
+      "Unnamed: 4": 3836
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "02/08/2026",
+      "bia % HSD <60%": 98.0822,
+      "Unnamed: 4": 2125
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "24/07/2026",
+      "bia % HSD <60%": 95.6164,
+      "Unnamed: 4": 864
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "04/07/2026",
+      "bia % HSD <60%": 90.137,
+      "Unnamed: 4": 2106
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "03/08/2026",
+      "bia % HSD <60%": 98.3562,
+      "Unnamed: 4": 2946
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "04/08/2026",
+      "bia % HSD <60%": 98.6301,
+      "Unnamed: 4": 5027
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "06/08/2026",
+      "bia % HSD <60%": 99.1781,
+      "Unnamed: 4": 864
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LASG",
+      "Unnamed: 2": "14/07/2026",
+      "bia % HSD <60%": 92.8767,
+      "Unnamed: 4": 5389
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "16/07/2026",
+      "bia % HSD <60%": 93.4247,
+      "Unnamed: 4": 9840
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "17/07/2026",
+      "bia % HSD <60%": 93.6986,
+      "Unnamed: 4": 814
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "28/07/2026",
+      "bia % HSD <60%": 96.7123,
+      "Unnamed: 4": 11540
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "29/07/2026",
+      "bia % HSD <60%": 96.9863,
+      "Unnamed: 4": 22326
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "30/07/2026",
+      "bia % HSD <60%": 97.2603,
+      "Unnamed: 4": 21883
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "31/07/2026",
+      "bia % HSD <60%": 97.5342,
+      "Unnamed: 4": 4157
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LNP5",
+      "Unnamed: 2": "21/07/2026",
+      "bia % HSD <60%": 93.0403,
+      "Unnamed: 4": 9500
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "23/07/2026",
+      "bia % HSD <60%": 93.7729,
+      "Unnamed: 4": 2946
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "22/07/2026",
+      "bia % HSD <60%": 93.4066,
+      "Unnamed: 4": 15050
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "07/07/2026",
+      "bia % HSD <60%": 87.9121,
+      "Unnamed: 4": 1395
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "08/07/2026",
+      "bia % HSD <60%": 88.2784,
+      "Unnamed: 4": 10838
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "09/07/2026",
+      "bia % HSD <60%": 88.6447,
+      "Unnamed: 4": 3791
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "10/07/2026",
+      "bia % HSD <60%": 89.011,
+      "Unnamed: 4": 2088
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "11/07/2026",
+      "bia % HSD <60%": 89.3773,
+      "Unnamed: 4": 5512
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "04/08/2026",
+      "bia % HSD <60%": 98.1685,
+      "Unnamed: 4": 4654
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LV12",
+      "Unnamed: 2": "19/05/2026",
+      "bia % HSD <60%": 77.5342,
+      "Unnamed: 4": 708
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "20/05/2026",
+      "bia % HSD <60%": 77.8082,
+      "Unnamed: 4": 230
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LX24",
+      "Unnamed: 2": "15/05/2026",
+      "bia % HSD <60%": 76.4384,
+      "Unnamed: 4": 12
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "10/06/2026",
+      "bia % HSD <60%": 83.5616,
+      "Unnamed: 4": 216
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PALC_26LE",
+      "Unnamed: 2": "09/06/2026",
+      "bia % HSD <60%": 83.2877,
+      "Unnamed: 4": 1652
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "10/06/2026",
+      "bia % HSD <60%": 83.5616,
+      "Unnamed: 4": 4056
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "29/05/2026",
+      "bia % HSD <60%": 80.274,
+      "Unnamed: 4": 817
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PAPB",
+      "Unnamed: 2": "24/03/2026",
+      "bia % HSD <60%": 62.1918,
+      "Unnamed: 4": 97
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PAPC",
+      "Unnamed: 2": "23/03/2026",
+      "bia % HSD <60%": 61.9178,
+      "Unnamed: 4": 1098
+    },
+    {
+      "Unnamed: 0": null,
       "Unnamed: 1": "PAT2",
       "Unnamed: 2": "29/01/2026",
       "bia % HSD <60%": 47.3973,
@@ -215,32 +551,753 @@ window.DASHBOARD_DATA = {
       "Unnamed: 4": 408
     },
     {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "20/03/2026",
+      "bia % HSD <60%": 61.0959,
+      "Unnamed: 4": 260
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "TN24",
+      "Unnamed: 2": "13/07/2026",
+      "bia % HSD <60%": 92.6027,
+      "Unnamed: 4": 756
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "14/07/2026",
+      "bia % HSD <60%": 92.8767,
+      "Unnamed: 4": 432
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "16/07/2026",
+      "bia % HSD <60%": 93.4247,
+      "Unnamed: 4": 486
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "09/06/2026",
+      "bia % HSD <60%": 83.2877,
+      "Unnamed: 4": 125
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "19/06/2026",
+      "bia % HSD <60%": 86.0274,
+      "Unnamed: 4": 216
+    },
+    {
       "Unnamed: 0": "052 Total",
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "bia % HSD <60%": null,
-      "Unnamed: 4": 1796
+      "Unnamed: 4": 206291
     },
     {
       "Unnamed: 0": "05KH",
+      "Unnamed: 1": "CHCR",
+      "Unnamed: 2": "14/06/2026",
+      "bia % HSD <60%": 79.4872,
+      "Unnamed: 4": 59
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CHCR_26R2",
+      "Unnamed: 2": "22/07/2026",
+      "bia % HSD <60%": 93.4066,
+      "Unnamed: 4": 1286
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CHLC_26R2",
+      "Unnamed: 2": "25/07/2026",
+      "bia % HSD <60%": 95.8904,
+      "Unnamed: 4": 1872
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "EXLC_26LE",
+      "Unnamed: 2": "06/06/2026",
+      "bia % HSD <60%": 82.4658,
+      "Unnamed: 4": 5797
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "23/05/2026",
+      "bia % HSD <60%": 78.6301,
+      "Unnamed: 4": 894
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "22/05/2026",
+      "bia % HSD <60%": 78.3562,
+      "Unnamed: 4": 3180
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "07/06/2026",
+      "bia % HSD <60%": 82.7397,
+      "Unnamed: 4": 2159
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LAKC",
+      "Unnamed: 2": "21/07/2026",
+      "bia % HSD <60%": 94.7945,
+      "Unnamed: 4": 108
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "23/07/2026",
+      "bia % HSD <60%": 95.3425,
+      "Unnamed: 4": 1514
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "02/07/2026",
+      "bia % HSD <60%": 89.589,
+      "Unnamed: 4": 1512
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "03/07/2026",
+      "bia % HSD <60%": 89.863,
+      "Unnamed: 4": 1080
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "12/07/2026",
+      "bia % HSD <60%": 92.3288,
+      "Unnamed: 4": 1134
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "13/07/2026",
+      "bia % HSD <60%": 92.6027,
+      "Unnamed: 4": 540
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "14/07/2026",
+      "bia % HSD <60%": 92.8767,
+      "Unnamed: 4": 1134
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "16/07/2026",
+      "bia % HSD <60%": 93.4247,
+      "Unnamed: 4": 1080
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "17/07/2026",
+      "bia % HSD <60%": 93.6986,
+      "Unnamed: 4": 1350
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "22/07/2026",
+      "bia % HSD <60%": 95.0685,
+      "Unnamed: 4": 2914
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "25/06/2026",
+      "bia % HSD <60%": 87.6712,
+      "Unnamed: 4": 1278
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "29/06/2026",
+      "bia % HSD <60%": 88.7671,
+      "Unnamed: 4": 3240
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "04/08/2026",
+      "bia % HSD <60%": 98.6301,
+      "Unnamed: 4": 864
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "05/08/2026",
+      "bia % HSD <60%": 98.9041,
+      "Unnamed: 4": 1620
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "06/08/2026",
+      "bia % HSD <60%": 99.1781,
+      "Unnamed: 4": 756
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LASG",
+      "Unnamed: 2": "27/07/2026",
+      "bia % HSD <60%": 96.4384,
+      "Unnamed: 4": 22997
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "28/07/2026",
+      "bia % HSD <60%": 96.7123,
+      "Unnamed: 4": 11392
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "29/07/2026",
+      "bia % HSD <60%": 96.9863,
+      "Unnamed: 4": 6524
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "25/07/2026",
+      "bia % HSD <60%": 95.8904,
+      "Unnamed: 4": 19289
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "26/07/2026",
+      "bia % HSD <60%": 96.1644,
+      "Unnamed: 4": 22862
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LNP5",
+      "Unnamed: 2": "21/07/2026",
+      "bia % HSD <60%": 93.0403,
+      "Unnamed: 4": 2436
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "23/07/2026",
+      "bia % HSD <60%": 93.7729,
+      "Unnamed: 4": 810
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "22/07/2026",
+      "bia % HSD <60%": 93.4066,
+      "Unnamed: 4": 3800
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "08/07/2026",
+      "bia % HSD <60%": 88.2784,
+      "Unnamed: 4": 21
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "09/07/2026",
+      "bia % HSD <60%": 88.6447,
+      "Unnamed: 4": 14
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "25/07/2026",
+      "bia % HSD <60%": 94.5055,
+      "Unnamed: 4": 2430
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "30/07/2026",
+      "bia % HSD <60%": 96.337,
+      "Unnamed: 4": 2300
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "04/08/2026",
+      "bia % HSD <60%": 98.1685,
+      "Unnamed: 4": 5700
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "31/07/2026",
+      "bia % HSD <60%": 96.7033,
+      "Unnamed: 4": 940
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LV12",
+      "Unnamed: 2": "19/05/2026",
+      "bia % HSD <60%": 77.5342,
+      "Unnamed: 4": 1734
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LX24",
+      "Unnamed: 2": "15/05/2026",
+      "bia % HSD <60%": 76.4384,
+      "Unnamed: 4": 230
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "16/05/2026",
+      "bia % HSD <60%": 76.7123,
+      "Unnamed: 4": 214
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PALC_26LE",
+      "Unnamed: 2": "09/06/2026",
+      "bia % HSD <60%": 83.2877,
+      "Unnamed: 4": 5444
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "10/06/2026",
+      "bia % HSD <60%": 83.5616,
+      "Unnamed: 4": 4575
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "12/06/2026",
+      "bia % HSD <60%": 84.1096,
+      "Unnamed: 4": 499
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "21/06/2026",
+      "bia % HSD <60%": 86.5753,
+      "Unnamed: 4": 780
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PAPB",
+      "Unnamed: 2": "24/03/2026",
+      "bia % HSD <60%": 62.1918,
+      "Unnamed: 4": 413
+    },
+    {
+      "Unnamed: 0": null,
       "Unnamed: 1": "PAPC",
+      "Unnamed: 2": "23/03/2026",
+      "bia % HSD <60%": 61.9178,
+      "Unnamed: 4": 2080
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
       "Unnamed: 2": "03/03/2026",
       "bia % HSD <60%": 56.4384,
       "Unnamed: 4": 69
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PAT2",
+      "Unnamed: 2": "13/07/2026",
+      "bia % HSD <60%": 92.6027,
+      "Unnamed: 4": 960
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "07/07/2026",
+      "bia % HSD <60%": 90.9589,
+      "Unnamed: 4": 330
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "SP33",
+      "Unnamed: 2": "06/06/2026",
+      "bia % HSD <60%": 82.4658,
+      "Unnamed: 4": 1125
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "TN24",
+      "Unnamed: 2": "16/07/2026",
+      "bia % HSD <60%": 93.4247,
+      "Unnamed: 4": 876
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CHLC",
+      "Unnamed: 2": "09/06/2026",
+      "bia % HSD <60%": 83.2877,
+      "Unnamed: 4": 91
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "24/05/2026",
+      "bia % HSD <60%": 78.9041,
+      "Unnamed: 4": 178
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "25/05/2026",
+      "bia % HSD <60%": 79.1781,
+      "Unnamed: 4": 156
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "EXSL",
+      "Unnamed: 2": "12/06/2026",
+      "bia % HSD <60%": 84.1096,
+      "Unnamed: 4": 280
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "EXSL_26R3",
+      "Unnamed: 2": "05/04/2026",
+      "bia % HSD <60%": 65.4795,
+      "Unnamed: 4": 59
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LASG_26R2",
+      "Unnamed: 2": "22/05/2026",
+      "bia % HSD <60%": 78.3562,
+      "Unnamed: 4": 19
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LVCA",
+      "Unnamed: 2": "10/06/2026",
+      "bia % HSD <60%": 83.5616,
+      "Unnamed: 4": 327
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CH20_26R2",
+      "Unnamed: 2": "04/08/2026",
+      "bia % HSD <60%": 98.6301,
+      "Unnamed: 4": 1870
     },
     {
       "Unnamed: 0": "05KH Total",
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "bia % HSD <60%": null,
-      "Unnamed: 4": 69
+      "Unnamed: 4": 159195
     },
     {
       "Unnamed: 0": "05NT",
+      "Unnamed: 1": "CHCR_26R2",
+      "Unnamed: 2": "22/07/2026",
+      "bia % HSD <60%": 93.4066,
+      "Unnamed: 4": 376
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CHLC_26R2",
+      "Unnamed: 2": "24/07/2026",
+      "bia % HSD <60%": 95.6164,
+      "Unnamed: 4": 1342
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "EXLC_26LE",
+      "Unnamed: 2": "21/05/2026",
+      "bia % HSD <60%": 78.0822,
+      "Unnamed: 4": 2224
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "20/05/2026",
+      "bia % HSD <60%": 77.8082,
+      "Unnamed: 4": 302
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LAKC",
+      "Unnamed: 2": "21/07/2026",
+      "bia % HSD <60%": 94.7945,
+      "Unnamed: 4": 7128
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "23/07/2026",
+      "bia % HSD <60%": 95.3425,
+      "Unnamed: 4": 3146
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "13/07/2026",
+      "bia % HSD <60%": 92.6027,
+      "Unnamed: 4": 1246
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "14/07/2026",
+      "bia % HSD <60%": 92.8767,
+      "Unnamed: 4": 1476
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "15/07/2026",
+      "bia % HSD <60%": 93.1507,
+      "Unnamed: 4": 5052
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "16/07/2026",
+      "bia % HSD <60%": 93.4247,
+      "Unnamed: 4": 5937
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "17/07/2026",
+      "bia % HSD <60%": 93.6986,
+      "Unnamed: 4": 1834
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "18/07/2026",
+      "bia % HSD <60%": 93.9726,
+      "Unnamed: 4": 4588
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "19/07/2026",
+      "bia % HSD <60%": 94.2466,
+      "Unnamed: 4": 1620
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "20/07/2026",
+      "bia % HSD <60%": 94.5205,
+      "Unnamed: 4": 370
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "22/07/2026",
+      "bia % HSD <60%": 95.0685,
+      "Unnamed: 4": 3672
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "24/07/2026",
+      "bia % HSD <60%": 95.6164,
+      "Unnamed: 4": 742
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "03/08/2026",
+      "bia % HSD <60%": 98.3562,
+      "Unnamed: 4": 4752
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "04/08/2026",
+      "bia % HSD <60%": 98.6301,
+      "Unnamed: 4": 4639
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "05/08/2026",
+      "bia % HSD <60%": 98.9041,
+      "Unnamed: 4": 1463
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LASG",
+      "Unnamed: 2": "12/07/2026",
+      "bia % HSD <60%": 92.3288,
+      "Unnamed: 4": 8600
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "13/07/2026",
+      "bia % HSD <60%": 92.6027,
+      "Unnamed: 4": 8504
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "14/07/2026",
+      "bia % HSD <60%": 92.8767,
+      "Unnamed: 4": 19339
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "15/07/2026",
+      "bia % HSD <60%": 93.1507,
+      "Unnamed: 4": 33461
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "16/07/2026",
+      "bia % HSD <60%": 93.4247,
+      "Unnamed: 4": 7200
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "28/06/2026",
+      "bia % HSD <60%": 88.4932,
+      "Unnamed: 4": 28414
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "06/07/2026",
+      "bia % HSD <60%": 90.6849,
+      "Unnamed: 4": 13519
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "07/07/2026",
+      "bia % HSD <60%": 90.9589,
+      "Unnamed: 4": 4137
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "11/07/2026",
+      "bia % HSD <60%": 92.0548,
+      "Unnamed: 4": 11400
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "27/06/2026",
+      "bia % HSD <60%": 88.2192,
+      "Unnamed: 4": 28930
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "23/06/2026",
+      "bia % HSD <60%": 87.1233,
+      "Unnamed: 4": 2500
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LNP5",
+      "Unnamed: 2": "21/07/2026",
+      "bia % HSD <60%": 93.0403,
+      "Unnamed: 4": 1900
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "23/07/2026",
+      "bia % HSD <60%": 93.7729,
+      "Unnamed: 4": 1900
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "22/07/2026",
+      "bia % HSD <60%": 93.4066,
+      "Unnamed: 4": 5700
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "08/07/2026",
+      "bia % HSD <60%": 88.2784,
+      "Unnamed: 4": 813
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "10/07/2026",
+      "bia % HSD <60%": 89.011,
+      "Unnamed: 4": 3800
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "11/07/2026",
+      "bia % HSD <60%": 89.3773,
+      "Unnamed: 4": 1900
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "04/08/2026",
+      "bia % HSD <60%": 98.1685,
+      "Unnamed: 4": 1900
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LV12",
+      "Unnamed: 2": "20/05/2026",
+      "bia % HSD <60%": 77.8082,
+      "Unnamed: 4": 741
+    },
+    {
+      "Unnamed: 0": null,
       "Unnamed: 1": "LX24",
       "Unnamed: 2": "07/02/2026",
       "bia % HSD <60%": 49.863,
       "Unnamed: 4": 22
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PALC_26LE",
+      "Unnamed: 2": "21/06/2026",
+      "bia % HSD <60%": 86.5753,
+      "Unnamed: 4": 608
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PAPC",
+      "Unnamed: 2": "22/03/2026",
+      "bia % HSD <60%": 61.6438,
+      "Unnamed: 4": 85
     },
     {
       "Unnamed: 0": null,
@@ -252,6 +1309,13 @@ window.DASHBOARD_DATA = {
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "TN24",
+      "Unnamed: 2": "07/06/2026",
+      "bia % HSD <60%": 82.7397,
+      "Unnamed: 4": 500
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
       "Unnamed: 2": "31/01/2026",
       "bia % HSD <60%": 47.9452,
       "Unnamed: 4": 945
@@ -264,32 +1328,214 @@ window.DASHBOARD_DATA = {
       "Unnamed: 4": 16
     },
     {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CHLC",
+      "Unnamed: 2": "23/05/2026",
+      "bia % HSD <60%": 78.6301,
+      "Unnamed: 4": 224
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "EXSL",
+      "Unnamed: 2": "11/06/2026",
+      "bia % HSD <60%": 83.8356,
+      "Unnamed: 4": 242
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "12/06/2026",
+      "bia % HSD <60%": 84.1096,
+      "Unnamed: 4": 280
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LVCR",
+      "Unnamed: 2": "18/03/2026",
+      "bia % HSD <60%": 60.5479,
+      "Unnamed: 4": 274
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CH20_26R2",
+      "Unnamed: 2": "04/08/2026",
+      "bia % HSD <60%": 98.6301,
+      "Unnamed: 4": 170
+    },
+    {
       "Unnamed: 0": "05NT Total",
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "bia % HSD <60%": null,
-      "Unnamed: 4": 1158
+      "Unnamed: 4": 240108
     },
     {
       "Unnamed: 0": "SKH",
+      "Unnamed: 1": "EXLC_26LE",
+      "Unnamed: 2": "22/05/2026",
+      "bia % HSD <60%": 78.3562,
+      "Unnamed: 4": 198
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LASG",
+      "Unnamed: 2": "13/06/2026",
+      "bia % HSD <60%": 84.3836,
+      "Unnamed: 4": 3772
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "30/06/2026",
+      "bia % HSD <60%": 89.0411,
+      "Unnamed: 4": 63
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "24/06/2026",
+      "bia % HSD <60%": 87.3973,
+      "Unnamed: 4": 264
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "01/07/2026",
+      "bia % HSD <60%": 89.3151,
+      "Unnamed: 4": 297
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "26/06/2026",
+      "bia % HSD <60%": 87.9452,
+      "Unnamed: 4": 2748
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "04/07/2026",
+      "bia % HSD <60%": 90.137,
+      "Unnamed: 4": 2160
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "23/06/2026",
+      "bia % HSD <60%": 87.1233,
+      "Unnamed: 4": 2385
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "25/06/2026",
+      "bia % HSD <60%": 87.6712,
+      "Unnamed: 4": 11332
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "17/06/2026",
+      "bia % HSD <60%": 85.4795,
+      "Unnamed: 4": 1680
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PALC_26LE",
+      "Unnamed: 2": "21/06/2026",
+      "bia % HSD <60%": 86.5753,
+      "Unnamed: 4": 430
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PAPC",
+      "Unnamed: 2": "10/06/2026",
+      "bia % HSD <60%": 83.5616,
+      "Unnamed: 4": 4
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "PAT2",
+      "Unnamed: 2": "13/07/2026",
+      "bia % HSD <60%": 92.6027,
+      "Unnamed: 4": 330
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "14/07/2026",
+      "bia % HSD <60%": 92.8767,
+      "Unnamed: 4": 240
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "SP33",
+      "Unnamed: 2": "06/06/2026",
+      "bia % HSD <60%": 82.4658,
+      "Unnamed: 4": 787
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": "25/07/2026",
+      "bia % HSD <60%": 95.8904,
+      "Unnamed: 4": 910
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CH20",
+      "Unnamed: 2": "19/05/2026",
+      "bia % HSD <60%": 77.5342,
+      "Unnamed: 4": 13
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "CHLC",
+      "Unnamed: 2": "29/06/2026",
+      "bia % HSD <60%": 88.7671,
+      "Unnamed: 4": 1893
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "EXSL",
+      "Unnamed: 2": "11/06/2026",
+      "bia % HSD <60%": 83.8356,
+      "Unnamed: 4": 870
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "LVCA",
+      "Unnamed: 2": "01/08/2026",
+      "bia % HSD <60%": 97.8082,
+      "Unnamed: 4": 239
+    },
+    {
+      "Unnamed: 0": null,
       "Unnamed: 1": "GSFE_25T",
       "Unnamed: 2": "23/12/2025",
       "bia % HSD <60%": 37.2603,
       "Unnamed: 4": 6
     },
     {
+      "Unnamed: 0": null,
+      "Unnamed: 1": "TNTH",
+      "Unnamed: 2": "13/07/2026",
+      "bia % HSD <60%": 92.6027,
+      "Unnamed: 4": 144
+    },
+    {
       "Unnamed: 0": "SKH Total",
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "bia % HSD <60%": null,
-      "Unnamed: 4": 6
+      "Unnamed: 4": 30765
     },
     {
       "Unnamed: 0": "Grand Total",
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "bia % HSD <60%": null,
-      "Unnamed: 4": 3029
+      "Unnamed: 4": 636359
     }
   ],
   "baocao5-vitri": [
