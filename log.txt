@@ -12,3 +12,5 @@
 >>>>>>> cbfe7e7 (Update BC1 charts, BC3 sort, BC2 Bang Ton Kho Hu Hong)
 [Sun 08/09/2026 19:58:07.72] Da kiem tra thu vien Python. 
 [Sun 08/09/2026 19:59:52.17] extract_data.py hoan tat thanh cong. 
+[Mon 08/10/2026  6:20:11.74] Da kiem tra thu vien Python. 
+[Mon 08/10/2026  6:21:02.18] extract_data.py hoan tat thanh cong. 
