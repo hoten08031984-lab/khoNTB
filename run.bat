@@ -16,6 +16,17 @@ set "REQ_FILE=%~dp0requirements.txt"
 :: Ghi log thoi gian bat dau
 echo [%date% %time%] === BAT DAU CHAY === > log.txt
 
+:: ------------------------------------------------------------
+:: 0. DONG BO PULL CODE MOI NUOC KHI XU LY
+:: ------------------------------------------------------------
+git --version >nul 2>&1
+if not errorlevel 1 (
+    set GIT_TERMINAL_PROMPT=0
+    set GIT_SSH_COMMAND=ssh -o BatchMode=yes
+    git reset --hard HEAD >nul 2>&1
+    git pull origin main --rebase --no-edit >nul 2>&1
+)
+
 echo.
 echo =======================================================
 echo 1. KIEM TRA VA CAI DAT MOI TRUONG (VENV)...
@@ -59,7 +70,6 @@ echo.
 echo =======================================================
 echo 3. DONG BO WEB DASHBOARD LEN GITHUB...
 echo =======================================================
-:: Dong bo GitHub duoc bat tu dong
 
 git --version >nul 2>&1
 if errorlevel 1 (
@@ -70,11 +80,7 @@ if errorlevel 1 (
     set GIT_TERMINAL_PROMPT=0
     set GIT_SSH_COMMAND=ssh -o BatchMode=yes
 
-    :: Xoa bo thay doi tam thoi va Pull ve truoc de tranh conflict
-    git reset --hard HEAD >nul 2>&1
-    git pull origin main --rebase --no-edit >nul 2>&1
-
-    :: Add tat ca file can dong bo
+    :: Add tat ca file data.js va log moi tao
     git add index.html app.js styles.css data.js log.txt run.bat >nul 2>&1
     if exist img\ git add img\ >nul 2>&1
 
@@ -95,8 +101,6 @@ if errorlevel 1 (
         echo HOAN TAT! Dashboard da duoc cap nhat tren GitHub.
     )
 )
-
-:skip_github
 
 echo.
 echo [%date% %time%] === KET THUC === >> log.txt
