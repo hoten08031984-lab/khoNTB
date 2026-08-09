@@ -339,12 +339,12 @@ def map_data1_diduong(item, ma_kho):
     adddate = format_date(item.get("adddate", "")) or format_date(item.get("addwho", "")) or str(item.get("adddate", ""))
     
     raw_status = str(item.get("status", "")).strip()
-    if raw_status == "16":
-        status_text = "ARRIVED"
-    elif raw_status == "0":
+    if raw_status in ["16", "0"]:
         status_text = "NEW"
     elif raw_status == "11":
         status_text = "CANCELED"
+    elif raw_status in ["99", "28", "20"]:
+        status_text = "ARRIVED"
     else:
         status_text = raw_status
 
@@ -356,7 +356,7 @@ def map_data1_diduong(item, ma_kho):
         WHSE_NAME_MAP.get(str(item.get("fromwhseid", "")).strip(), str(item.get("fromwhsename", "")).strip()), # KHO XUẤT
         str(item.get("fromwhseid", "")).strip(), # MÃ KHO XUẤT
         str(item.get("externreceiptkey", "")).strip() or str(item.get("planid", "")).strip() or str(item.get("receiptkey", "")).strip(), # KẾ HOẠCH GIAO HÀNG
-        item.get("week", "") or item.get("deliveryweek", ""), # TUẦN
+        to_number(item.get("susr2")) if item.get("susr2") is not None else (item.get("week", "") or item.get("deliveryweek", "")), # TUẦN
         str(item.get("trailernumber", "")).strip() or str(item.get("vehicleno", "")).strip() or str(item.get("truckno", "")).strip(), # SỐ XE
         str(item.get("drivername", "")).strip() or str(item.get("driver", "")).strip(), # TÀI XẾ
         str(item.get("tripid", "")).strip() or str(item.get("externalreceiptkey2", "")).strip() or str(item.get("shipmentid", "")).strip() or str(item.get("tripno", "")).strip(), # MÃ CHUYẾN

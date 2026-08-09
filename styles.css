@@ -58,14 +58,98 @@ body {
   min-height: 100vh;
   padding: 16px;
   line-height: 1.4;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-.dashboard-container {
-  max-width: 1600px;
+.dashboard-layout {
+  max-width: 100%;
   margin: 0 auto;
+  display: flex;
+  gap: 16px;
+  min-height: calc(100vh - 32px);
+  box-sizing: border-box;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px 12px;
+  position: sticky;
+  top: 16px;
+  height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  margin-bottom: 5px;
+  text-align: center;
+}
+.sidebar-logo {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+.sidebar-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-filter {
+  margin-top: 10px;
+}
+
+.filter-group-inline {
+  background: var(--bg-light);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.filter-inline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 8px;
+}
+.filter-inline-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.checkbox-list-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 14px;
+  min-width: 0; /* prevent flex blowout */
+}
+
+.report-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .glass-panel {
@@ -87,7 +171,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 22px;
+  padding: 8px 16px;
   position: relative;
   overflow: hidden;
   background: var(--bg-header);
@@ -153,14 +237,12 @@ body {
   box-shadow: 0 4px 12px var(--accent-blue-glow);
 }
 
-/* Filter Toolbar – Global, always on top */
+/* Filter Toolbar – Sidebar mode */
 .filter-toolbar {
   padding: 8px 12px;
   position: relative;
   z-index: 100;
   overflow: visible !important;
-  background: #fff;
-  border-left: 4px solid var(--accent-blue);
 }
 
 .section-title-bar {
@@ -184,9 +266,9 @@ body {
 }
 
 .filter-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   position: relative;
 }
 
@@ -309,13 +391,13 @@ body {
 
 /* Report Nav Bar – Sticky Scroll Navigation */
 .report-nav-bar {
-  display: flex;
-  gap: 4px;
-  padding: 8px 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 8px;
   background: #fff;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  overflow-x: auto;
   box-shadow: 0 1px 4px rgba(30, 80, 180, 0.05);
   position: sticky;
   top: 8px;
@@ -325,17 +407,18 @@ body {
 
 .report-nav-pill {
   padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 0.72rem;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--text-muted);
   background: transparent;
   border: 1.5px solid transparent;
   cursor: pointer;
-  white-space: nowrap;
   text-decoration: none;
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  text-align: center;
   gap: 6px;
   transition: all 0.18s ease;
   font-family: var(--font-sans);
@@ -361,7 +444,7 @@ body {
 
 /* KPI Box B1/B2 – Compact inline style */
 .kpi-excel-box {
-  padding: 8px 18px;
+  padding: 6px 12px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -431,7 +514,11 @@ body {
 .kpi-excel-value.count-b2 { color: var(--accent-blue); }
 
 /* Data Table */
-.table-container-card { overflow: hidden; }
+.table-container-card { 
+  overflow: hidden; 
+  width: 100%;
+  box-sizing: border-box;
+}
 
 .table-header-bar {
   padding: 12px 18px;
@@ -478,7 +565,8 @@ body {
 }
 
 .excel-table {
-  width: max-content;
+  width: 100%;
+  min-width: 100%;
   border-collapse: collapse;
   text-align: left;
   font-size: 0.8rem;
@@ -645,8 +733,8 @@ body {
 .report-section-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 22px;
+  gap: 12px;
+  padding: 8px 16px;
   background: linear-gradient(135deg, var(--accent-blue-light) 0%, #f0f7ff 100%);
   border: 1px solid var(--accent-blue-mid);
   border-radius: var(--radius-lg);
@@ -655,7 +743,7 @@ body {
 }
 
 .report-section-number {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 900;
   font-family: var(--font-mono);
   color: var(--accent-blue);
@@ -668,7 +756,7 @@ body {
 }
 
 .report-section-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-main);
   letter-spacing: -0.01em;
@@ -685,6 +773,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
+  min-width: 0;
 }
 
 /* BC4 Charts Grid */

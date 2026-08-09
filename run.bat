@@ -1,5 +1,4 @@
 @echo off
-chcp 65001 >nul
 setlocal EnableDelayedExpansion
 
 :: ============================================================
@@ -10,21 +9,45 @@ setlocal EnableDelayedExpansion
 :: Khong dung: pause, input(), cac lenh can GUI.
 :: ============================================================
 
+cd /d "%~dp0"
+set "VENV_DIR=%~dp0venv"
+set "REQ_FILE=%~dp0requirements.txt"
+
 :: Ghi log thoi gian bat dau
 echo [%date% %time%] === BAT DAU CHAY === > log.txt
 
 echo.
 echo =======================================================
-echo 1. KIEM TRA VA CAI DAT THU VIEN PYTHON...
+echo 1. KIEM TRA VA CAI DAT MOI TRUONG (VENV)...
 echo =======================================================
-pip install requests pandas pywin32 openpyxl >nul 2>&1
+
+:: Kiem tra Python
+python --version >nul 2>&1
+if errorlevel 1 (
+    echo [%date% %time%] [LOI] Khong tim thay Python! >> log.txt
+    echo [LOI] Khong tim thay Python tren he thong.
+    exit /b 1
+)
+
+:: Tao Virtual Environment moi neu chua co
+if not exist "%VENV_DIR%\Scripts\python.exe" (
+    echo Dang tao Virtual Environment moi ...
+    python -m venv "%VENV_DIR%"
+    if errorlevel 1 (
+        echo [%date% %time%] [LOI] Tao venv that bai! >> log.txt
+        echo LOI: Khong the tao Virtual Environment.
+        exit /b 1
+    )
+)
+
+"%VENV_DIR%\Scripts\python.exe" -m pip install -r "%REQ_FILE%" -q >nul 2>&1
 echo [%date% %time%] Da kiem tra thu vien Python. >> log.txt
 
 echo.
 echo =======================================================
 echo 2. DANG LAY DU LIEU TU WEB PORTAL VA CAP NHAT EXCEL...
 echo =======================================================
-python extract_data.py
+"%VENV_DIR%\Scripts\python.exe" extract_data.py
 if errorlevel 1 (
     echo [%date% %time%] [LOI] extract_data.py that bai! >> log.txt
     echo [LOI] Lay du lieu that bai. Xem log.txt de biet chi tiet.
@@ -36,6 +59,8 @@ echo.
 echo =======================================================
 echo 3. DONG BO WEB DASHBOARD LEN GITHUB...
 echo =======================================================
+:: Dong bo GitHub duoc bat tu dong
+
 git --version >nul 2>&1
 if errorlevel 1 (
     echo [%date% %time%] [CANH BAO] Git chua duoc cai dat tren may nay! >> log.txt
@@ -63,13 +88,14 @@ if errorlevel 1 (
     git push origin main >nul 2>&1
     if errorlevel 1 (
         echo [%date% %time%] [CANH BAO] Git push that bai. Kiem tra credentials tren VPS. >> log.txt
-        echo [CANH BAO] Git push that bai. Chay lenh sau de fix:
-        echo   git remote set-url origin https://USERNAME:TOKEN@github.com/hoten08031984-lab/khoNTB.git
+        echo [CANH BAO] Git push that bai.
     ) else (
         echo [%date% %time%] Git push thanh cong len GitHub. >> log.txt
         echo HOAN TAT! Dashboard da duoc cap nhat tren GitHub.
     )
 )
+
+:skip_github
 
 echo.
 echo [%date% %time%] === KET THUC === >> log.txt

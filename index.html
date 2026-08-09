@@ -8,78 +8,79 @@
 </head>
 <body>
 
-  <div class="dashboard-container">
-
-    <!-- Header Panel -->
-    <header class="dashboard-header glass-panel">
-      <div class="header-title-group">
-        <h1>
-          <span>📊 BÁO CÁO KHO NAM TRUNG BỘ</span>
-          <span class="header-badge">Multi-Report Ready</span>
-        </h1>
-        <p>Hệ thống đánh giá tổng quan số liệu hằng ngày cần theo dõi <span id="last-updated-time" style="margin-left:15px; font-weight:600; color:var(--primary); background:rgba(37,99,235,0.1); padding:2px 8px; border-radius:4px; font-size:0.85rem;"></span></p>
-      </div>
-      <button id="btn-reset-filters" class="btn-action">
-        <span>🔄 Thao Tác Lại Bộ Lọc</span>
-      </button>
-    </header>
-
-    <!-- Filter Toolbar Panel – Global, always on top -->
-    <section class="filter-toolbar glass-panel">
-      <div class="section-title-bar">
-        <span class="section-title">🎛️ Nhân Viên Kho chọn Mã Kho, Ngày, Loại hàng Tương ứng</span>
-        <span id="active-filter-summary" style="font-size: 0.72rem; color: var(--text-muted);">Đã chọn: Tất cả</span>
+  <div class="dashboard-layout">
+    
+    <!-- Left Sidebar -->
+    <aside class="sidebar glass-panel">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">📊 BÁO CÁO KHO NTB</div>
+        <div class="sidebar-subtitle">Multi-Report Ready</div>
       </div>
 
-      <div class="filter-grid">
-
+      <!-- Filter Section in Sidebar -->
+      <div class="sidebar-filter">
+        <div class="section-title-bar">
+          <span class="section-title">🎛️ Bộ Lọc</span>
+        </div>
+        
         <!-- Filter 1: Mã Kho -->
-        <div class="filter-group" id="group-kho">
-          <label class="filter-label">1. Mã Kho</label>
-          <div class="dropdown-trigger" onclick="toggleDropdown('menu-kho')">
-            <span id="label-kho">Đã chọn: 4/4 kho</span>
+        <div class="filter-group-inline" id="group-kho">
+          <div class="filter-inline-header">
+            <label class="filter-label">1. Mã Kho</label>
             <span class="dropdown-count-badge" id="count-kho">4</span>
           </div>
-          <div class="dropdown-menu" id="menu-kho">
-            <div class="dropdown-controls">
-              <button class="btn-link" onclick="selectAll('kho', true)">Chọn tất cả</button>
-              <button class="btn-link" onclick="selectAll('kho', false)">Bỏ chọn tất cả</button>
-            </div>
-            <div class="checkbox-list" id="list-kho"></div>
+          <div class="filter-inline-controls">
+            <button class="btn-link" onclick="selectAll('kho', true)">Chọn tất cả</button>
+            <button class="btn-link" onclick="selectAll('kho', false)">Bỏ chọn</button>
           </div>
+          <div class="checkbox-list-inline" id="list-kho"></div>
         </div>
 
-
-
-        <!-- Filter 3: Nhóm Hàng -->
-        <div class="filter-group" id="group-nhomhang">
-          <label class="filter-label">2. Nhóm Hàng</label>
-          <div class="dropdown-trigger" onclick="toggleDropdown('menu-nhomhang')">
-            <span id="label-nhomhang">Đã chọn: 3/3 nhóm</span>
+        <!-- Filter 2: Nhóm Hàng -->
+        <div class="filter-group-inline" id="group-nhomhang">
+          <div class="filter-inline-header">
+            <label class="filter-label">2. Nhóm Hàng</label>
             <span class="dropdown-count-badge" id="count-nhomhang">3</span>
           </div>
-          <div class="dropdown-menu" id="menu-nhomhang">
-            <div class="dropdown-controls">
-              <button class="btn-link" onclick="selectAll('nhomhang', true)">Chọn tất cả</button>
-              <button class="btn-link" onclick="selectAll('nhomhang', false)">Bỏ chọn tất cả</button>
-            </div>
-            <div class="checkbox-list" id="list-nhomhang"></div>
+          <div class="filter-inline-controls">
+            <button class="btn-link" onclick="selectAll('nhomhang', true)">Chọn tất cả</button>
+            <button class="btn-link" onclick="selectAll('nhomhang', false)">Bỏ chọn</button>
           </div>
+          <div class="checkbox-list-inline" id="list-nhomhang"></div>
         </div>
-
-
       </div>
-    </section>
+    </aside>
 
-    <!-- Report Nav Pills – Tab Navigation -->
-    <nav class="report-nav-bar" id="report-nav-bar">
-      <a class="report-nav-pill active" id="pill-bc1" href="#" onclick="switchReport('bc1'); return false;">📋 Báo Cáo 1: Kế Hoạch Leg 1 Đầu Ngày</a>
-      <a class="report-nav-pill" id="pill-bc2" href="#" onclick="switchReport('bc2'); return false;">⏳ Báo Cáo 2: Hàng Gần Hết Hạn</a>
-      <a class="report-nav-pill" id="pill-bc3" href="#" onclick="switchReport('bc3'); return false;">📍 Báo Cáo 3: NVDL kiểm tra Pallet</a>
-      <a class="report-nav-pill" id="pill-bc6" href="#" onclick="switchReport('bc6'); return false;">📊 Báo Cáo 6: Hàng gửi theo tháng</a>
-      <a class="report-nav-pill" id="pill-bc4" href="#" onclick="switchReport('bc4'); return false;">📈 Báo Cáo 4: Phân Tích Nhập / Xuất</a>
-      <a class="report-nav-pill" id="pill-bc5" href="#" onclick="switchReport('bc5'); return false;">📦 Báo Cáo 5: Phân Tích Tồn Kho</a>
-    </nav>
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Header Panel -->
+      <header class="dashboard-header glass-panel">
+        <div class="header-title-group" style="flex: 1; display: flex; justify-content: space-between; align-items: flex-start; margin-right: 20px;">
+          <div>
+            <h1>
+              <span>👋 Chào buổi chiều, Nhân Viên Kho</span>
+            </h1>
+            <p style="margin-top: 4px;">Hệ thống đánh giá tổng quan số liệu hằng ngày cần theo dõi</p>
+          </div>
+          <div id="last-updated-time"></div>
+        </div>
+        <button id="btn-reset-filters" class="btn-action">
+          <span>🔄 Thao Tác Lại Bộ Lọc</span>
+        </button>
+      </header>
+
+      <!-- Report Nav Bar - Horizontal -->
+      <nav class="report-nav-bar" id="report-nav-bar">
+        <a class="report-nav-pill active" id="pill-bc1" href="#" onclick="switchReport('bc1'); return false;">📋 Báo Cáo 1: Kế Hoạch Leg 1 Đầu Ngày</a>
+        <a class="report-nav-pill" id="pill-bc2" href="#" onclick="switchReport('bc2'); return false;">⏳ Báo Cáo 2: Hàng Gần Hết Hạn</a>
+        <a class="report-nav-pill" id="pill-bc3" href="#" onclick="switchReport('bc3'); return false;">📍 Báo Cáo 3: NVDL kiểm tra Pallet</a>
+        <a class="report-nav-pill" id="pill-bc6" href="#" onclick="switchReport('bc6'); return false;">📊 Báo Cáo 6: Hàng gửi theo tháng</a>
+        <a class="report-nav-pill" id="pill-bc4" href="#" onclick="switchReport('bc4'); return false;">📈 Báo Cáo 4: Phân Tích Nhập / Xuất</a>
+        <a class="report-nav-pill" id="pill-bc5" href="#" onclick="switchReport('bc5'); return false;">📦 Báo Cáo 5: Phân Tích Tồn Kho</a>
+      </nav>
+
+      <div class="report-container">
 
     <!-- ═══════════════════════════════════════════════
          BÁO CÁO 1: KẾ HOẠCH LEG 1
@@ -178,7 +179,7 @@
         </div>
         <div class="kpi-excel-row">
           <span class="kpi-excel-label">
-            <span class="badge-tag hsd-qty">📦 TỒN KHO</span> Tổng số lượng hàng cần thủ kho kiểm tra thực tế (KET/THÙNG)
+            <span class="badge-tag hsd-qty">📦 TỒN KHO</span> SL cần thủ kho theo dõi và kiểm tra thực tế
           </span>
           <span class="kpi-excel-value count-hsd-qty" id="val-bc2-qty">0</span>
         </div>
@@ -245,11 +246,11 @@
         </div>
       </div>
 
-      <div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
-        <!-- Bảng Pivot -->
-        <section class="glass-panel" style="flex: 1; min-width: 300px; margin-bottom: 24px;">
-          <h3 style="margin-top:0; color:var(--text-light); font-size:14px; margin-bottom:12px;">Pallet trên hệ thống SWM</h3>
-          <div class="table-responsive">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; min-width: 0; align-items: start;">
+        <!-- Bảng Pivot (Bên trái) -->
+        <section class="glass-panel table-container-card" style="min-width: 0; padding: 12px 14px;">
+          <h3 style="margin-top:0; color:var(--text-main); font-size:13px; font-weight:800; margin-bottom:10px;">Pallet trên hệ thống SWM</h3>
+          <div class="table-wrapper" style="overflow-x: auto; width: 100%;">
             <table class="excel-table" id="table-bc3-pivot" style="width: 100%;">
               <thead id="thead-bc3-pivot">
               </thead>
@@ -258,16 +259,15 @@
           </div>
         </section>
 
-        <!-- Bảng Chi Tiết -->
-        <section class="glass-panel" style="flex: 1.5; min-width: 450px; margin-bottom: 24px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <h3 style="margin:0; color:var(--text-light); font-size:14px;">Bảng Chi tiết ước tính</h3>
+        <!-- Bảng Chi Tiết (Bên phải) -->
+        <section class="glass-panel table-container-card" style="min-width: 0; padding: 12px 14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap: wrap; gap: 8px;">
+            <h3 style="margin:0; color:var(--text-main); font-size:13px; font-weight:800;">Bảng Chi tiết ước tính</h3>
             <div class="search-box">
-              <span class="search-icon">🔍</span>
-              <input type="text" id="table-search-bc3" placeholder="Tìm theo Mã Kho, Tên Hàng...">
+              <input type="text" id="table-search-bc3" class="table-search-input" style="width: 180px; padding: 4px 10px; font-size: 0.75rem;" placeholder="🔍 Tìm Mã Kho, Tên Hàng...">
             </div>
           </div>
-          <div class="table-responsive">
+          <div class="table-wrapper" style="overflow-x: auto; width: 100%;">
             <table class="excel-table" id="table-bc3-detail" style="width: 100%;">
               <thead id="thead-bc3-detail">
               </thead>
@@ -473,9 +473,45 @@
           </table>
         </div>
       </div>
+
+      <!-- BỘ LỌC NPP - Lọc theo Tên NPP (TÊN C1) -->
+      <div style="margin-top: 16px; width: 100%; min-width: 0;">
+        <section class="glass-panel table-container-card" style="min-width: 0; padding: 12px 14px; width: 100%; box-sizing: border-box;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+            <h3 style="margin:0; color:var(--text-main); font-size:13px; font-weight:800;">
+              🏢 Lọc theo Tên NPP (C1) — Mã Hàng &amp; Số Lượng Còn Lại
+            </h3>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <label style="font-size:12px; color:var(--text-sub); font-weight:600;">Chọn NPP:</label>
+              <select id="bc3-npp-select" style="padding:4px 10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-light); color:var(--text-color); font-size:12px; font-weight:600; cursor:pointer; min-width:220px;">
+                <option value="">-- Tất cả NPP --</option>
+              </select>
+              <div class="search-box">
+                <input type="text" id="bc3-npp-search" class="table-search-input" style="width:160px; padding:4px 10px; font-size:0.75rem;" placeholder="🔍 Lọc mã hàng...">
+              </div>
+            </div>
+          </div>
+          <div class="table-wrapper" style="overflow-x:auto; width:100%;">
+            <table class="excel-table" id="table-bc3-npp" style="width:100%;">
+              <thead id="thead-bc3-npp">
+                <tr>
+                  <th style="cursor:pointer;" onclick="handleSortBC3NPP('MÃ HÀNG')">MÃ HÀNG <span id="sort-bc3npp-mahang" class="sort-icon">↕</span></th>
+                  <th style="cursor:pointer; text-align:right;" onclick="handleSortBC3NPP('SỐ LƯỢNG CÒN LẠI')">SỐ LƯỢNG CÒN LẠI <span id="sort-bc3npp-soluong" class="sort-icon">↕</span></th>
+                </tr>
+              </thead>
+              <tbody id="tbody-bc3-npp">
+                <tr><td colspan="2" class="text-center">Chọn NPP để xem kết quả</td></tr>
+              </tbody>
+              <tfoot id="tfoot-bc3-npp"></tfoot>
+            </table>
+          </div>
+        </section>
+      </div>
     </div><!-- end report-bc6 -->
 
-  </div>
+      </div> <!-- end report-container -->
+    </main> <!-- end main-content -->
+  </div> <!-- end dashboard-layout -->
 
   <script src="chart.umd.min.js"></script>
   <script src="chartjs-plugin-datalabels.min.js"></script>

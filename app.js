@@ -77,8 +77,8 @@ let currentReport = 'bc1'; // tab hiện tại
 // Selected filter state sets
 let selectedKho = new Set(['052', '05NT', '05KH', 'SKH']);
 let selectedNgayBC4 = new Set();
+let selectedNhomHang = new Set(['TP', 'BB', 'PL']); // Thêm lại biến này
 let bc4Charts = {};
-let selectedNhomHang = new Set(['TP', 'BB', 'PL']);
 let selectedTrangThai = new Set(['16', '0']);
 
 const TARGET_KHO_LIST = ['052', '05NT', '05KH', 'SKH'];
@@ -93,7 +93,20 @@ function initDashboard() {
   
   if (window.LAST_UPDATED_TIME) {
       const el = document.getElementById('last-updated-time');
-      if (el) el.innerHTML = `<span style="font-weight:normal; opacity:0.8;">Cập nhật lần cuối:</span> ${window.LAST_UPDATED_TIME}`;
+      if (el) {
+          const parts = window.LAST_UPDATED_TIME.split(' ');
+          let dateStr = parts[0] || '';
+          let timeStr = parts.slice(1).join(' ');
+          let html = `<div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-end;">
+            <div style="font-weight:600; color:var(--primary); background:rgba(37,99,235,0.1); padding:2px 8px; border-radius:4px; font-size:0.85rem; border: 1px solid rgba(37,99,235,0.2);">
+              <span style="font-weight:normal; opacity:0.8;">Cập nhật lần cuối:</span> ${dateStr}
+            </div>`;
+          if (timeStr) {
+             html += `<div style="font-weight:600; color:var(--primary); background:rgba(37,99,235,0.1); padding:2px 8px; border-radius:4px; font-size:0.85rem; border: 1px solid rgba(37,99,235,0.2);">${timeStr}</div>`;
+          }
+          html += `</div>`;
+          el.innerHTML = html;
+      }
   }
 
   rawData = window.DASHBOARD_DATA['data1-đi đường'] || [];
@@ -193,8 +206,8 @@ function extractAllDates() {
 
 function populateFilterLists() {
   renderCheckboxList('list-kho', TARGET_KHO_LIST, selectedKho, 'kho');
-  renderCheckboxList('list-ngay-bc4', allDatesBC4, selectedNgayBC4, 'ngay-bc4');
   renderCheckboxList('list-nhomhang', TARGET_NHOMHANG_LIST, selectedNhomHang, 'nhomhang');
+  renderCheckboxList('list-ngay-bc4', allDatesBC4, selectedNgayBC4, 'ngay-bc4');
 
   updateFilterTriggerLabels();
 }
@@ -224,6 +237,7 @@ function renderCheckboxList(elementId, items, selectedSet, filterType) {
         renderBC4();
     if (typeof applyFiltersAndRenderBC5 === 'function') applyFiltersAndRenderBC5();
     if (typeof applyFiltersAndRenderBC6 === 'function') applyFiltersAndRenderBC6();
+    if (typeof renderBC3NppTable === 'function') renderBC3NppTable();
       } else {
         applyFiltersAndRender();
         applyFiltersAndRenderBC2();
@@ -231,6 +245,7 @@ function renderCheckboxList(elementId, items, selectedSet, filterType) {
         renderBC4();
     if (typeof applyFiltersAndRenderBC5 === 'function') applyFiltersAndRenderBC5();
     if (typeof applyFiltersAndRenderBC6 === 'function') applyFiltersAndRenderBC6();
+    if (typeof renderBC3NppTable === 'function') renderBC3NppTable();
       }
     });
 
@@ -265,10 +280,10 @@ function selectAll(filterType, isSelectAll) {
 
   if (filterType === 'kho') {
     targetSet = selectedKho; targetList = TARGET_KHO_LIST; listId = 'list-kho';
-  } else if (filterType === 'ngay-bc4') {
-    targetSet = selectedNgayBC4; targetList = allDatesBC4; listId = 'list-ngay-bc4';
   } else if (filterType === 'nhomhang') {
     targetSet = selectedNhomHang; targetList = TARGET_NHOMHANG_LIST; listId = 'list-nhomhang';
+  } else if (filterType === 'ngay-bc4') {
+    targetSet = selectedNgayBC4; targetList = allDatesBC4; listId = 'list-ngay-bc4';
   } else if (filterType === 'trangthai') {
     targetSet = selectedTrangThai; targetList = TARGET_TRANGTHAI_LIST; listId = 'list-trangthai';
   }
@@ -295,13 +310,22 @@ function selectAll(filterType, isSelectAll) {
   renderBC4();
     if (typeof applyFiltersAndRenderBC5 === 'function') applyFiltersAndRenderBC5();
     if (typeof applyFiltersAndRenderBC6 === 'function') applyFiltersAndRenderBC6();
+    if (typeof renderBC3NppTable === 'function') renderBC3NppTable();
 }
 
 
 
 function updateFilterTriggerLabels() {
-  document.getElementById('count-kho').textContent = selectedKho.size;
-  document.getElementById('label-kho').textContent = `Đã chọn: ${selectedKho.size}/${TARGET_KHO_LIST.length} kho`;
+  const countKho = document.getElementById('count-kho');
+  if (countKho) countKho.textContent = selectedKho.size;
+  
+  const labelKho = document.getElementById('label-kho');
+  if (labelKho) {
+    labelKho.textContent = `Đã chọn: ${selectedKho.size}/${TARGET_KHO_LIST.length} kho`;
+  }
+
+  const countNhom = document.getElementById('count-nhomhang');
+  if (countNhom) countNhom.textContent = selectedNhomHang.size;
 
   const ngayEl = document.getElementById('count-ngay-bc4');
   const ngayLabel = document.getElementById('label-ngay-bc4');
@@ -312,14 +336,9 @@ function updateFilterTriggerLabels() {
       : `Đã chọn: ${selectedNgayBC4.size}/${allDatesBC4.length} ngày`;
   }
 
-  document.getElementById('count-nhomhang').textContent = selectedNhomHang.size;
-  document.getElementById('label-nhomhang').textContent = selectedNhomHang.size === TARGET_NHOMHANG_LIST.length
-    ? 'Đã chọn: Tất cả nhóm hàng'
-    : `Đã chọn: ${selectedNhomHang.size}/${TARGET_NHOMHANG_LIST.length} nhóm`;
-
   const summary = document.getElementById('active-filter-summary');
   if (summary) {
-    summary.textContent = `Bộ lọc: ${selectedKho.size} Kho | ${selectedNhomHang.size} Loại hàng`;
+    summary.textContent = `Bộ lọc: ${selectedKho.size} Kho, ${selectedNhomHang.size} Nhóm`;
   }
 }
 
@@ -361,15 +380,13 @@ function getKhoValue(row) {
 function applyFiltersAndRender() {
   const filteredRows = rawData.filter(row => {
     const maKho = getKhoValue(row);
-    const nhomHang = getSafeValue(row, ['NHÓM HÀNG']) ? String(getSafeValue(row, ['NHÓM HÀNG'])).trim() : '';
     let trangThai = getSafeValue(row, ['TRẠNG THÁI']) ? String(getSafeValue(row, ['TRẠNG THÁI'])).trim() : '';
     
     const matchKho = selectedKho.has(maKho);
-    const matchNhom = selectedNhomHang.has(nhomHang);
     const matchTrangThai = selectedTrangThai.has(trangThai) || 
                           (trangThai.toUpperCase() === 'ARRIVED' && selectedTrangThai.has('16')) || 
                           (trangThai.toUpperCase() === 'NEW' && selectedTrangThai.has('0'));
-    return matchKho && matchNhom && matchTrangThai;
+    return matchKho && matchTrangThai;
   });
 
   let tpQty = 0, tpPL = 0;
@@ -730,14 +747,14 @@ function renderTableBC3Pivot(pivotMap, khoCols, grandTotalRow, grandTotalAll) {
   khoCols.forEach(k => {
       thHtml += `<th class="text-right">${k}</th>`;
   });
-  thHtml += `<th class="text-right">Grand Total</th></tr>`;
+  thHtml += `</tr>`;
   thead.innerHTML = thHtml;
 
   tbody.innerHTML = '';
   
   const viTriKeys = Object.keys(pivotMap).sort();
   if (viTriKeys.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="${khoCols.length + 3}" class="text-center">Không có dữ liệu</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="${khoCols.length + 2}" class="text-center">Không có dữ liệu</td></tr>`;
     return;
   }
   
@@ -766,7 +783,6 @@ function renderTableBC3Pivot(pivotMap, khoCols, grandTotalRow, grandTotalAll) {
           });
           
           viTriTotal._all += rowTotal;
-          html += `<td class="text-right" style="background: rgba(0,0,0,0.01); font-weight: 500;">${rowTotal > 0 ? formatNumber(rowTotal) : ''}</td>`;
           html += `</tr>`;
           first = false;
       });
@@ -777,8 +793,7 @@ function renderTableBC3Pivot(pivotMap, khoCols, grandTotalRow, grandTotalAll) {
       khoCols.forEach(k => {
           html += `<td class="text-right">${viTriTotal[k] > 0 ? formatNumber(viTriTotal[k]) : ''}</td>`;
       });
-      html += `<td class="text-right">${viTriTotal._all > 0 ? formatNumber(viTriTotal._all) : ''}</td>
-      </tr>`;
+      html += `</tr>`;
   });
   
   // Grand Total Row
@@ -787,8 +802,7 @@ function renderTableBC3Pivot(pivotMap, khoCols, grandTotalRow, grandTotalAll) {
   khoCols.forEach(k => {
       html += `<td class="text-right">${grandTotalRow[k] > 0 ? formatNumber(grandTotalRow[k]) : ''}</td>`;
   });
-  html += `<td class="text-right">${grandTotalAll > 0 ? formatNumber(grandTotalAll) : ''}</td>
-  </tr>`;
+  html += `</tr>`;
 
   tbody.innerHTML = html;
 }
@@ -798,13 +812,21 @@ function renderTableBC3Detail(data) {
   const thead = document.getElementById('thead-bc3-detail');
   if (!tbody || !thead) return;
   
-  if (data.length > 0 && thead.innerHTML.trim() === '') {
+  if (data.length > 0) {
       const keys = Object.keys(data[0]);
       let theadHtml = '<tr>';
       keys.forEach((key, index) => {
-          if (index < 5) {
+          if (index < 5 && index !== 1) { // Bỏ qua index 1 (TÊN KHO)
               const alignClass = index >= 2 ? 'text-right' : '';
-              theadHtml += `<th style="cursor:pointer;" class="${alignClass}" onclick="handleSortBC3('${key}')">${key} <span id="sort3-${key}" class="sort-icon">⇕</span></th>`;
+              let displayKey = key;
+              if (key.includes('PL ƯỚC TÍNH')) {
+                  displayKey = 'PL ƯỚC TÍNH (TP&BB)';
+              } else if (key.includes('PL VỊ TRÍ TP')) {
+                  displayKey = 'SWM: PL TP';
+              } else if (key.includes('PL VỊ TRÍ RỖNG')) {
+                  displayKey = 'SWM: PL RỖNG';
+              }
+              theadHtml += `<th style="cursor:pointer;" class="${alignClass}" onclick="handleSortBC3('${key}')">${displayKey} <span id="sort3-${key}" class="sort-icon">⇕</span></th>`;
           }
       });
       theadHtml += '</tr>';
@@ -814,7 +836,7 @@ function renderTableBC3Detail(data) {
   tbody.innerHTML = '';
   
   if (data.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="5" class="text-center">Không có dữ liệu phù hợp</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="4" class="text-center">Không có dữ liệu phù hợp</td></tr>`;
     document.getElementById('tfoot-bc3-detail').innerHTML = '';
     return;
   }
@@ -832,7 +854,6 @@ function renderTableBC3Detail(data) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td class="text-center">${row[keys[0]] || ''}</td>
-      <td>${row[keys[1]] || ''}</td>
       <td class="text-right" style="padding-right: 15px;">${formatNumber(row[keys[2]])}</td>
       <td class="text-right" style="padding-right: 15px;">${formatNumber(row[keys[3]])}</td>
       <td class="text-right" style="padding-right: 15px;">${formatNumber(row[keys[4]])}</td>
@@ -845,7 +866,7 @@ function renderTableBC3Detail(data) {
   if (tfoot) {
     tfoot.innerHTML = `
       <tr style="font-weight:bold; background-color: rgba(255, 255, 255, 0.1);">
-        <td colspan="2" class="text-right" style="padding-right: 15px;">Tổng cộng:</td>
+        <td class="text-right" style="padding-right: 15px;">Tổng cộng:</td>
         <td class="text-right" style="padding-right: 15px;">${formatNumber(totalPLUocTinh)}</td>
         <td class="text-right" style="padding-right: 15px;">${formatNumber(totalPLHT)}</td>
         <td class="text-right" style="padding-right: 15px;">${formatNumber(totalPLRong)}</td>
@@ -2104,8 +2125,8 @@ function applyFiltersAndRenderBC6() {
     if (months.includes(currentVal)) {
       monthFilter.value = currentVal;
     } else if (months.length > 0) {
-      // Default select the last available month
-      monthFilter.value = months[months.length - 1];
+      // Default select the oldest (earliest) month first
+      monthFilter.value = months[0];
     }
     
     monthFilter.onchange = () => {
@@ -2180,3 +2201,155 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, 100);
 });
+
+// ══════════════════════════════════════════════════════════
+// BỘ LỌC NPP (BC3): Lọc theo Tên NPP (TÊN C1) từ data C1chitiet
+// Kết quả: Mã Hàng | Số Lượng Còn Lại
+// ══════════════════════════════════════════════════════════
+
+let bc3NppSortCol = 'SỐ LƯỢNG CÒN LẠI';
+let bc3NppSortOrder = 'desc';
+
+function initBC3NppFilter() {
+  const dataC1 = window.DASHBOARD_DATA && window.DASHBOARD_DATA['data C1chitiet'];
+  if (!dataC1 || dataC1.length === 0) return;
+
+  // Thu thập danh sách NPP duy nhất (TÊN C1)
+  const nppSet = new Set();
+  dataC1.forEach(row => {
+    const npp = (row['TÊN C1'] || '').trim();
+    if (npp) nppSet.add(npp);
+  });
+
+  const sorted = Array.from(nppSet).sort((a, b) => a.localeCompare(b, 'vi'));
+
+  const select = document.getElementById('bc3-npp-select');
+  if (!select) return;
+
+  // Clear và populate
+  select.innerHTML = '<option value="">-- Tất cả NPP --</option>';
+  sorted.forEach(npp => {
+    const opt = document.createElement('option');
+    opt.value = npp;
+    opt.textContent = npp;
+    select.appendChild(opt);
+  });
+
+  // Event listeners
+  select.addEventListener('change', renderBC3NppTable);
+
+  const searchInput = document.getElementById('bc3-npp-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', renderBC3NppTable);
+  }
+
+  // Render lần đầu (tất cả NPP)
+  renderBC3NppTable();
+}
+
+function renderBC3NppTable() {
+  const dataC1 = window.DASHBOARD_DATA && window.DASHBOARD_DATA['data C1chitiet'];
+  const tbody = document.getElementById('tbody-bc3-npp');
+  const tfoot = document.getElementById('tfoot-bc3-npp');
+  if (!tbody || !dataC1) return;
+
+  const selectedNpp = (document.getElementById('bc3-npp-select') || {}).value || '';
+  const searchQ = ((document.getElementById('bc3-npp-search') || {}).value || '').trim().toLowerCase();
+
+  // Lọc theo Kho (bộ lọc chung)
+  let filtered = dataC1.filter(row => {
+    const maKho = (row['MÃ KHO'] || '').trim();
+    if (selectedKho && selectedKho.size > 0 && !selectedKho.has(maKho)) return false;
+
+    // Lọc NPP
+    if (selectedNpp) {
+      const tenC1 = (row['TÊN C1'] || '').trim();
+      if (tenC1 !== selectedNpp) return false;
+    }
+
+    return true;
+  });
+
+  // Tổng hợp theo MÃ HÀNG
+  const grouped = {};
+  filtered.forEach(row => {
+    const maHang = (row['MÃ HÀNG'] || '').trim();
+    if (!maHang) return;
+    const soLuong = parseFloat(row['SỐ LƯỢNG CÒN LẠI']) || 0;
+    if (!grouped[maHang]) grouped[maHang] = { maHang, soLuong: 0 };
+    grouped[maHang].soLuong += soLuong;
+  });
+
+  let rows = Object.values(grouped);
+
+  // Search filter theo mã hàng
+  if (searchQ) {
+    rows = rows.filter(r => r.maHang.toLowerCase().includes(searchQ));
+  }
+
+  // Sort
+  rows.sort((a, b) => {
+    if (bc3NppSortCol === 'SỐ LƯỢNG CÒN LẠI') {
+      return bc3NppSortOrder === 'asc' ? a.soLuong - b.soLuong : b.soLuong - a.soLuong;
+    } else {
+      const va = a.maHang.toLowerCase();
+      const vb = b.maHang.toLowerCase();
+      const cmp = va < vb ? -1 : va > vb ? 1 : 0;
+      return bc3NppSortOrder === 'asc' ? cmp : -cmp;
+    }
+  });
+
+  // Render tbody
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="2" class="text-center" style="color:#64748b; padding:16px;">Không có dữ liệu phù hợp</td></tr>`;
+    if (tfoot) tfoot.innerHTML = '';
+    return;
+  }
+
+  let html = '';
+  rows.forEach((r, idx) => {
+    const bgClass = idx % 2 === 0 ? '' : 'style="background: rgba(0,0,0,0.03);"';
+    html += `<tr ${bgClass}>
+      <td style="font-weight:600;">${r.maHang}</td>
+      <td style="text-align:right; font-weight:700;">${r.soLuong.toLocaleString('vi-VN')}</td>
+    </tr>`;
+  });
+  tbody.innerHTML = html;
+
+  // Footer tổng
+  const grandTotal = rows.reduce((s, r) => s + r.soLuong, 0);
+  if (tfoot) {
+    tfoot.innerHTML = `<tr style="font-weight:800; background:rgba(59,130,246,0.08); border-top:2px solid rgba(59,130,246,0.3);">
+      <td>TỔNG (${rows.length} mã)</td>
+      <td style="text-align:right;">${grandTotal.toLocaleString('vi-VN')}</td>
+    </tr>`;
+  }
+
+  // Update sort icons
+  updateSortIconsBC3NPP();
+}
+
+function handleSortBC3NPP(col) {
+  if (bc3NppSortCol === col) {
+    bc3NppSortOrder = bc3NppSortOrder === 'asc' ? 'desc' : 'asc';
+  } else {
+    bc3NppSortCol = col;
+    bc3NppSortOrder = col === 'SỐ LƯỢNG CÒN LẠI' ? 'desc' : 'asc';
+  }
+  renderBC3NppTable();
+}
+
+function updateSortIconsBC3NPP() {
+  const mahangSpan = document.getElementById('sort-bc3npp-mahang');
+  const soluongSpan = document.getElementById('sort-bc3npp-soluong');
+  if (mahangSpan) mahangSpan.textContent = bc3NppSortCol === 'MÃ HÀNG' ? (bc3NppSortOrder === 'asc' ? '▲' : '▼') : '↕';
+  if (soluongSpan) soluongSpan.textContent = bc3NppSortCol === 'SỐ LƯỢNG CÒN LẠI' ? (bc3NppSortOrder === 'asc' ? '▲' : '▼') : '↕';
+}
+
+// Khởi tạo bộ lọc NPP khi trang load xong
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    initBC3NppFilter();
+  }, 200);
+});
+
