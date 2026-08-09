@@ -91,6 +91,9 @@ if errorlevel 1 (
     :: Commit (bo qua neu khong co gi thay doi)
     git commit -m "Auto update: %date% %time%" >nul 2>&1
 
+    :: Pull rebase truoc khi push de tranh xung dot khi chay da may
+    git pull origin main --rebase >nul 2>&1
+
     :: Push len GitHub (se fail im lang neu chua co credentials - KHONG TREO)
     git push origin main >nul 2>&1
     if errorlevel 1 (
