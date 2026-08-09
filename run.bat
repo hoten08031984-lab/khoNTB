@@ -70,7 +70,8 @@ if errorlevel 1 (
     set GIT_TERMINAL_PROMPT=0
     set GIT_SSH_COMMAND=ssh -o BatchMode=yes
 
-    :: Pull ve truoc de tranh conflict
+    :: Xoa bo thay doi tam thoi va Pull ve truoc de tranh conflict
+    git reset --hard HEAD >nul 2>&1
     git pull origin main --rebase --no-edit >nul 2>&1
 
     :: Add tat ca file can dong bo
