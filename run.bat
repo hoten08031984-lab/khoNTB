@@ -29,7 +29,7 @@ if not errorlevel 1 (
     set GIT_SSH_COMMAND=ssh -o BatchMode=yes
     git remote set-url origin https://github.com/hoten08031984-lab/khoNTB.git >nul 2>&1
     git fetch origin main >nul 2>&1
-    git checkout -B main origin/main >nul 2>&1
+    git reset --hard origin/main >nul 2>&1
 )
 
 echo.
@@ -86,8 +86,8 @@ if errorlevel 1 (
     set GIT_SSH_COMMAND=ssh -o BatchMode=yes
     git remote set-url origin https://github.com/hoten08031984-lab/khoNTB.git >nul 2>&1
 
-    :: Add tat ca file data.js va source code moi tao
-    git add index.html app.js styles.css data.js run.bat >nul 2>&1
+    :: Add tat ca file data.js, source code, va thu vien
+    git add index.html app.js styles.css data.js run.bat xlsx.full.min.js .agents/ >nul 2>&1
     if exist img\ git add img\ >nul 2>&1
 
     :: Config bot identity
@@ -97,7 +97,8 @@ if errorlevel 1 (
     :: Commit
     git commit -m "Auto update: %date% %time%" >nul 2>&1
 
-    :: Push len GitHub
+    :: Pull rebase va Push len GitHub
+    git pull origin main --rebase >nul 2>&1
     git push origin main >> log.txt 2>&1
     if errorlevel 1 (
         echo [%date% %time%] [CANH BAO] Git push that bai. Xem log.txt de biet chi tiet. >> log.txt
