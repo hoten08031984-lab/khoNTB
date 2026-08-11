@@ -519,9 +519,23 @@ def export_to_js():
         f.write(js_content)
     log(f"Successfully generated {OUTPUT_JS}!")
 
+def ensure_system_desktop_folders():
+    """Tự động tạo thư mục Desktop hệ thống để chống lỗi HRESULT -2146827284 trên VPS Task Scheduler"""
+    paths = [
+        r"C:\Windows\System32\config\systemprofile\Desktop",
+        r"C:\Windows\SysWOW64\config\systemprofile\Desktop"
+    ]
+    for p in paths:
+        try:
+            if not os.path.exists(p):
+                os.makedirs(p, exist_ok=True)
+        except Exception:
+            pass
+
 # --- MAIN ---
 def main():
     log("=== KHỞI ĐỘNG LUỒNG TỰ ĐỘNG ===")
+    ensure_system_desktop_folders()
     pythoncom.CoInitialize()
     
     excel = None
@@ -531,8 +545,28 @@ def main():
         excel.Visible = False
         excel.DisplayAlerts = False
         
-        # Mở file Excel
-        wb = excel.Workbooks.Open(EXCEL_FILE)
+        # Mở file Excel với đầy đủ tham số an toàn
+        try:
+            wb = excel.Workbooks.Open(
+                Filename=EXCEL_FILE,
+                UpdateLinks=0,
+                ReadOnly=False,
+                IgnoreReadOnlyRecommended=True
+            )
+        except Exception as e_open:
+            log(f"[CẢNH BÁO] Không mở được Excel qua COM: {e_open}. Đang dọn dẹp tiến trình và thử lại lần 2...")
+            os.system("taskkill /F /IM EXCEL.EXE >nul 2>&1")
+            import time
+            time.sleep(2)
+            excel = win32com.client.Dispatch("Excel.Application")
+            excel.Visible = False
+            excel.DisplayAlerts = False
+            wb = excel.Workbooks.Open(
+                Filename=EXCEL_FILE,
+                UpdateLinks=0,
+                ReadOnly=False,
+                IgnoreReadOnlyRecommended=True
+            )
         
         if wb.ReadOnly:
             wb.Close(False)
@@ -543,7 +577,12 @@ def main():
             excel = win32com.client.Dispatch("Excel.Application")
             excel.Visible = False
             excel.DisplayAlerts = False
-            wb = excel.Workbooks.Open(EXCEL_FILE)
+            wb = excel.Workbooks.Open(
+                Filename=EXCEL_FILE,
+                UpdateLinks=0,
+                ReadOnly=False,
+                IgnoreReadOnlyRecommended=True
+            )
             if wb.ReadOnly:
                 log("[-] Vẫn không thể mở file. Bỏ qua lần chạy này, sẽ thử lại sau.")
                 wb.Close(False)
