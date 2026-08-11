@@ -136,6 +136,10 @@ os.system("taskkill /F /IM EXCEL.EXE >nul 2>&1")
 - **Khi hiển thị 2 bảng song song để đối chiếu số liệu (như BC3):** BẮT BUỘC dùng chuẩn CSS Grid 50-50 khép kín: `display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; min-width: 0; align-items: start;`. Thẻ chứa bên trong mỗi ô Grid (`.table-container-card`) phải có `min-width: 0` và `.table-wrapper` phải có `overflow-x: auto; width: 100%;`. Tuyệt đối KHÔNG dùng `flex-wrap: wrap` kết hợp `min-width` lớn gây đè/chồng lấp bảng lên nhau.
 - **Tiêu đề cột dài:** Phải chủ động rút gọn tên chữ hiển thị trên `th` (ví dụ `PL ƯỚC TÍNH (TP&BB)`, `SWM: PL TP`, `SWM: PL RỖNG`) để bảng vừa vặn khít trong khung 50% mà không bị sinh thanh cuộn ngang không cần thiết.
 - Không dùng `width: max-content` cho `.excel-table` khiến bảng bị lệch thu nhỏ hoặc bị lòi văng ra khỏi khung thiết kế chung.
-- Khung layout tổng (`body`, `.dashboard-layout`, `.report-container`) phải bật `overflow-x: hidden` và `box-sizing: border-box` để nội dung toàn trang luôn hiển thị vừa khít trong 1 trang viewport.
+
+## 18. Quy Tắc Thay Đổi Giao Diện Dashboard (UI / Layout Change Approval — QUAN TRỌNG)
+- **BẮT BUỘC HỎI Ý KIẾN TRƯỚC KHI ÁP DỤNG:** Tất cả các hình thức thay đổi liên quan đến Web Dashboard (bao gồm: giao diện, vị trí/thêm/bớt nút bấm, cột hiển thị, màu sắc, bố cục banner...) đều BẮT BUỘC phải hỏi ý kiến xác nhận của người dùng trước khi tiến hành code và cập nhật.
+- Không tự ý thêm nút dư thừa hoặc sửa đổi bố cục sẵn có nếu chưa được người dùng thống nhất.
+
 
 
