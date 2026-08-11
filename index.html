@@ -68,9 +68,14 @@
           </div>
           <div id="last-updated-time"></div>
         </div>
-        <button id="btn-reset-filters" class="btn-action">
-          <span>🔄 Thao Tác Lại Bộ Lọc</span>
-        </button>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button id="btn-export-excel" class="btn-action" onclick="exportReportToExcel()" style="background: linear-gradient(135deg, #107c41, #1f9a55); border-color: #107c41; color: white; gap: 6px; font-weight: 600;">
+            <span>📥 Xuất Excel Báo Cáo</span>
+          </button>
+          <button id="btn-reset-filters" class="btn-action">
+            <span>🔄 Thao Tác Lại Bộ Lọc</span>
+          </button>
+        </div>
       </header>
 
       <!-- Report Nav Bar - Horizontal -->
@@ -89,12 +94,17 @@
          BÁO CÁO 1: KẾ HOẠCH LEG 1
     ═══════════════════════════════════════════════ -->
     <div id="report-bc1" class="report-section">
-      <div class="report-section-header">
-        <span class="report-section-number">01</span>
-        <div>
-          <div class="report-section-title">📋 Kế Hoạch Leg 1 Đầu Ngày</div>
-          <div class="report-section-sub">Theo dõi các chuyến hàng đang đi đường và đã đến kho</div>
+      <div class="report-section-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="report-section-number">01</span>
+          <div>
+            <div class="report-section-title">📋 Kế Hoạch Leg 1 Đầu Ngày</div>
+            <div class="report-section-sub">Theo dõi các chuyến hàng đang đi đường và đã đến kho</div>
+          </div>
         </div>
+        <button class="btn-action" onclick="exportReportToExcel('bc1')" style="background: rgba(16, 124, 65, 0.12); color: #107c41; border: 1px solid rgba(16, 124, 65, 0.4); font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
+          <span>📥 Xuất Data Thô (BC1)</span>
+        </button>
       </div>
 
       <!-- KPI B1/B2 -->
@@ -183,12 +193,17 @@
          BÁO CÁO 2: HÀNG GẦN HẾT HẠN SỬ DỤNG (HSD > 60%)
     ═══════════════════════════════════════════════ -->
     <div id="report-bc2" class="report-section" style="display: none;">
-      <div class="report-section-header">
-        <span class="report-section-number bc2-num">02</span>
-        <div>
-          <div class="report-section-title">⏳ Hàng Gần Hết Hạn Sử Dụng</div>
-          <div class="report-section-sub">Danh sách mã hàng có % HSD còn lại dưới 60% cần theo dõi</div>
+      <div class="report-section-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="report-section-number bc2-num">02</span>
+          <div>
+            <div class="report-section-title">⏳ Hàng Gần Hết Hạn Sử Dụng</div>
+            <div class="report-section-sub">Danh sách mã hàng có % HSD còn lại dưới 60% cần theo dõi</div>
+          </div>
         </div>
+        <button class="btn-action" onclick="exportReportToExcel('bc2')" style="background: rgba(16, 124, 65, 0.12); color: #107c41; border: 1px solid rgba(16, 124, 65, 0.4); font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
+          <span>📥 Xuất Data Thô (BC2)</span>
+        </button>
       </div>
 
       <!-- KPI BC2 -->
@@ -301,11 +316,16 @@
          BÁO CÁO 3: VỊ TRÍ
     ═══════════════════════════════════════════════ -->
     <div id="report-bc3" class="report-section" style="display: none;">
-      <div class="report-section-header">
-        <span class="report-section-number">03</span>
-        <div>
-          <div class="report-section-title">📍 Báo Cáo 3: NVDL kiểm tra Pallet phù hơp</div>
+      <div class="report-section-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="report-section-number">03</span>
+          <div>
+            <div class="report-section-title">📍 Báo Cáo 3: NVDL kiểm tra Pallet phù hơp</div>
+          </div>
         </div>
+        <button class="btn-action" onclick="exportReportToExcel('bc3')" style="background: rgba(16, 124, 65, 0.12); color: #107c41; border: 1px solid rgba(16, 124, 65, 0.4); font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
+          <span>📥 Xuất Data Thô (BC3)</span>
+        </button>
       </div>
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; min-width: 0; align-items: start;">
@@ -345,12 +365,17 @@
          BÁO CÁO 4: PHÂN TÍCH NHẬP / XUẤT
     ═══════════════════════════════════════════════ -->
     <div id="report-bc4" class="report-section" style="display: none;">
-      <div class="report-section-header">
-        <span class="report-section-number">04</span>
-        <div>
-          <div class="report-section-title">📈 Phân Tích Nhập / Xuất</div>
-          <div class="report-section-sub">Thống kê lưu lượng giao dịch và hiệu suất vận hành</div>
+      <div class="report-section-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="report-section-number">04</span>
+          <div>
+            <div class="report-section-title">📈 Phân Tích Nhập / Xuất</div>
+            <div class="report-section-sub">Thống kê lưu lượng giao dịch và hiệu suất vận hành</div>
+          </div>
         </div>
+        <button class="btn-action" onclick="exportReportToExcel('bc4')" style="background: rgba(16, 124, 65, 0.12); color: #107c41; border: 1px solid rgba(16, 124, 65, 0.4); font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
+          <span>📥 Xuất Data Thô (BC4)</span>
+        </button>
       </div>
 
       <!-- BỘ LỌC NGÀY CHO BÁO CÁO 4 -->
@@ -421,12 +446,17 @@
          BÁO CÁO 5: TỒN KHO THỰC TẾ
     ═══════════════════════════════════════════════ -->
     <div id="report-bc5" class="report-section" style="display: none;">
-      <div class="report-section-header">
-        <span class="report-section-number">05</span>
-        <div>
-          <div class="report-section-title">📦 Báo Cáo 5: Phân Tích Tồn Kho Thực Tế</div>
-          <div class="report-section-sub">Thống kê lượng tồn kho theo Kho và top các Mã Hàng (TP & BB)</div>
+      <div class="report-section-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="report-section-number">05</span>
+          <div>
+            <div class="report-section-title">📦 Báo Cáo 5: Phân Tích Tồn Kho Thực Tế</div>
+            <div class="report-section-sub">Thống kê lượng tồn kho theo Kho và top các Mã Hàng (TP & BB)</div>
+          </div>
         </div>
+        <button class="btn-action" onclick="exportReportToExcel('bc5')" style="background: rgba(16, 124, 65, 0.12); color: #107c41; border: 1px solid rgba(16, 124, 65, 0.4); font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
+          <span>📥 Xuất Data Thô (BC5)</span>
+        </button>
       </div>
 
       <!-- Bảng Chi Tiết BC5 -->
@@ -490,12 +520,17 @@
          BÁO CÁO 6: BẢNG PHÂN TÍCH C1
     ═══════════════════════════════════════════════ -->
     <div id="report-bc6" class="report-section" style="display: none;">
-      <div class="report-section-header">
-        <span class="report-section-number">06</span>
-        <div>
-          <h2>Bảng phân tích hàng gửi C1 theo Tháng</h2>
-          <p>Phân tích số lượng hàng gửi còn lại theo Kho và Tháng ra Hóa Đơn</p>
+      <div class="report-section-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span class="report-section-number">06</span>
+          <div>
+            <h2>Bảng phân tích hàng gửi C1 theo Tháng</h2>
+            <p>Phân tích số lượng hàng gửi còn lại theo Kho và Tháng ra Hóa Đơn</p>
+          </div>
         </div>
+        <button class="btn-action" onclick="exportReportToExcel('bc6')" style="background: rgba(16, 124, 65, 0.12); color: #107c41; border: 1px solid rgba(16, 124, 65, 0.4); font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
+          <span>📥 Xuất Data Thô (BC6)</span>
+        </button>
       </div>
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
         <!-- Bảng Tổng Hợp C1 -->
@@ -577,6 +612,7 @@
 
   <script src="chart.umd.min.js"></script>
   <script src="chartjs-plugin-datalabels.min.js"></script>
+  <script src="xlsx.full.min.js"></script>
   <script>
     document.write('<script src="data.js?v=' + Date.now() + '"><\/script>');
     document.write('<script src="app.js?v=' + Date.now() + '"><\/script>');

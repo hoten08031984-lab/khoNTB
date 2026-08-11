@@ -2671,3 +2671,136 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 200);
 });
 
+/**
+ * Kết xuất dữ liệu thô đã lọc của từng Báo cáo ra file Excel (.xlsx)
+ */
+function exportReportToExcel(reportId) {
+  const target = reportId || currentReport || 'bc1';
+  let dataToExport = [];
+  let sheetName = 'DataTho';
+  let fileTitle = 'KeHoachLeg1';
+
+  // Lấy ngày hiện tại format YYYYMMDD_HHMM
+  const now = new Date();
+  const dateStr = now.getFullYear() +
+    String(now.getMonth() + 1).padStart(2, '0') +
+    String(now.getDate()).padStart(2, '0') + '_' +
+    String(now.getHours()).padStart(2, '0') +
+    String(now.getMinutes()).padStart(2, '0');
+
+  if (target === 'bc1') {
+    sheetName = 'data1-đi đường';
+    fileTitle = 'BaoCao1_KeHoachLeg1';
+    const raw = window.DASHBOARD_DATA['data1-đi đường'] || [];
+    dataToExport = raw.filter(row => {
+      const kho = getSafeValue(row, ['MÃ KHO', 'Mã Kho', 'whseid', 'whsecode']);
+      const nhom = getSafeValue(row, ['NHÓM HÀNG', 'Nhóm Hàng', 'skugroup']);
+      if (kho && selectedKho.size > 0 && !selectedKho.has(String(kho).trim())) return false;
+      if (nhom && selectedNhomHang.size > 0 && !selectedNhomHang.has(String(nhom).trim())) return false;
+      return true;
+    });
+  } else if (target === 'bc2') {
+    sheetName = 'data6-tồn kho theo HSD';
+    fileTitle = 'BaoCao2_HangGanHetHan';
+    const raw = window.DASHBOARD_DATA['data6-tồn kho theo HSD'] || [];
+    dataToExport = raw.filter(row => {
+      const kho = getSafeValue(row, ['MÃ KHO', 'Mã Kho', 'whseid', 'whsecode']);
+      const nhom = getSafeValue(row, ['NHÓM HÀNG', 'Nhóm Hàng', 'skugroup']);
+      if (kho && selectedKho.size > 0 && !selectedKho.has(String(kho).trim())) return false;
+      if (nhom && selectedNhomHang.size > 0 && !selectedNhomHang.has(String(nhom).trim())) return false;
+      return true;
+    });
+  } else if (target === 'bc3') {
+    sheetName = 'data5-tồn kho theo PL, ví trí';
+    fileTitle = 'BaoCao3_KiemTraPallet';
+    const raw = window.DASHBOARD_DATA['data5-tồn kho theo PL, ví trí'] || window.DASHBOARD_DATA['baocao5-table8'] || [];
+    dataToExport = raw.filter(row => {
+      const kho = getSafeValue(row, ['MÃ KHO', 'Mã Kho', 'whseid', 'whsecode']);
+      const nhom = getSafeValue(row, ['NHÓM HÀNG', 'Nhóm Hàng', 'skugroup']);
+      if (kho && selectedKho.size > 0 && !selectedKho.has(String(kho).trim())) return false;
+      if (nhom && selectedNhomHang.size > 0 && !selectedNhomHang.has(String(nhom).trim())) return false;
+      return true;
+    });
+  } else if (target === 'bc4') {
+    sheetName = 'Append1 Nhập- Xuất';
+    fileTitle = 'BaoCao4_PhanTichNhapXuat';
+    const raw = window.DASHBOARD_DATA['Append1 Nhập- Xuất'] || [];
+    dataToExport = raw.filter(row => {
+      const kho = getSafeValue(row, ['MÃ KHO', 'Mã Kho', 'whseid', 'whsecode']);
+      const nhom = getSafeValue(row, ['NHÓM HÀNG', 'Nhóm Hàng', 'skugroup']);
+      const ngay = getSafeValue(row, ['NGÀY', 'Ngày', 'Column1']);
+      if (kho && selectedKho.size > 0 && !selectedKho.has(String(kho).trim())) return false;
+      if (nhom && selectedNhomHang.size > 0 && !selectedNhomHang.has(String(nhom).trim())) return false;
+      if (ngay && selectedNgayBC4.size > 0 && !selectedNgayBC4.has(String(ngay).trim())) return false;
+      return true;
+    });
+  } else if (target === 'bc5') {
+    sheetName = 'data7-tồn kho theo ngày';
+    fileTitle = 'BaoCao5_TonKhoTheoNgay';
+    const raw = window.DASHBOARD_DATA['data7-tồn kho theo ngày'] || [];
+    dataToExport = raw.filter(row => {
+      const kho = getSafeValue(row, ['MÃ KHO', 'Mã Kho', 'whseid', 'whsecode']);
+      const nhom = getSafeValue(row, ['NHÓM HÀNG', 'Nhóm Hàng', 'skugroup']);
+      if (kho && selectedKho.size > 0 && !selectedKho.has(String(kho).trim())) return false;
+      if (nhom && selectedNhomHang.size > 0 && !selectedNhomHang.has(String(nhom).trim())) return false;
+      return true;
+    });
+  } else if (target === 'bc6') {
+    sheetName = 'baocao7-Tồn kho hàng gửi';
+    fileTitle = 'BaoCao6_TonKhoHangGui';
+    const raw = window.DASHBOARD_DATA['baocao7-Tồn kho hàng gửi'] || window.DASHBOARD_DATA['data C1chitiet'] || [];
+    dataToExport = raw.filter(row => {
+      const kho = getSafeValue(row, ['MÃ KHO', 'Mã Kho', 'whseid', 'whsecode']);
+      const nhom = getSafeValue(row, ['NHÓM HÀNG', 'Nhóm Hàng', 'skugroup']);
+      if (kho && selectedKho.size > 0 && !selectedKho.has(String(kho).trim())) return false;
+      if (nhom && selectedNhomHang.size > 0 && !selectedNhomHang.has(String(nhom).trim())) return false;
+      return true;
+    });
+  }
+
+  if (!dataToExport || dataToExport.length === 0) {
+    alert("Không tìm thấy dữ liệu phù hợp với bộ lọc hiện tại để kết xuất Excel!");
+    return;
+  }
+
+  const fileName = `${fileTitle}_${dateStr}.xlsx`;
+
+  // Kiểm tra thư viện SheetJS (XLSX)
+  if (typeof XLSX !== 'undefined') {
+    const ws = XLSX.utils.json_to_sheet(dataToExport);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, sheetName.substring(0, 31)); // Max 31 chars trong sheet name
+    XLSX.writeFile(wb, fileName);
+  } else {
+    // Fallback sang CSV mã hóa UTF-8 BOM
+    exportToCsvFallback(dataToExport, `${fileTitle}_${dateStr}.csv`);
+  }
+}
+
+function exportToCsvFallback(dataArray, fileName) {
+  if (!dataArray || dataArray.length === 0) return;
+  const keys = Object.keys(dataArray[0]);
+  let csvContent = keys.join(',') + '\n';
+
+  dataArray.forEach(row => {
+    const line = keys.map(k => {
+      let val = row[k] == null ? '' : String(row[k]);
+      val = val.replace(/"/g, '""');
+      if (val.includes(',') || val.includes('\n') || val.includes('"')) {
+        val = `"${val}"`;
+      }
+      return val;
+    }).join(',');
+    csvContent += line + '\n';
+  });
+
+  const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.setAttribute('download', fileName);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+
