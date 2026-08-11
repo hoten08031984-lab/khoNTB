@@ -17,6 +17,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 LOGIN_URL = "https://prod-swa-app-be.smartlogix.biz/api/public/auth-portal/login"
 API_SALE_ORDER = "https://portal-be.sabeco.vn/api/outbounds/getListSaleOrderTracking"
 API_SHELFLIFE = "https://portal-be.sabeco.vn/api/inventories/getListDateShelfLife"
+API_ON_SHIPPING = "https://portal-be.sabeco.vn/api/inbounds/getListOnShipping"
 
 EXCEL_FILE = os.path.abspath('báo cáo.xlsx')
 OUTPUT_JS = os.path.abspath('data.js')
@@ -119,8 +120,8 @@ def fetch_data(api_url, token, mapper_func, where_clause="1>0", date_filter_col=
         r = requests.post(api_url, json=payload, headers=headers, timeout=30)
         # Fallback if API rejects the whereClause (e.g. unknown column)
         if r.status_code == 500 or r.status_code == 400:
-            log(f"API từ chối whereClause '{where_clause}'. Đang thử lại với '1>0' và lọc qua Python...")
-            payload["whereClause"] = "1>0"
+            log(f"API từ chối whereClause '{where_clause}'. Đang thử lại với '' và lọc qua Python...")
+            payload["whereClause"] = ""
             r = requests.post(api_url, json=payload, headers=headers, timeout=30)
             
         r.raise_for_status()
@@ -339,11 +340,11 @@ def map_data1_diduong(item, ma_kho):
     adddate = format_date(item.get("adddate", "")) or format_date(item.get("addwho", "")) or str(item.get("adddate", ""))
     
     raw_status = str(item.get("status", "")).strip()
-    if raw_status in ["16", "0"]:
+    if raw_status == "16":
         status_text = "NEW"
     elif raw_status == "11":
         status_text = "CANCELED"
-    elif raw_status in ["99", "28", "20"]:
+    elif raw_status in ["0", "99", "28", "20"]:
         status_text = "ARRIVED"
     else:
         status_text = raw_status
@@ -598,7 +599,7 @@ def main():
         start_date_10d = (now - datetime.timedelta(days=10)).strftime("%Y/%m/%d %H:%M:%S")
         end_date_now = now.strftime("%Y/%m/%d %H:%M:%S")
         
-        data1_where = f"(adddate is null or adddate >= '{start_date_10d}') AND (adddate is null or adddate < '{end_date_now}')"
+        data1_where = ""
         
         data_data1 = fetch_data(
             API_ON_SHIPPING,
@@ -720,35 +721,44 @@ def main():
         except: pass
 
         log("Làm mới Pivot Tables và căn chỉnh giao diện...")
-        for sheet_idx in range(1, wb.Sheets.Count + 1):
-            sheet_obj = wb.Sheets(sheet_idx)
-            
-            # Xóa dòng trắng dư thừa ở sheet baocao6-HSD
-            if sheet_obj.Name == "baocao6-HSD":
-                try:
-                    if not any(sheet_obj.Range("A2:Z2").Value[0]):
-                        sheet_obj.Rows(2).Delete()
-                except: pass
-
-            for pt_idx in range(1, sheet_obj.PivotTables().Count + 1):
-                pt = sheet_obj.PivotTables(pt_idx)
-                try:
-                    pt.PivotCache().MissingItemsLimit = 0
-                    pt.PivotCache().Refresh()
-                    pt.RefreshTable()
-                except: pass
+        try:
+            for sheet_idx in range(1, wb.Sheets.Count + 1):
+                sheet_obj = wb.Sheets(sheet_idx)
                 
-            # Căn chỉnh kích thước cột cho vừa khít dữ liệu
-            try:
-                sheet_obj.Columns.AutoFit()
-            except: pass
+                # Xóa dòng trắng dư thừa ở sheet baocao6-HSD
+                if sheet_obj.Name == "baocao6-HSD":
+                    try:
+                        if not any(sheet_obj.Range("A2:Z2").Value[0]):
+                            sheet_obj.Rows(2).Delete()
+                    except: pass
+
+                try:
+                    count_pt = sheet_obj.PivotTables().Count
+                    for pt_idx in range(1, count_pt + 1):
+                        pt = sheet_obj.PivotTables(pt_idx)
+                        try:
+                            pt.PivotCache().MissingItemsLimit = 0
+                            pt.PivotCache().Refresh()
+                            pt.RefreshTable()
+                        except: pass
+                except: pass
+                    
+                # Căn chỉnh kích thước cột cho vừa khít dữ liệu
+                try:
+                    sheet_obj.Columns.AutoFit()
+                except: pass
+        except Exception as pte:
+            error_log(f"Cảnh báo khi làm mới Pivot: {pte}")
             
         try: excel.CalculateUntilAsyncQueriesDone()
         except: pass
         
         excel.ScreenUpdating = True
-        wb.Save()
-        log("Lưu file Excel thành công.")
+        try:
+            wb.Save()
+            log("Lưu file Excel thành công.")
+        except Exception as se:
+            error_log(f"Lỗi khi lưu Excel: {se}")
         
     except Exception as e:
         error_log(f"Lỗi: {e}")
