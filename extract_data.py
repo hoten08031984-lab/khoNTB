@@ -465,7 +465,11 @@ def clean_value(val):
     if isinstance(val, (int, float)):
         if pd.isna(val): return None
         return val
-    return str(val).strip()
+    s = str(val).strip()
+    if "ghp_" in s:
+        import re
+        s = re.sub(r'ghp_[A-Za-z0-9_]+', '***REDACTED***', s)
+    return s
 
 def export_to_js():
     log("Trích xuất Excel sang data.js...")
@@ -515,6 +519,11 @@ def export_to_js():
         
     now_str = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     js_content = f"// Auto-generated data file from báo cáo.xlsx\nwindow.LAST_UPDATED_TIME = '{now_str}';\nwindow.DASHBOARD_DATA = " + json.dumps(data_store, ensure_ascii=False, indent=2, default=default_converter) + ";"
+    
+    # Khử trùng toàn bộ chuỗi ghp_ token nếu có lọt vào json
+    import re
+    js_content = re.sub(r'ghp_[A-Za-z0-9_]+', '***REDACTED***', js_content)
+    
     with open(OUTPUT_JS, 'w', encoding='utf-8') as f:
         f.write(js_content)
     log(f"Successfully generated {OUTPUT_JS}!")
