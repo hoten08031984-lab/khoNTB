@@ -72,42 +72,31 @@ if errorlevel 1 (
 )
 
 echo.
+echo.
 echo =======================================================
 echo 3. DONG BO WEB DASHBOARD LEN GITHUB...
 echo =======================================================
-
 git --version >nul 2>&1
-if errorlevel 1 (
-    echo [%date% %time%] [CANH BAO] Git chua duoc cai dat tren may nay! >> log.txt
-    echo [CANH BAO] Chua cai Git. Dashboard local van hoat dong binh thuong.
-) else (
+if not errorlevel 1 (
     set GIT_TERMINAL_PROMPT=0
     set GCM_INTERACTIVE=never
     set GIT_SSH_COMMAND=ssh -o BatchMode=yes
     git remote set-url origin https://github.com/hoten08031984-lab/khoNTB.git >nul 2>&1
-
-    :: Add tat ca file data.js, source code, va thu vien
-    git add index.html app.js styles.css data.js run.bat xlsx.full.min.js .agents/ >nul 2>&1
-    if exist img\ git add img\ >nul 2>&1
-
-    :: Config bot identity
-    git config user.name "AutoBot" >nul 2>&1
-    git config user.email "bot@example.com" >nul 2>&1
-
-    :: Commit
-    git commit -m "Auto update: %date% %time%" >nul 2>&1
-
-    :: Pull rebase va Push len GitHub
+    git add .
+    git commit -m "Auto update dashboard data [%date% %time%]" >nul 2>&1
     git pull origin main --rebase >nul 2>&1
-    git push origin main >> log.txt 2>&1
-    if errorlevel 1 (
-        echo [%date% %time%] [CANH BAO] Git push that bai. Xem log.txt de biet chi tiet. >> log.txt
-        echo [CANH BAO] Git push that bai. Xem log.txt de biet chi tiet.
+    git push origin main >nul 2>&1
+    if not errorlevel 1 (
+        echo [%date% %time%] Dong bo GitHub thanh cong. >> log.txt
+        echo [OK] Da dong bo len GitHub thanh cong.
     ) else (
-        echo [%date% %time%] Git push thanh cong len GitHub. >> log.txt
-        echo HOAN TAT! Dashboard da duoc cap nhat tren GitHub.
+        echo [%date% %time%] [CANH BAO] Push GitHub that bai! >> log.txt
+        echo [CANH BAO] Khong the push len GitHub.
     )
+) else (
+    echo [%date% %time%] Khong tim thay Git. >> log.txt
 )
+
 
 echo.
 echo [%date% %time%] === KET THUC === >> log.txt

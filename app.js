@@ -82,9 +82,17 @@ let currentReport = 'bc1'; // tab hiện tại
 // Selected filter state sets
 let selectedKho = new Set(['052', '05NT', '05KH', 'SKH']);
 let selectedNgayBC4 = new Set();
-let selectedNhomHang = new Set(['TP', 'BB', 'PL']); // Thêm lại biến này
+let selectedNhomHang = new Set(['TP', 'BB', 'PL']);
 let bc4Charts = {};
 let selectedTrangThai = new Set(['16', '0']);
+
+// BC4 state
+let selectedNppBC4Value = '';
+let allNppBC4 = [];
+let searchQueryBC4 = '';
+let currentSortColumnBC4 = 'MÃ HÀNG';
+let currentSortOrderBC4 = 'asc';
+let currentBC4FilteredRows = [];
 
 const TARGET_KHO_LIST = ['052', '05NT', '05KH', 'SKH'];
 const TARGET_NHOMHANG_LIST = ['TP', 'BB', 'PL'];
@@ -167,6 +175,14 @@ function initDashboard() {
     });
   }
 
+  const searchInputBC4 = document.getElementById('table-search-bc4');
+  if (searchInputBC4) {
+    searchInputBC4.addEventListener('input', (e) => {
+      searchQueryBC4 = e.target.value.trim().toLowerCase();
+      renderBC4Table();
+    });
+  }
+
   // Close dropdowns when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.filter-group')) {
@@ -221,6 +237,7 @@ function populateFilterLists() {
   renderCheckboxList('list-kho', TARGET_KHO_LIST, selectedKho, 'kho');
   renderCheckboxList('list-nhomhang', TARGET_NHOMHANG_LIST, selectedNhomHang, 'nhomhang');
   renderCheckboxList('list-ngay-bc4', allDatesBC4, selectedNgayBC4, 'ngay-bc4');
+  extractAllNppsBC4();
 
   updateFilterTriggerLabels();
 }
@@ -246,7 +263,9 @@ function renderCheckboxList(elementId, items, selectedSet, filterType) {
         selectedSet.delete(item);
       }
       updateFilterTriggerLabels();
-      if (filterType === 'ngay-bc4') {
+      if (filterType === 'npp-bc4') {
+        renderBC4Table();
+      } else if (filterType === 'ngay-bc4') {
         renderBC4();
     if (typeof applyFiltersAndRenderBC5 === 'function') applyFiltersAndRenderBC5();
     if (typeof applyFiltersAndRenderBC6 === 'function') applyFiltersAndRenderBC6();
@@ -297,6 +316,8 @@ function selectAll(filterType, isSelectAll) {
     targetSet = selectedNhomHang; targetList = TARGET_NHOMHANG_LIST; listId = 'list-nhomhang';
   } else if (filterType === 'ngay-bc4') {
     targetSet = selectedNgayBC4; targetList = allDatesBC4; listId = 'list-ngay-bc4';
+  } else if (filterType === 'npp-bc4') {
+    targetSet = selectedNppBC4; targetList = allNppBC4; listId = 'list-npp-bc4';
   } else if (filterType === 'trangthai') {
     targetSet = selectedTrangThai; targetList = TARGET_TRANGTHAI_LIST; listId = 'list-trangthai';
   }
@@ -344,9 +365,14 @@ function updateFilterTriggerLabels() {
   const ngayLabel = document.getElementById('label-ngay-bc4');
   if (ngayEl) ngayEl.textContent = selectedNgayBC4.size;
   if (ngayLabel) {
-    ngayLabel.textContent = selectedNgayBC4.size === allDatesBC4.length
-      ? 'Đã chọn: Tất cả ngày'
-      : `Đã chọn: ${selectedNgayBC4.size}/${allDatesBC4.length} ngày`;
+    if (selectedNgayBC4.size === 1) {
+      const singleDate = Array.from(selectedNgayBC4)[0];
+      ngayLabel.textContent = `Đã chọn: ${singleDate}`;
+    } else if (selectedNgayBC4.size === allDatesBC4.length || selectedNgayBC4.size === 0) {
+      ngayLabel.textContent = 'Đã chọn: Tất cả ngày';
+    } else {
+      ngayLabel.textContent = `Đã chọn: ${selectedNgayBC4.size} ngày`;
+    }
   }
 
   const summary = document.getElementById('active-filter-summary');
@@ -390,6 +416,45 @@ function getKhoValue(row) {
 }
 
 
+function groupBC1Rows(rows) {
+  if (!rows || rows.length === 0) return [];
+  const map = new Map();
+
+  rows.forEach(row => {
+    const rawStatusStr = getSafeValue(row, ['TRẠNG THÁI']) ? String(getSafeValue(row, ['TRẠNG THÁI'])).trim() : '';
+    const statusStr = (rawStatusStr === '16' || rawStatusStr.toUpperCase() === 'ARRIVED') ? 'ARRIVED' : ((rawStatusStr === '0' || rawStatusStr.toUpperCase() === 'NEW') ? 'NEW' : rawStatusStr);
+    const khoXuat = getSafeValue(row, ['KHO XUẤT']) ? String(getSafeValue(row, ['KHO XUẤT'])).trim() : '';
+    const soXe = getSafeValue(row, ['SỐ XE']) ? String(getSafeValue(row, ['SỐ XE'])).trim() : '';
+    const maHang = getSafeValue(row, ['MÃ HÀNG']) ? String(getSafeValue(row, ['MÃ HÀNG'])).trim() : '';
+    const donViTinh = getSafeValue(row, ['ĐƠN VỊ TÍNH', 'ĐVT']) ? String(getSafeValue(row, ['ĐƠN VỊ TÍNH', 'ĐVT'])).trim() : '';
+
+    const key = `${statusStr}||${khoXuat}||${soXe}||${maHang}||${donViTinh}`;
+
+    const qty = parseFloat(getSafeValue(row, ['SỐ LƯỢNG'])) || 0;
+    const pl = parseFloat(getSafeValue(row, ['SỐ LƯỢNG PL', 'SL PL'])) || 0;
+
+    if (!map.has(key)) {
+      const cloned = { ...row };
+      cloned['_qtySum'] = qty;
+      cloned['_plSum'] = pl;
+      map.set(key, cloned);
+    } else {
+      const existing = map.get(key);
+      existing['_qtySum'] += qty;
+      existing['_plSum'] += pl;
+    }
+  });
+
+  return Array.from(map.values()).map(item => {
+    const cloned = { ...item };
+    cloned['_plSum'] = Math.round(cloned['_plSum'] * 1000) / 1000;
+    cloned['SỐ LƯỢNG'] = cloned['_qtySum'];
+    cloned['SỐ LƯỢNG PL'] = cloned['_plSum'];
+    cloned['SL PL'] = cloned['_plSum'];
+    return cloned;
+  });
+}
+
 function applyFiltersAndRender() {
   const filteredRows = rawData.filter(row => {
     const maKho = getKhoValue(row);
@@ -420,7 +485,7 @@ function applyFiltersAndRender() {
     }
 
     const qty = parseFloat(getSafeValue(row, ['SỐ LƯỢNG'])) || 0;
-    const pl = parseFloat(getSafeValue(row, ['SỐ LƯỢNG PL'])) || 0;
+    const pl = parseFloat(getSafeValue(row, ['SỐ LƯỢNG PL', 'SL PL'])) || 0;
 
     const group = getSafeValue(row, ['NHÓM HÀNG']) ? String(getSafeValue(row, ['NHÓM HÀNG'])).trim().toUpperCase() : '';
 
@@ -457,18 +522,21 @@ function applyFiltersAndRender() {
   if (document.getElementById('val-total-qty')) document.getElementById('val-total-qty').textContent = formatNumber(totalQty);
   if (document.getElementById('val-total-pl')) document.getElementById('val-total-pl').textContent = formatNumber(totalPL);
 
-  // 3. Filter rows by search query for table view
-  let searchRows = filteredRows;
+  // 3. Gom nhóm Pivot các dòng trùng thuộc tính hiển thị (Trạng Thái, Kho Xuất, Số Xe, Mã Hàng, ĐVT)
+  const groupedRows = groupBC1Rows(filteredRows);
+
+  // 4. Lọc dòng theo từ khóa tìm kiếm
+  let searchRows = groupedRows;
   if (searchQuery) {
-    searchRows = filteredRows.filter(row => {
+    searchRows = groupedRows.filter(row => {
       const text = [
-        getSafeValue(row, ['KHO XUẤT']), getSafeValue(row, ['SỐ XE']), getSafeValue(row, ['MÃ HÀNG']), getSafeValue(row, ['TÊN HÀNG']), getSafeValue(row, ['ĐƠN VỊ TÍNH']), getSafeValue(row, ['TRẠNG THÁI'])
+        getSafeValue(row, ['KHO XUẤT']), getSafeValue(row, ['SỐ XE']), getSafeValue(row, ['MÃ HÀNG']), getSafeValue(row, ['TÊN HÀNG']), getSafeValue(row, ['ĐƠN VỊ TÍNH', 'ĐVT']), getSafeValue(row, ['TRẠNG THÁI'])
       ].join(' ').toLowerCase();
       return text.includes(searchQuery);
     });
   }
 
-  // 4. Sort rows according to currentSortColumn & currentSortOrder
+  // 5. Sắp xếp các dòng theo cột và thứ tự được chọn
   searchRows = sortRows(searchRows, currentSortColumn, currentSortOrder);
 
   // Render Table & Grand Total Footer
@@ -479,9 +547,11 @@ function applyFiltersAndRender() {
 }
 
 // ==========================================
-// BIỂU ĐỒ BÁO CÁO 1 (2 Biểu đồ hình cột)
+// BIỂU ĐỒ BÁO CÁO 1 (Trục X = MÃ KHO, Cột phân loại theo MÃ HÀNG / ĐVT)
 // ==========================================
 var bc1Charts = {};
+
+var ITEM_COLORS = ['#2563eb', '#dc2626', '#059669', '#d97706', '#7c3aed', '#0891b2', '#db2777', '#4f46e5'];
 
 function bc1GetOrCreate(chartId, config) {
   if (typeof Chart === 'undefined') return;
@@ -500,66 +570,81 @@ function bc1GetOrCreate(chartId, config) {
 
 function renderBC1Charts(rows) {
   if (!rows || rows.length === 0) {
-    bc1DrawChartMaHang([]);
-    bc1DrawChartDVT([]);
+    bc1DrawChartMaHang([], {}, []);
+    bc1DrawChartDVT([], {}, []);
     return;
   }
 
-  var maHangMap = {};
-  var dvtMap = {};
+  var khoMaHangMap = {};
+  var khoDvtMap = {};
+  var khoSet = new Set();
+  var maHangSet = new Set();
+  var dvtSet = new Set();
 
   rows.forEach(function(row) {
+    var kho = getKhoValue(row) || 'Khác';
     var maHang = getSafeValue(row, ['MÃ HÀNG']) ? String(getSafeValue(row, ['MÃ HÀNG'])).trim() : 'N/A';
     var dvt = getSafeValue(row, ['ĐƠN VỊ TÍNH', 'ĐVT']) ? String(getSafeValue(row, ['ĐƠN VỊ TÍNH', 'ĐVT'])).trim() : 'N/A';
     var qty = parseFloat(getSafeValue(row, ['SỐ LƯỢNG'])) || 0;
 
+    if (kho) khoSet.add(kho);
+
     if (maHang && maHang !== 'N/A') {
-      maHangMap[maHang] = (maHangMap[maHang] || 0) + qty;
+      maHangSet.add(maHang);
+      if (!khoMaHangMap[kho]) khoMaHangMap[kho] = {};
+      khoMaHangMap[kho][maHang] = (khoMaHangMap[kho][maHang] || 0) + qty;
     }
     if (dvt && dvt !== 'N/A') {
-      dvtMap[dvt] = (dvtMap[dvt] || 0) + qty;
+      dvtSet.add(dvt);
+      if (!khoDvtMap[kho]) khoDvtMap[kho] = {};
+      khoDvtMap[kho][dvt] = (khoDvtMap[kho][dvt] || 0) + qty;
     }
   });
 
-  var sortedMaHang = Object.keys(maHangMap).map(function(k) {
-    return { label: k, value: maHangMap[k] };
-  }).sort(function(a, b) { return b.value - a.value; });
+  var uniqueKhos = Array.from(khoSet).sort();
+  var uniqueMaHangs = Array.from(maHangSet).sort();
+  var uniqueDvts = Array.from(dvtSet).sort();
 
-  var sortedDVT = Object.keys(dvtMap).map(function(k) {
-    return { label: k, value: dvtMap[k] };
-  }).sort(function(a, b) { return b.value - a.value; });
-
-  bc1DrawChartMaHang(sortedMaHang);
-  bc1DrawChartDVT(sortedDVT);
+  bc1DrawChartMaHang(uniqueKhos, khoMaHangMap, uniqueMaHangs);
+  bc1DrawChartDVT(uniqueKhos, khoDvtMap, uniqueDvts);
 }
 
-function bc1DrawChartMaHang(data) {
+function bc1DrawChartMaHang(khos, dataMap, maHangs) {
   var datalabelsPlugin = (typeof ChartDataLabels !== 'undefined') ? [ChartDataLabels] : [];
-  var labels = data.map(function(d) { return d.label; });
-  var values = data.map(function(d) { return d.value; });
+
+  var datasets = (maHangs || []).map(function(mh, idx) {
+    var data = (khos || []).map(function(kho) {
+      return (dataMap[kho] && dataMap[kho][mh]) ? dataMap[kho][mh] : 0;
+    });
+    return {
+      label: mh,
+      data: data,
+      backgroundColor: ITEM_COLORS[idx % ITEM_COLORS.length],
+      borderRadius: 4,
+      borderSkipped: false
+    };
+  });
 
   var config = {
     type: 'bar',
     data: {
-      labels: labels,
-      datasets: [{
-        label: 'Số Lượng',
-        data: values,
-        backgroundColor: '#3b82f6',
-        borderRadius: 6,
-        borderSkipped: false,
-      }]
+      labels: khos,
+      datasets: datasets
     },
     plugins: datalabelsPlugin,
     options: {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { display: false },
+        legend: {
+          display: true,
+          position: 'top',
+          labels: { font: { size: 11, weight: 'bold' }, usePointStyle: true, boxWidth: 8 }
+        },
         tooltip: {
           callbacks: {
             label: function(ctx) {
-              return 'Số lượng: ' + formatNumber(ctx.raw);
+              return ctx.dataset.label + ': ' + formatNumber(ctx.raw);
             }
           }
         },
@@ -567,7 +652,7 @@ function bc1DrawChartMaHang(data) {
           anchor: 'end',
           align: 'top',
           color: '#1e293b',
-          font: { size: 10, weight: 'bold' },
+          font: { size: 9, weight: 'bold' },
           formatter: function(v) {
             return v > 0 ? formatNumber(v) : '';
           }
@@ -576,50 +661,56 @@ function bc1DrawChartMaHang(data) {
       scales: {
         x: {
           grid: { display: false },
-          ticks: { color: '#475569', font: { size: 10, weight: '600' }, maxRotation: 45 }
+          ticks: { color: '#1e293b', font: { size: 11, weight: '700' } }
         },
         y: {
           grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { color: '#475569', font: { size: 10 } },
+          ticks: { color: '#475569', font: { size: 10, weight: '600' } },
           beginAtZero: true
         }
       }
     }
   };
+
   bc1GetOrCreate('chart-bc1-mahang', config);
 }
 
-function bc1DrawChartDVT(data) {
+function bc1DrawChartDVT(khos, dataMap, dvts) {
   var datalabelsPlugin = (typeof ChartDataLabels !== 'undefined') ? [ChartDataLabels] : [];
-  var labels = data.map(function(d) { return d.label; });
-  var values = data.map(function(d) { return d.value; });
 
-  var colors = ['#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#3b82f6'];
+  var datasets = (dvts || []).map(function(dvt, idx) {
+    var data = (khos || []).map(function(kho) {
+      return (dataMap[kho] && dataMap[kho][dvt]) ? dataMap[kho][dvt] : 0;
+    });
+    return {
+      label: dvt,
+      data: data,
+      backgroundColor: ITEM_COLORS[idx % ITEM_COLORS.length],
+      borderRadius: 4,
+      borderSkipped: false
+    };
+  });
 
   var config = {
     type: 'bar',
     data: {
-      labels: labels,
-      datasets: [{
-        label: 'Số Lượng',
-        data: values,
-        backgroundColor: function(ctx) {
-          return colors[ctx.dataIndex % colors.length];
-        },
-        borderRadius: 6,
-        borderSkipped: false,
-      }]
+      labels: khos,
+      datasets: datasets
     },
     plugins: datalabelsPlugin,
     options: {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { display: false },
+        legend: {
+          display: true,
+          position: 'top',
+          labels: { font: { size: 11, weight: 'bold' }, usePointStyle: true, boxWidth: 8 }
+        },
         tooltip: {
           callbacks: {
             label: function(ctx) {
-              return 'Số lượng: ' + formatNumber(ctx.raw);
+              return ctx.dataset.label + ': ' + formatNumber(ctx.raw);
             }
           }
         },
@@ -627,7 +718,7 @@ function bc1DrawChartDVT(data) {
           anchor: 'end',
           align: 'top',
           color: '#1e293b',
-          font: { size: 10, weight: 'bold' },
+          font: { size: 9, weight: 'bold' },
           formatter: function(v) {
             return v > 0 ? formatNumber(v) : '';
           }
@@ -636,16 +727,17 @@ function bc1DrawChartDVT(data) {
       scales: {
         x: {
           grid: { display: false },
-          ticks: { color: '#475569', font: { size: 11, weight: 'bold' } }
+          ticks: { color: '#1e293b', font: { size: 11, weight: '700' } }
         },
         y: {
           grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { color: '#475569', font: { size: 10 } },
+          ticks: { color: '#475569', font: { size: 10, weight: '600' } },
           beginAtZero: true
         }
       }
     }
   };
+
   bc1GetOrCreate('chart-bc1-dvt', config);
 }
 
@@ -1464,8 +1556,9 @@ function renderBC4() {
     return;
   }
 
-  // Render global charts ignoring Kho and Ngay filters
-  renderBC4GlobalCharts(bc4Data);
+  // Cập nhật lại danh sách NPP trong ô Chọn NPP theo các Mã Kho đang được chọn (selectedKho)
+  extractAllNppsBC4();
+
 
   const filteredRows = bc4Data.filter(function(row) {
     var maKho    = getSafeValue(row, ['MÃ KHO', 'KHO', 'Ma Kho']);
@@ -1476,6 +1569,9 @@ function renderBC4() {
 
     var nhomHang    = getSafeValue(row, ['NHÓM HÀNG']);
     var nhomHangStr = nhomHang ? String(nhomHang).trim() : '';
+
+    var c1       = getSafeValue(row, ['TÊN C1', 'TÊN ĐƠN VỊ', 'C1']);
+    var c1Str    = c1 ? String(c1).trim() : '';
 
     // Lọc kho: chỉ lấy kho nằm trong TARGET_KHO_LIST đang được chọn
     var matchKho  = selectedKho.has(maKhoStr);
@@ -1560,6 +1656,379 @@ function renderBC4() {
   bc4DrawChart3(customerData);
   bc4DrawChart4A(topMaHangNhapData);
   bc4DrawChart4B(topMaHangXuatData);
+  renderBC4Table(filteredRows);
+  renderBC4SubTable(filteredRows);
+}
+
+function extractAllNppsBC4() {
+  const nppSet = new Set();
+  const appendSheet = (window.DASHBOARD_DATA && window.DASHBOARD_DATA['Append1 Nhập- Xuất']) || [];
+  appendSheet.forEach(row => {
+    const maKho = getSafeValue(row, ['MÃ KHO', 'KHO', 'Ma Kho']);
+    const maKhoStr = maKho ? String(maKho).trim() : '';
+
+    // Chỉ lấy Tên NPP của các kho đang được tích chọn (selectedKho)
+    if (selectedKho.has(maKhoStr)) {
+      const c1 = getSafeValue(row, ['TÊN C1', 'TÊN ĐƠN VỊ', 'C1']);
+      if (c1 && typeof c1 === 'string' && c1.trim() !== '') {
+        nppSet.add(c1.trim());
+      }
+    }
+  });
+  allNppBC4 = Array.from(nppSet).sort((a, b) => a.localeCompare(b, 'vi'));
+  
+  const selectEl = document.getElementById('select-npp-bc4');
+  if (selectEl) {
+    const prevVal = selectedNppBC4Value;
+    selectEl.innerHTML = '<option value="">-- Tất cả NPP --</option>';
+    let foundPrev = false;
+    allNppBC4.forEach(npp => {
+      const opt = document.createElement('option');
+      opt.value = npp;
+      opt.textContent = npp;
+      if (npp === prevVal) {
+        opt.selected = true;
+        foundPrev = true;
+      }
+      selectEl.appendChild(opt);
+    });
+
+    if (!foundPrev && prevVal !== '') {
+      selectedNppBC4Value = '';
+      selectEl.value = '';
+    }
+  }
+}
+
+function handleSelectNppBC4(val) {
+  selectedNppBC4Value = val ? String(val).trim() : '';
+  renderBC4Table();
+}
+
+function renderBC4Table(rows) {
+  if (rows) currentBC4FilteredRows = rows;
+  let filteredRows = currentBC4FilteredRows;
+
+  // Filter by selected NPP if specified
+  if (selectedNppBC4Value) {
+    filteredRows = filteredRows.filter(row => {
+      const c1 = getSafeValue(row, ['TÊN C1', 'TÊN ĐƠN VỊ', 'C1']);
+      const c1Str = c1 ? String(c1).trim() : '';
+      return c1Str === selectedNppBC4Value;
+    });
+  }
+
+  // Aggregate by MÃ HÀNG
+  const mapMaHang = {};
+  filteredRows.forEach(row => {
+    const maHang = getSafeValue(row, ['MÃ HÀNG', 'Mã Hàng']) || 'Chưa rõ';
+    const maHangStr = String(maHang).trim();
+    const tenHang = getSafeValue(row, ['TÊN HÀNG', 'Tên Hàng', 'MÃ HÀNG']) || maHangStr;
+    const loai = getSafeValue(row, ['Loại hình', 'LOẠI HÌNH', 'LOẠI GIAO DỊCH']) || '';
+    const loaiStr = String(loai).toLowerCase().trim();
+    const qty = parseFloat(getSafeValue(row, ['SỐ LƯỢNG', 'SL'])) || 0;
+    const isNhap = (loaiStr.indexOf('nhập') !== -1 || loaiStr.indexOf('nhap') !== -1);
+
+    if (!mapMaHang[maHangStr]) {
+      mapMaHang[maHangStr] = {
+        maHang: maHangStr,
+        tenHang: String(tenHang).trim(),
+        nhapQty: 0,
+        xuatQty: 0
+      };
+    }
+    if (isNhap) {
+      mapMaHang[maHangStr].nhapQty += qty;
+    } else {
+      mapMaHang[maHangStr].xuatQty += qty;
+    }
+  });
+
+  let aggregatedList = Object.values(mapMaHang);
+
+  // Search filter
+  if (searchQueryBC4) {
+    aggregatedList = aggregatedList.filter(item => {
+      const q = searchQueryBC4.toLowerCase();
+      return item.maHang.toLowerCase().includes(q) || item.tenHang.toLowerCase().includes(q);
+    });
+  }
+
+  // Sorting
+  aggregatedList.sort((a, b) => {
+    let valA = a.maHang;
+    let valB = b.maHang;
+    if (currentSortColumnBC4 === 'TÊN HÀNG') {
+      valA = a.tenHang; valB = b.tenHang;
+    } else if (currentSortColumnBC4 === 'SL NHẬP') {
+      valA = a.nhapQty; valB = b.nhapQty;
+    } else if (currentSortColumnBC4 === 'SL XUẤT') {
+      valA = a.xuatQty; valB = b.xuatQty;
+    }
+
+    if (typeof valA === 'number' && typeof valB === 'number') {
+      return currentSortOrderBC4 === 'asc' ? valA - valB : valB - valA;
+    }
+    return currentSortOrderBC4 === 'asc' 
+      ? String(valA).localeCompare(String(valB), 'vi') 
+      : String(valB).localeCompare(String(valA), 'vi');
+  });
+
+  // DOM update
+  const tbody = document.getElementById('tbody-bc4');
+  const tfoot = document.getElementById('tfoot-bc4');
+  const recordsCount = document.getElementById('records-count-bc4');
+
+  if (recordsCount) recordsCount.textContent = `${aggregatedList.length} Mã Hàng`;
+
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  if (aggregatedList.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5" class="text-center" style="padding: 20px; color: var(--text-muted);">Không tìm thấy dữ liệu phù hợp với bộ lọc</td></tr>`;
+    if (tfoot) tfoot.innerHTML = '';
+    return;
+  }
+
+  let totalNhap = 0;
+  let totalXuat = 0;
+
+  aggregatedList.forEach((item, index) => {
+    totalNhap += item.nhapQty;
+    totalXuat += item.xuatQty;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="text-center" style="color: var(--text-muted); font-size: 0.82rem;">${index + 1}</td>
+      <td style="font-weight: 600; color: var(--primary);">${item.maHang}</td>
+      <td style="color: var(--text-dark);">${item.tenHang}</td>
+      <td class="text-right" style="font-weight: 600; color: #2563eb;">${item.nhapQty ? Math.round(item.nhapQty).toLocaleString('vi-VN') : '-'}</td>
+      <td class="text-right" style="font-weight: 600; color: #d97706;">${item.xuatQty ? Math.round(item.xuatQty).toLocaleString('vi-VN') : '-'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  if (tfoot) {
+    tfoot.innerHTML = `
+      <tr style="background: rgba(37,99,235,0.06); font-weight: 700;">
+        <td colspan="3" class="text-right" style="padding: 10px 12px; color: var(--text-dark);">TỔNG CỘNG:</td>
+        <td class="text-right" style="padding: 10px 12px; color: #2563eb; font-size: 0.95rem;">${Math.round(totalNhap).toLocaleString('vi-VN')}</td>
+        <td class="text-right" style="padding: 10px 12px; color: #d97706; font-size: 0.95rem;">${Math.round(totalXuat).toLocaleString('vi-VN')}</td>
+      </tr>
+    `;
+  }
+}
+
+function handleSortBC4(column) {
+  if (currentSortColumnBC4 === column) {
+    currentSortOrderBC4 = currentSortOrderBC4 === 'asc' ? 'desc' : 'asc';
+  } else {
+    currentSortColumnBC4 = column;
+    currentSortOrderBC4 = 'asc';
+  }
+
+  ['MÃ HÀNG', 'TÊN HÀNG', 'SL NHẬP', 'SL XUẤT'].forEach(col => {
+    const el = document.getElementById(`sort4-${col}`);
+    if (el) {
+      if (col === currentSortColumnBC4) {
+        el.textContent = currentSortOrderBC4 === 'asc' ? '▲' : '▼';
+        el.style.color = 'var(--primary)';
+      } else {
+        el.textContent = '↕';
+        el.style.color = 'var(--text-muted)';
+      }
+    }
+  });
+
+  renderBC4Table();
+}
+
+// ── BẢNG CHI TIẾT GIAO DỊCH (LOẠI GIAO DỊCH 21035 & 29011) ─────────────────
+var searchQueryBC4Sub = '';
+var currentSortColumnBC4Sub = 'KHO 1-1';
+var currentSortOrderBC4Sub = 'asc';
+var currentBC4SubFilteredRows = [];
+
+function handleSearchBC4Sub(val) {
+  searchQueryBC4Sub = val ? String(val).toLowerCase().trim() : '';
+  renderBC4SubTable();
+}
+
+function handleSortBC4Sub(column) {
+  if (currentSortColumnBC4Sub === column) {
+    currentSortOrderBC4Sub = currentSortOrderBC4Sub === 'asc' ? 'desc' : 'asc';
+  } else {
+    currentSortColumnBC4Sub = column;
+    currentSortOrderBC4Sub = 'asc';
+  }
+
+  ['KHO 1-1', 'SỐ XE', 'MÃ HÀNG', 'SL NHẬP', 'SL XUẤT'].forEach(col => {
+    const el = document.getElementById(`sort4sub-${col}`);
+    if (el) {
+      if (col === currentSortColumnBC4Sub) {
+        el.textContent = currentSortOrderBC4Sub === 'asc' ? '▲' : '▼';
+        el.style.color = 'var(--primary)';
+      } else {
+        el.textContent = '↕';
+        el.style.color = 'var(--text-muted)';
+      }
+    }
+  });
+
+  renderBC4SubTable();
+}
+
+function renderBC4SubTable(rows) {
+  if (rows) currentBC4SubFilteredRows = rows;
+  let filteredRows = currentBC4SubFilteredRows || [];
+
+  // Bộ lọc mặc định luôn lấy 2 giá trị LOẠI GIAO DỊCH (21035 và 29011)
+  filteredRows = filteredRows.filter(row => {
+    const loaiGD = getSafeValue(row, ['LOẠI GIAO DỊCH', 'Loại giao dịch']) || '';
+    const loaiGDStr = String(loaiGD);
+    return loaiGDStr.includes('21035') || loaiGDStr.includes('29011');
+  });
+
+  // Gom nhóm theo [KHO 1-1] + [SỐ XE] + [MÃ HÀNG]
+  const mapGroup = {};
+  filteredRows.forEach(row => {
+    const kho11 = getSafeValue(row, ['KHO 1-1', 'KHO1-1']) || getSafeValue(row, ['TÊN KHO']) || getSafeValue(row, ['MÃ KHO']) || 'Khác';
+    const kho11Str = String(kho11).trim();
+    const soXe = getSafeValue(row, ['SỐ XE', 'Số xe']) || 'Chưa rõ';
+    const soXeStr = String(soXe).trim();
+    const maHang = getSafeValue(row, ['MÃ HÀNG', 'Mã Hàng']) || 'Chưa rõ';
+    const maHangStr = String(maHang).trim();
+
+    const key = kho11Str + '||' + soXeStr + '||' + maHangStr;
+
+    const loai = getSafeValue(row, ['Loại hình', 'LOẠI HÌNH', 'LOẠI GIAO DỊCH']) || '';
+    const loaiStr = String(loai).toLowerCase().trim();
+    const qty = parseFloat(getSafeValue(row, ['SỐ LƯỢNG', 'SL'])) || 0;
+    const isNhap = (loaiStr.indexOf('nhập') !== -1 || loaiStr.indexOf('nhap') !== -1);
+
+    if (!mapGroup[key]) {
+      mapGroup[key] = {
+        kho11: kho11Str,
+        soXe: soXeStr,
+        maHang: maHangStr,
+        nhapQty: 0,
+        xuatQty: 0
+      };
+    }
+
+    if (isNhap) {
+      mapGroup[key].nhapQty += qty;
+    } else {
+      mapGroup[key].xuatQty += qty;
+    }
+  });
+
+  let aggregatedList = Object.values(mapGroup);
+
+  // Lọc từ khóa tìm kiếm
+  if (searchQueryBC4Sub) {
+    aggregatedList = aggregatedList.filter(item => {
+      const q = searchQueryBC4Sub;
+      return item.kho11.toLowerCase().includes(q) ||
+             item.soXe.toLowerCase().includes(q) ||
+             item.maHang.toLowerCase().includes(q);
+    });
+  }
+
+  // Sắp xếp đa cấp (Mặc định: KHO 1-1 -> SỐ XE -> MÃ HÀNG)
+  aggregatedList.sort((a, b) => {
+    if (currentSortColumnBC4Sub === 'KHO 1-1') {
+      const cmpKho = String(a.kho11).localeCompare(String(b.kho11), 'vi');
+      if (cmpKho !== 0) return currentSortOrderBC4Sub === 'asc' ? cmpKho : -cmpKho;
+
+      const cmpXe = String(a.soXe).localeCompare(String(b.soXe), 'vi');
+      if (cmpXe !== 0) return currentSortOrderBC4Sub === 'asc' ? cmpXe : -cmpXe;
+
+      const cmpHang = String(a.maHang).localeCompare(String(b.maHang), 'vi');
+      return currentSortOrderBC4Sub === 'asc' ? cmpHang : -cmpHang;
+    }
+
+    if (currentSortColumnBC4Sub === 'SỐ XE') {
+      const cmpXe = String(a.soXe).localeCompare(String(b.soXe), 'vi');
+      if (cmpXe !== 0) return currentSortOrderBC4Sub === 'asc' ? cmpXe : -cmpXe;
+
+      const cmpKho = String(a.kho11).localeCompare(String(b.kho11), 'vi');
+      if (cmpKho !== 0) return currentSortOrderBC4Sub === 'asc' ? cmpKho : -cmpKho;
+
+      const cmpHang = String(a.maHang).localeCompare(String(b.maHang), 'vi');
+      return currentSortOrderBC4Sub === 'asc' ? cmpHang : -cmpHang;
+    }
+
+    if (currentSortColumnBC4Sub === 'MÃ HÀNG') {
+      const cmpHang = String(a.maHang).localeCompare(String(b.maHang), 'vi');
+      if (cmpHang !== 0) return currentSortOrderBC4Sub === 'asc' ? cmpHang : -cmpHang;
+
+      const cmpKho = String(a.kho11).localeCompare(String(b.kho11), 'vi');
+      if (cmpKho !== 0) return currentSortOrderBC4Sub === 'asc' ? cmpKho : -cmpKho;
+
+      const cmpXe = String(a.soXe).localeCompare(String(b.soXe), 'vi');
+      return currentSortOrderBC4Sub === 'asc' ? cmpXe : -cmpXe;
+    }
+
+    if (currentSortColumnBC4Sub === 'SL NHẬP') {
+      const diff = a.nhapQty - b.nhapQty;
+      if (diff !== 0) return currentSortOrderBC4Sub === 'asc' ? diff : -diff;
+      return String(a.kho11).localeCompare(String(b.kho11), 'vi');
+    }
+
+    if (currentSortColumnBC4Sub === 'SL XUẤT') {
+      const diff = a.xuatQty - b.xuatQty;
+      if (diff !== 0) return currentSortOrderBC4Sub === 'asc' ? diff : -diff;
+      return String(a.kho11).localeCompare(String(b.kho11), 'vi');
+    }
+
+    return 0;
+  });
+
+  // Hiển thị DOM
+  const tbody = document.getElementById('tbody-bc4-sub');
+  const tfoot = document.getElementById('tfoot-bc4-sub');
+  const recordsCount = document.getElementById('records-count-bc4-sub');
+
+  if (recordsCount) recordsCount.textContent = `${aggregatedList.length} Dòng`;
+
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  if (aggregatedList.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" class="text-center" style="padding: 20px; color: var(--text-muted);">Không tìm thấy dữ liệu giao dịch (21035 / 29011) phù hợp với bộ lọc</td></tr>`;
+    if (tfoot) tfoot.innerHTML = '';
+    return;
+  }
+
+  let totalNhap = 0;
+  let totalXuat = 0;
+
+  aggregatedList.forEach((item, index) => {
+    totalNhap += item.nhapQty;
+    totalXuat += item.xuatQty;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="text-center" style="color: var(--text-muted); font-size: 0.82rem;">${index + 1}</td>
+      <td style="font-weight: 600; color: #0284c7;">${item.kho11}</td>
+      <td style="font-weight: 600; color: var(--text-dark);">${item.soXe}</td>
+      <td style="font-weight: 600; color: var(--primary);">${item.maHang}</td>
+      <td class="text-right" style="font-weight: 600; color: #2563eb;">${item.nhapQty ? Math.round(item.nhapQty).toLocaleString('vi-VN') : '-'}</td>
+      <td class="text-right" style="font-weight: 600; color: #d97706;">${item.xuatQty ? Math.round(item.xuatQty).toLocaleString('vi-VN') : '-'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  if (tfoot) {
+    tfoot.innerHTML = `
+      <tr style="background: rgba(37,99,235,0.06); font-weight: 700;">
+        <td colspan="4" class="text-right" style="padding: 10px 12px; color: var(--text-dark);">TỔNG CỘNG:</td>
+        <td class="text-right" style="padding: 10px 12px; color: #2563eb; font-size: 0.95rem;">${Math.round(totalNhap).toLocaleString('vi-VN')}</td>
+        <td class="text-right" style="padding: 10px 12px; color: #d97706; font-size: 0.95rem;">${Math.round(totalXuat).toLocaleString('vi-VN')}</td>
+      </tr>
+    `;
+  }
 }
 
 // ── Chart helpers ─────────────────────────────
@@ -1914,148 +2383,7 @@ function bc4DrawChart4B(data) {
 }
 
 
-// ─── Global Charts (BC4) ──────────────────────────────────────────────────
-function renderBC4GlobalCharts(bc4Data) {
-  var khoData = {};
-  var dateData = {};
-  var fixedKhos = ['052', '05KH', '05NT', 'SKH'];
 
-  bc4Data.forEach(function(row) {
-    var nhomHang = getSafeValue(row, ['NHÓM HÀNG']);
-    var nhomHangStr = nhomHang ? String(nhomHang).trim() : '';
-    // Apply Nhom Hang filter
-    if (selectedNhomHang.size > 0 && !selectedNhomHang.has(nhomHangStr)) return;
-
-    var ngay = getSafeValue(row, ['NGÀY']);
-    var ngayStr = ngay ? String(ngay).trim() : 'Unknown';
-    // Apply Ngay filter
-    if (selectedNgayBC4.size > 0 && !selectedNgayBC4.has(ngayStr)) return;
-
-    var kho = getSafeValue(row, ['MÃ KHO', 'KHO', 'Ma Kho']);
-    var khoStr = kho ? String(kho).trim() : 'Unknown';
-
-    var loai = getSafeValue(row, ['LOẠI GIAO DỊCH', 'Loại hình']);
-    var loaiStr = loai ? String(loai).toLowerCase() : '';
-    var isNhap = (loaiStr.indexOf('nhập') !== -1 || loaiStr.indexOf('nhap') !== -1);
-    var nxType = isNhap ? 'Nhap' : 'Xuat';
-    var qty = Number(getSafeValue(row, ['SỐ LƯỢNG', 'SL'])) || 0;
-
-    // Chart 1 (KhoData): Không bị ảnh hưởng bởi selectedKho, nhưng luôn lấy 4 kho cố định
-    if (fixedKhos.indexOf(khoStr) !== -1) {
-      if (!khoData[khoStr]) khoData[khoStr] = { Nhap: 0, Xuat: 0 };
-      khoData[khoStr][nxType] += qty;
-    }
-
-    // Chart 2 (DateData): Bị ảnh hưởng bởi selectedKho
-    if (selectedKho.size === 0 || selectedKho.has(khoStr)) {
-      if (!dateData[ngayStr]) dateData[ngayStr] = { Nhap: 0, Xuat: 0 };
-      dateData[ngayStr][nxType] += qty;
-    }
-  });
-
-  // Chart 1: Kho (Stacked Bar + Line for Total)
-  var khos = fixedKhos;
-  
-  var nhapDataKho = khos.map(function(k) { return khoData[k] ? khoData[k].Nhap : 0; });
-  var xuatDataKho = khos.map(function(k) { return khoData[k] ? khoData[k].Xuat : 0; });
-  var totalDataKho = khos.map(function(k) { return (khoData[k] ? khoData[k].Nhap : 0) + (khoData[k] ? khoData[k].Xuat : 0); });
-
-  var datalabelsPlugin = (typeof ChartDataLabels !== 'undefined') ? [ChartDataLabels] : [];
-  
-  bc4GetOrCreate('chart-tq-kho', {
-    type: 'bar',
-    plugins: datalabelsPlugin,
-    data: {
-      labels: khos,
-      datasets: [
-        { 
-          type: 'line', 
-          label: 'Tổng Sản Lượng', 
-          data: totalDataKho, 
-          borderColor: '#10b981', // Emerald green
-          backgroundColor: '#10b981',
-          borderWidth: 2, 
-          pointRadius: 5, 
-          pointHoverRadius: 7,
-          fill: false,
-          datalabels: { 
-            display: true, 
-            align: 'top', 
-            anchor: 'end',
-            color: '#047857', // Darker green for text
-            font: {size: 11, weight: 'bold'}, 
-            formatter: function(v) { return v > 0 ? bc4Fmt(v) : ''; } 
-          }
-        },
-        { 
-          type: 'bar',
-          label: 'Nhập', 
-          data: nhapDataKho, 
-          backgroundColor: '#3b82f6', 
-          stack: 'Stack 0', 
-          borderRadius: 3,
-          datalabels: { display: true, color: '#fff', font: {size: 10, weight: 'bold'}, formatter: function(v) { return v > 0 ? bc4Fmt(v) : ''; } } 
-        },
-        { 
-          type: 'bar',
-          label: 'Xuất', 
-          data: xuatDataKho, 
-          backgroundColor: '#f59e0b', 
-          stack: 'Stack 0', 
-          borderRadius: 3,
-          datalabels: { display: true, color: '#fff', font: {size: 10, weight: 'bold'}, formatter: function(v) { return v > 0 ? bc4Fmt(v) : ''; } } 
-        }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { 
-        legend: { position: 'bottom', labels: { color: '#64748b', font: { weight: 'bold' } } }, 
-        // Global datalabels config off, since we configure per dataset
-        datalabels: { display: false } 
-      },
-      scales: {
-        x: { stacked: true, ticks: BC4_TICK, grid: { display: false } },
-        y: { stacked: true, beginAtZero: true, ticks: BC4_TICK, grid: BC4_GRID, grace: '15%' } // grace to leave room for the top label
-      }
-    }
-  });
-
-  // Chart 2: Ngày (Line)
-  var allDates = Object.keys(dateData).filter(function(d) { return d && d !== 'Unknown' && d.indexOf('/') > 0; });
-  allDates.sort(function(a, b) {
-    var pA = a.split('/'); var pB = b.split('/');
-    var dA = new Date(pA[2], pA[1]-1, pA[0]);
-    var dB = new Date(pB[2], pB[1]-1, pB[0]);
-    return dB - dA;
-  });
-  var selectedDays = allDates.reverse();
-  var nhapDataNgay = selectedDays.map(function(d) { return dateData[d].Nhap; });
-  var xuatDataNgay = selectedDays.map(function(d) { return dateData[d].Xuat; });
-
-  bc4GetOrCreate('chart-tq-ngay', {
-    type: 'line',
-    plugins: datalabelsPlugin,
-    data: {
-      labels: selectedDays,
-      datasets: [
-        { label: 'Nhập', data: nhapDataNgay, borderColor: '#3b82f6', backgroundColor: 'rgba(59, 130, 246, 0.1)', fill: true, tension: 0.3, borderWidth: 2, pointRadius: 4, datalabels: { align: 'top', anchor: 'end' } },
-        { label: 'Xuất', data: xuatDataNgay, borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.1)', fill: true, tension: 0.3, borderWidth: 2, pointRadius: 4, datalabels: { align: 'top', anchor: 'end' } }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { 
-        legend: { position: 'bottom', labels: { color: '#64748b', font: { weight: 'bold' } } }, 
-        datalabels: { display: true, color: '#334155', font: {size: 10, weight: 'bold'}, formatter: function(v) { return bc4Fmt(v); } } 
-      },
-      scales: {
-        x: { ticks: BC4_TICK, grid: { display: false } },
-        y: { beginAtZero: true, ticks: BC4_TICK, grid: BC4_GRID, grace: '15%' }
-      }
-    }
-  });
-}
 
 
 // =========================================================
@@ -2183,9 +2511,14 @@ function renderBC5GlobalCharts(data) {
     options: Object.assign({}, chartOptions, { indexAxis: 'y' })
   });
 
-  // Chart 4: So Sánh Pallet (Grouped Bar Chart)
+  // Chart 4: So Sánh Pallet & Tỷ Lệ % (Grouped Bar + Line Combo Chart with Dual Y-Axis)
   var palletGuiKho = khos.map(k => khoData[k] ? khoData[k].palletGui : 0);
   var palletTonKho = khos.map(k => khoData[k] ? khoData[k].palletTon : 0);
+  var palletRatioKho = khos.map(k => {
+    var gui = khoData[k] ? khoData[k].palletGui : 0;
+    var ton = khoData[k] ? khoData[k].palletTon : 0;
+    return ton > 0 ? Math.round((gui / ton) * 1000) / 10 : 0;
+  });
 
   bc5GetOrCreate('chart-bc5-pallet', {
     type: 'bar',
@@ -2193,16 +2526,106 @@ function renderBC5GlobalCharts(data) {
     data: {
       labels: khos,
       datasets: [
-        { label: 'Tồn Hàng Gửi (Quy Pallet)', data: palletGuiKho, backgroundColor: '#f59e0b' },
-        { label: 'Tồn Thực Tế (Quy Pallet)', data: palletTonKho, backgroundColor: '#3b82f6' }
+        {
+          label: 'Tồn Hàng Gửi (Quy Pallet)',
+          data: palletGuiKho,
+          backgroundColor: '#f59e0b',
+          yAxisID: 'y',
+          borderRadius: 4,
+          datalabels: {
+            color: '#ffffff',
+            anchor: 'center',
+            align: 'center',
+            font: { weight: 'bold', size: 10 },
+            formatter: function(val) { return val > 0 ? Math.round(val).toLocaleString('vi-VN') : ''; }
+          }
+        },
+        {
+          label: 'Tồn Thực Tế (Quy Pallet)',
+          data: palletTonKho,
+          backgroundColor: '#3b82f6',
+          yAxisID: 'y',
+          borderRadius: 4,
+          datalabels: {
+            color: '#ffffff',
+            anchor: 'center',
+            align: 'center',
+            font: { weight: 'bold', size: 10 },
+            formatter: function(val) { return val > 0 ? Math.round(val).toLocaleString('vi-VN') : ''; }
+          }
+        },
+        {
+          label: 'Tỷ Lệ Tồn Gửi / Tồn Thực Tế (%)',
+          data: palletRatioKho,
+          type: 'line',
+          yAxisID: 'y1',
+          borderColor: '#ef4444',
+          backgroundColor: '#ef4444',
+          borderWidth: 3,
+          pointRadius: 5,
+          pointBackgroundColor: '#ef4444',
+          pointBorderColor: '#ffffff',
+          pointBorderWidth: 2,
+          pointHoverRadius: 7,
+          fill: false,
+          tension: 0.2,
+          datalabels: {
+            color: '#dc2626',
+            anchor: 'end',
+            align: 'top',
+            offset: 4,
+            font: { weight: 'bold', size: 11 },
+            formatter: function(val) { return val > 0 ? val + '%' : ''; }
+          }
+        }
       ]
     },
-    options: Object.assign({}, chartOptions, {
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { family: "'Inter', sans-serif" } } },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              if (ctx.dataset.type === 'line') {
+                return ctx.dataset.label + ': ' + ctx.raw + '%';
+              }
+              return ctx.dataset.label + ': ' + Math.round(ctx.raw).toLocaleString('vi-VN') + ' Pallet';
+            }
+          }
+        }
+      },
       scales: {
-        x: { stacked: false },
-        y: { stacked: false, beginAtZero: true, grace: '15%' }
+        x: { stacked: false, grid: { display: false } },
+        y: {
+          type: 'linear',
+          display: true,
+          position: 'left',
+          stacked: false,
+          beginAtZero: true,
+          grace: '15%',
+          title: { display: true, text: 'Số Pallet', color: '#475569', font: { size: 11, weight: '600' } },
+          ticks: { color: '#475569', font: { size: 10 } },
+          grid: { color: 'rgba(0,0,0,0.05)' }
+        },
+        y1: {
+          type: 'linear',
+          display: true,
+          position: 'right',
+          stacked: false,
+          beginAtZero: true,
+          grace: '20%',
+          title: { display: true, text: 'Tỷ Lệ (%)', color: '#dc2626', font: { size: 11, weight: '600' } },
+          ticks: {
+            color: '#dc2626',
+            font: { size: 10, weight: '600' },
+            callback: function(value) { return value + '%'; }
+          },
+          grid: { drawOnChartArea: false }
+        }
       }
-    })
+    }
   });
 }
 
@@ -2453,6 +2876,9 @@ function applyFiltersAndRenderBC6() {
     
     renderBC6Detail(filteredData);
   }
+
+  // Cập nhật bộ lọc NPP trong Báo cáo 6 theo các Mã Kho đang chọn (selectedKho)
+  initBC3NppFilter();
 }
 
 function renderBC6Detail(filteredData) {
@@ -2532,9 +2958,11 @@ function initBC3NppFilter() {
   const dataC1 = window.DASHBOARD_DATA && window.DASHBOARD_DATA['data C1chitiet'];
   if (!dataC1 || dataC1.length === 0) return;
 
-  // Thu thập danh sách NPP duy nhất (TÊN C1)
+  // Thu thập danh sách NPP duy nhất (TÊN C1) theo Kho đang chọn
   const nppSet = new Set();
   dataC1.forEach(row => {
+    const maKho = (row['MÃ KHO'] || '').trim();
+    if (selectedKho && selectedKho.size > 0 && !selectedKho.has(maKho)) return;
     const npp = (row['TÊN C1'] || '').trim();
     if (npp) nppSet.add(npp);
   });
@@ -2544,24 +2972,37 @@ function initBC3NppFilter() {
   const select = document.getElementById('bc3-npp-select');
   if (!select) return;
 
-  // Clear và populate
+  const currentVal = select.value;
   select.innerHTML = '<option value="">-- Tất cả NPP --</option>';
+  let foundCurrent = false;
   sorted.forEach(npp => {
     const opt = document.createElement('option');
     opt.value = npp;
     opt.textContent = npp;
+    if (npp === currentVal) {
+      opt.selected = true;
+      foundCurrent = true;
+    }
     select.appendChild(opt);
   });
 
-  // Event listeners
-  select.addEventListener('change', renderBC3NppTable);
-
-  const searchInput = document.getElementById('bc3-npp-search');
-  if (searchInput) {
-    searchInput.addEventListener('input', renderBC3NppTable);
+  if (!foundCurrent && currentVal !== '') {
+    select.value = '';
   }
 
-  // Render lần đầu (tất cả NPP)
+  // Event listeners
+  if (!select.dataset.bound) {
+    select.addEventListener('change', renderBC3NppTable);
+    select.dataset.bound = 'true';
+  }
+
+  const searchInput = document.getElementById('bc3-npp-search');
+  if (searchInput && !searchInput.dataset.bound) {
+    searchInput.addEventListener('input', renderBC3NppTable);
+    searchInput.dataset.bound = 'true';
+  }
+
+  // Render bảng chi tiết NPP
   renderBC3NppTable();
 }
 

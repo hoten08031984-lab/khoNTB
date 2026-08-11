@@ -573,6 +573,11 @@ body {
   font-family: var(--font-sans);
 }
 
+.excel-table.table-compact {
+  width: auto !important;
+  min-width: 0 !important;
+}
+
 .excel-table th {
   background: #f1f5fb;
   color: var(--text-muted);

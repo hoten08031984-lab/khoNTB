@@ -118,19 +118,19 @@
         </div>
       </section>
 
-      <!-- Biểu đồ BC1 (2 biểu đồ hình cột song song) -->
+      <!-- Biểu đồ BC1 (2 biểu đồ hình cột song song có Trục X = Mã Kho) -->
       <div class="charts-grid" style="margin-bottom: 20px; width: 100%; min-width: 0; align-items: start;">
-        <!-- Biểu đồ 1: Mã hàng và Số lượng -->
+        <!-- Biểu đồ 1: Mã Kho & Mã Hàng -->
         <div class="glass-panel chart-card" style="min-width: 0;">
-          <div class="chart-header">📊 Số Lượng Kế Hoạch Theo Mã Hàng</div>
+          <div class="chart-header">📊 Kế Hoạch Theo Mã Kho &amp; Mã Hàng</div>
           <div class="chart-canvas-wrapper">
             <canvas id="chart-bc1-mahang"></canvas>
           </div>
         </div>
 
-        <!-- Biểu đồ 2: Đơn vị tính và Số lượng -->
+        <!-- Biểu đồ 2: Mã Kho & ĐVT -->
         <div class="glass-panel chart-card" style="min-width: 0;">
-          <div class="chart-header">📦 Số Lượng Kế Hoạch Theo Đơn Vị Tính</div>
+          <div class="chart-header">📦 Kế Hoạch Theo Mã Kho &amp; Đơn Vị Tính</div>
           <div class="chart-canvas-wrapper">
             <canvas id="chart-bc1-dvt"></canvas>
           </div>
@@ -373,12 +373,13 @@
         </button>
       </div>
 
-      <!-- BỘ LỌC NGÀY CHO BÁO CÁO 4 -->
-      <div class="filter-toolbar glass-panel" style="margin-bottom: 20px; position: relative; z-index: 90; display: inline-block;">
-        <div class="filter-grid" style="display: flex; gap: 15px;">
-          <div class="filter-group" id="group-ngay-bc4">
-            <label class="filter-label">05 Ngày gần nhất ( có thể chọn nhiều ngày)</label>
-            <div class="dropdown-trigger" onclick="toggleDropdown('menu-ngay-bc4')">
+      <!-- BỘ LỌC DÀNH RIÊNG CHO BÁO CÁO 4 (Thu gọn vừa khít) -->
+      <div class="filter-toolbar glass-panel" style="margin-bottom: 20px; position: relative; z-index: 90; display: inline-block; width: auto; max-width: max-content; padding: 10px 16px;">
+        <div class="filter-grid" style="display: flex; gap: 15px; width: auto;">
+          <!-- Bộ lọc Ngày BC4 -->
+          <div class="filter-group" id="group-ngay-bc4" style="margin: 0; min-width: auto; width: auto;">
+            <label class="filter-label" style="font-size: 0.8rem; font-weight: 700; color: var(--primary);">📅 05 NGÀY GẦN NHẤT (CÓ THỂ CHỌN NHIỀU NGÀY)</label>
+            <div class="dropdown-trigger" onclick="toggleDropdown('menu-ngay-bc4')" style="min-width: 210px; width: auto; justify-content: space-between; gap: 10px;">
               <span id="label-ngay-bc4">Đã chọn: Tất cả ngày</span>
               <span class="dropdown-count-badge" id="count-ngay-bc4">0</span>
             </div>
@@ -393,19 +394,92 @@
         </div>
       </div>
       
-      <!-- Báo cáo Tổng Quát -->
-      <div class="charts-grid" style="margin-bottom: 24px;">
-        <!-- Chart Tổng Quát 1: Cột chồng Nhập/Xuất theo Kho -->
-        <div class="glass-panel chart-card chart-large">
-          <div class="chart-header">🏢 Tổng quan Nhập / Xuất của Kv Nam Trung Bộ (gồm 4 kho)</div>
-          <div class="chart-canvas-wrapper"><canvas id="chart-tq-kho"></canvas></div>
+      <!-- BẢNG TỔNG HỢP NHẬP / XUẤT THEO NPP (BC4) -->
+      <section class="glass-panel table-container-card" style="margin-bottom: 24px; position: relative; z-index: 85;">
+        <div class="table-header-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+          <div class="table-title" style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <span>📦 BẢNG TỔNG HỢP NHẬP / XUẤT THEO NPP</span>
+            <span class="header-badge" id="records-count-bc4" style="background: rgba(37,99,235,0.1); color: var(--primary);">0 Mã Hàng</span>
+            
+            <!-- Bộ lọc Chọn NPP nằm sát tựa đề (Nổi bật với tông màu đỏ) -->
+            <div style="display: flex; align-items: center; gap: 8px; margin-left: 12px; background: #fff5f5; padding: 4px 10px; border-radius: 8px; border: 1px solid #fca5a5;">
+              <label for="select-npp-bc4" style="font-size: 0.85rem; font-weight: 700; color: #dc2626; white-space: nowrap;">🎯 Chọn NPP:</label>
+              <select id="select-npp-bc4" onchange="handleSelectNppBC4(this.value)" style="padding: 5px 10px; border: 1.5px solid #ef4444; border-radius: 6px; font-size: 0.85rem; background: #ffffff; color: #991b1b; font-weight: 600; outline: none; cursor: pointer; max-width: 320px; box-shadow: 0 1px 3px rgba(239, 68, 68, 0.15); font-family: inherit;">
+                <option value="">-- Tất cả NPP --</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-actions" style="display: flex; align-items: center; gap: 12px;">
+            <input type="text" id="table-search-bc4" class="table-search-input" placeholder="🔍 Tìm mã hàng, tên hàng...">
+          </div>
         </div>
-        <!-- Chart Tổng Quát 2: Line chart 3 ngày gần nhất -->
-        <div class="glass-panel chart-card chart-large">
-          <div class="chart-header">📈 Xu hướng Nhập/ Xuất ( Chọn ngày hoặc nhiều ngày )</div>
-          <div class="chart-canvas-wrapper"><canvas id="chart-tq-ngay"></canvas></div>
+        <div class="table-wrapper">
+          <table class="excel-table table-compact" id="table-bc4" style="width: auto; min-width: 0;">
+            <thead>
+              <tr>
+                <th style="width: 50px;" class="text-center">STT</th>
+                <th style="width: 120px; cursor: pointer;" onclick="handleSortBC4('MÃ HÀNG')" title="Bấm để sắp xếp">
+                  MÃ HÀNG <span id="sort4-MÃ HÀNG" class="sort-icon">▲</span>
+                </th>
+                <th style="width: 350px; cursor: pointer;" onclick="handleSortBC4('TÊN HÀNG')" title="Bấm để sắp xếp">
+                  TÊN HÀNG <span id="sort4-TÊN HÀNG" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 130px; cursor: pointer;" class="text-right" onclick="handleSortBC4('SL NHẬP')" title="Bấm để sắp xếp">
+                  SL NHẬP <span id="sort4-SL NHẬP" class="sort-icon">↕</span>
+                </th>
+                <th style="width: 130px; cursor: pointer;" class="text-right" onclick="handleSortBC4('SL XUẤT')" title="Bấm để sắp xếp">
+                  SL XUẤT <span id="sort4-SL XUẤT" class="sort-icon">↕</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tbody-bc4"></tbody>
+            <tfoot id="tfoot-bc4"></tfoot>
+          </table>
         </div>
-      </div>
+      </section>
+      
+      <!-- BẢNG CHI TIẾT GIAO DỊCH THEO KHO 1-1 & SỐ XE (LOẠI GIAO DỊCH 21035 & 29011) -->
+      <section class="glass-panel table-container-card" style="margin-bottom: 24px; position: relative; z-index: 80;">
+        <div class="table-header-bar" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+          <div class="table-title" style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <span>📋 BẢNG CHI TIẾT GIAO DỊCH THEO KHO 1-1 &amp; SỐ XE (LOẠI GIAO DỊCH 21035 &amp; 29011)</span>
+            <span class="header-badge" id="records-count-bc4-sub" style="background: rgba(37,99,235,0.1); color: var(--primary);">0 Dòng</span>
+          </div>
+
+          <div style="position: relative;">
+            <input type="text" id="search-bc4-sub" placeholder="🔍 Tìm kho, số xe, mã hàng..." onkeyup="handleSearchBC4Sub(this.value)" class="search-box" style="padding: 6px 12px 6px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.85rem; width: 260px; outline: none; background: #ffffff; color: var(--text-dark);">
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="excel-table table-compact" id="table-bc4-sub" style="width: 100%;">
+            <thead>
+              <tr>
+                <th class="text-center" style="width: 50px;">STT</th>
+                <th onclick="handleSortBC4Sub('KHO 1-1')" style="cursor: pointer; width: 220px;" title="Bấm để sắp xếp">
+                  KHO 1-1 <span id="sort4sub-KHO 1-1" class="sort-icon" style="color: var(--primary);">▲</span>
+                </th>
+                <th onclick="handleSortBC4Sub('SỐ XE')" style="cursor: pointer; width: 140px;" title="Bấm để sắp xếp">
+                  SỐ XE <span id="sort4sub-SỐ XE" class="sort-icon">↕</span>
+                </th>
+                <th onclick="handleSortBC4Sub('MÃ HÀNG')" style="cursor: pointer; width: 130px;" title="Bấm để sắp xếp">
+                  MÃ HÀNG <span id="sort4sub-MÃ HÀNG" class="sort-icon">↕</span>
+                </th>
+                <th onclick="handleSortBC4Sub('SL NHẬP')" class="text-right" style="cursor: pointer; width: 130px;" title="Bấm để sắp xếp">
+                  SL NHẬP <span id="sort4sub-SL NHẬP" class="sort-icon">↕</span>
+                </th>
+                <th onclick="handleSortBC4Sub('SL XUẤT')" class="text-right" style="cursor: pointer; width: 130px;" title="Bấm để sắp xếp">
+                  SL XUẤT <span id="sort4sub-SL XUẤT" class="sort-icon">↕</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tbody-bc4-sub"></tbody>
+            <tfoot id="tfoot-bc4-sub"></tfoot>
+          </table>
+        </div>
+      </section>
+      
 
       <!-- Charts Grid -->
       <div class="charts-grid">
@@ -569,26 +643,30 @@
       <!-- BỘ LỌC NPP - Lọc theo Tên NPP (TÊN C1) -->
       <div style="margin-top: 16px; width: 100%; min-width: 0;">
         <section class="glass-panel table-container-card" style="min-width: 0; padding: 12px 14px; width: 100%; box-sizing: border-box;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
-            <h3 style="margin:0; color:var(--text-main); font-size:13px; font-weight:800;">
-              🏢 Lọc theo Tên NPP (C1) — Mã Hàng &amp; Số Lượng Còn Lại
-            </h3>
-            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-              <label style="font-size:12px; color:var(--text-sub); font-weight:600;">Chọn NPP:</label>
-              <select id="bc3-npp-select" style="padding:4px 10px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-light); color:var(--text-color); font-size:12px; font-weight:600; cursor:pointer; min-width:220px;">
-                <option value="">-- Tất cả NPP --</option>
-              </select>
-              <div class="search-box">
-                <input type="text" id="bc3-npp-search" class="table-search-input" style="width:160px; padding:4px 10px; font-size:0.75rem;" placeholder="🔍 Lọc mã hàng...">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:12px;">
+            <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+              <h3 style="margin:0; color:var(--text-main); font-size:13px; font-weight:800;">
+                🏢 Lọc theo Tên NPP (C1) — Mã Hàng &amp; Số Lượng Còn Lại
+              </h3>
+              <!-- Bộ lọc Chọn NPP nằm sát tựa đề (Nổi bật với tông màu đỏ) -->
+              <div style="display: flex; align-items: center; gap: 8px; margin-left: 4px; background: #fff5f5; padding: 4px 10px; border-radius: 8px; border: 1px solid #fca5a5;">
+                <label for="bc3-npp-select" style="font-size: 0.85rem; font-weight: 700; color: #dc2626; white-space: nowrap;">🎯 Chọn NPP:</label>
+                <select id="bc3-npp-select" style="padding: 5px 10px; border: 1.5px solid #ef4444; border-radius: 6px; font-size: 0.85rem; background: #ffffff; color: #991b1b; font-weight: 600; outline: none; cursor: pointer; max-width: 320px; box-shadow: 0 1px 3px rgba(239, 68, 68, 0.15); font-family: inherit;">
+                  <option value="">-- Tất cả NPP --</option>
+                </select>
               </div>
+            </div>
+
+            <div class="search-box">
+              <input type="text" id="bc3-npp-search" class="table-search-input" style="width:180px; padding:6px 12px; font-size:0.85rem;" placeholder="🔍 Lọc mã hàng...">
             </div>
           </div>
           <div class="table-wrapper" style="overflow-x:auto; width:100%;">
-            <table class="excel-table" id="table-bc3-npp" style="width:100%;">
+            <table class="excel-table table-compact" id="table-bc3-npp" style="width: auto; min-width: 0;">
               <thead id="thead-bc3-npp">
                 <tr>
-                  <th style="cursor:pointer;" onclick="handleSortBC3NPP('MÃ HÀNG')">MÃ HÀNG <span id="sort-bc3npp-mahang" class="sort-icon">↕</span></th>
-                  <th style="cursor:pointer; text-align:right;" onclick="handleSortBC3NPP('SỐ LƯỢNG CÒN LẠI')">SỐ LƯỢNG CÒN LẠI <span id="sort-bc3npp-soluong" class="sort-icon">↕</span></th>
+                  <th style="width: 220px; cursor:pointer;" onclick="handleSortBC3NPP('MÃ HÀNG')">MÃ HÀNG <span id="sort-bc3npp-mahang" class="sort-icon">↕</span></th>
+                  <th style="width: 170px; cursor:pointer; text-align:right;" onclick="handleSortBC3NPP('SỐ LƯỢNG CÒN LẠI')">SỐ LƯỢNG CÒN LẠI <span id="sort-bc3npp-soluong" class="sort-icon">↕</span></th>
                 </tr>
               </thead>
               <tbody id="tbody-bc3-npp">

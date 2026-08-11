@@ -18,3 +18,9 @@
 [Mon 08/10/2026 12:27:51.41] [LOI] extract_data.py that bai 
 [11/08/2026  8:48:08,56] Da kiem tra thu vien Python. 
 [11/08/2026  8:49:46,93] extract_data.py hoan tat thanh cong. 
+[11/08/2026 11:25:15,09] Da kiem tra thu vien Python. 
+[11/08/2026 11:25:58,74] extract_data.py hoan tat thanh cong. 
+To https://github.com/hoten08031984-lab/khoNTB.git
+   894bdc5..1ed3779  main -> main
+[11/08/2026 11:25:59,17] Git push thanh cong len GitHub. 
+[11/08/2026 11:26:18,76] === KET THUC === 
