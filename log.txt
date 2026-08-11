@@ -16,3 +16,5 @@
 [Mon 08/10/2026  6:21:02.18] extract_data.py hoan tat thanh cong. 
 [Mon 08/10/2026 12:25:44.46] Da kiem tra thu vien Python. 
 [Mon 08/10/2026 12:27:51.41] [LOI] extract_data.py that bai 
+[11/08/2026  8:48:08,56] Da kiem tra thu vien Python. 
+[11/08/2026  8:49:46,93] extract_data.py hoan tat thanh cong. 
