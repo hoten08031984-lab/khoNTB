@@ -13,18 +13,23 @@ cd /d "%~dp0"
 set "VENV_DIR=%~dp0venv"
 set "REQ_FILE=%~dp0requirements.txt"
 
+:: Don dep tien trinh Excel ngam cu bi treo (tranh ket file tren VPS)
+taskkill /F /IM EXCEL.EXE >nul 2>&1
+
 :: Ghi log thoi gian bat dau
 echo [%date% %time%] === BAT DAU CHAY === > log.txt
 
 :: ------------------------------------------------------------
-:: 0. DONG BO PULL CODE MOI NUOC KHI XU LY
+:: 0. DONG BO PULL CODE MOI TRUOC KHI XU LY
 :: ------------------------------------------------------------
 git --version >nul 2>&1
 if not errorlevel 1 (
     set GIT_TERMINAL_PROMPT=0
+    set GCM_INTERACTIVE=never
     set GIT_SSH_COMMAND=ssh -o BatchMode=yes
-    git reset --hard HEAD >nul 2>&1
-    git pull origin main --rebase --no-edit >nul 2>&1
+    git remote set-url origin https://github.com/hoten08031984-lab/khoNTB.git >nul 2>&1
+    git fetch origin main >nul 2>&1
+    git checkout -B main origin/main >nul 2>&1
 )
 
 echo.
@@ -76,29 +81,27 @@ if errorlevel 1 (
     echo [%date% %time%] [CANH BAO] Git chua duoc cai dat tren may nay! >> log.txt
     echo [CANH BAO] Chua cai Git. Dashboard local van hoat dong binh thuong.
 ) else (
-    :: Tat hoan toan che do hoi credentials (tranh treo tren VPS)
     set GIT_TERMINAL_PROMPT=0
+    set GCM_INTERACTIVE=never
     set GIT_SSH_COMMAND=ssh -o BatchMode=yes
+    git remote set-url origin https://github.com/hoten08031984-lab/khoNTB.git >nul 2>&1
 
-    :: Add tat ca file data.js va log moi tao
-    git add index.html app.js styles.css data.js log.txt run.bat >nul 2>&1
+    :: Add tat ca file data.js va source code moi tao
+    git add index.html app.js styles.css data.js run.bat >nul 2>&1
     if exist img\ git add img\ >nul 2>&1
 
-    :: Config bot identity (bo qua neu da co)
+    :: Config bot identity
     git config user.name "AutoBot" >nul 2>&1
     git config user.email "bot@example.com" >nul 2>&1
 
-    :: Commit (bo qua neu khong co gi thay doi)
+    :: Commit
     git commit -m "Auto update: %date% %time%" >nul 2>&1
 
-    :: Pull rebase truoc khi push de tranh xung dot khi chay da may
-    git pull origin main --rebase >nul 2>&1
-
-    :: Push len GitHub (se fail im lang neu chua co credentials - KHONG TREO)
-    git push origin main >nul 2>&1
+    :: Push len GitHub
+    git push origin main >> log.txt 2>&1
     if errorlevel 1 (
-        echo [%date% %time%] [CANH BAO] Git push that bai. Kiem tra credentials tren VPS. >> log.txt
-        echo [CANH BAO] Git push that bai.
+        echo [%date% %time%] [CANH BAO] Git push that bai. Xem log.txt de biet chi tiet. >> log.txt
+        echo [CANH BAO] Git push that bai. Xem log.txt de biet chi tiet.
     ) else (
         echo [%date% %time%] Git push thanh cong len GitHub. >> log.txt
         echo HOAN TAT! Dashboard da duoc cap nhat tren GitHub.
@@ -107,6 +110,8 @@ if errorlevel 1 (
 
 echo.
 echo [%date% %time%] === KET THUC === >> log.txt
+echo =======================================================
+echo XONG! Tat cua so nay se khong anh huong den ket qua.
 echo =======================================================
 echo XONG! Tat cua so nay se khong anh huong den ket qua.
 echo =======================================================
