@@ -99,11 +99,15 @@ Khi script `extract_data.py` chạy tự động qua **Task Scheduler trên VPS*
            time.sleep(1)
    ```
 
-4. **Task Scheduler phải cấu hình "Run only when user is logged on"**: Nếu cài đặt "Run whether user is logged on or not" hoặc tích "Hidden", Excel sẽ chạy trong môi trường vô hình và bị lỗi khi gọi win32com.
+4. **Tự Động Tạo Thư Mục System Desktop (`ensure_system_desktop_folders`)**: Trong `extract_data.py`, trước khi gọi `win32com`, bắt buộc phải tạo 2 thư mục Desktop hệ thống (`C:\Windows\System32\config\systemprofile\Desktop` và `SysWOW64...`) để tránh lỗi Excel COM `HRESULT -2146827284` (`Open method of Workbooks class failed`) khi VPS chạy ngầm.
 
-5. **Kiểm tra trạng thái Task Scheduler**: Nếu cột `Status` hiện `Running` mà `Last Run Time` không thay đổi → đây là dấu hiệu script đang bị treo. Bấm **End** để giết tiến trình bị treo trước khi chạy lại.
+5. **Khử Trùng Token Trong Dữ Liệu Raw (`GH013 Push Protection`)**: Hàm `clean_value()` và `export_to_js()` trong `extract_data.py` phải tự động dùng Regex che mờ mọi chuỗi chứa `ghp_` thành `***REDACTED***` trước khi xuất `data.js`. Điều này đảm bảo `git push` trên VPS không bao giờ bị GitHub Push Protection chặn.
 
-6. **`extract_data.py` phải được track bởi Git** (không được để trong `.gitignore`) để VPS có thể `git pull` nhận code mới tự động qua `run.bat`.
+6. **Task Scheduler phải cấu hình "Run only when user is logged on"**: Nếu cài đặt "Run whether user is logged on or not" hoặc tích "Hidden", Excel sẽ chạy trong môi trường vô hình và bị lỗi khi gọi win32com.
+
+7. **Kiểm tra trạng thái Task Scheduler**: Nếu cột `Status` hiện `Running` mà `Last Run Time` không thay đổi → đây là dấu hiệu script đang bị treo. Bấm **End** để giết tiến trình bị treo trước khi chạy lại.
+
+8. **`extract_data.py` phải được track bởi Git** (không được để trong `.gitignore`) để VPS có thể `git pull` nhận code mới tự động qua `run.bat`.
 
 ## 14. Tiêu Diệt Tiến Trình Zombie (Đặc Biệt Với Excel)
 Khi dùng `win32com.client` để điều khiển Excel ngầm, Excel thường có xu hướng không tự đóng hoàn toàn dù đã gọi lệnh Quit. Điều này làm Task Scheduler lầm tưởng script vẫn đang chạy.
@@ -120,13 +124,10 @@ os.system("taskkill /F /IM EXCEL.EXE >nul 2>&1")
 ```
 
 ## 15. Xác Thực Git & Đồng Bộ Đa Máy (Git Sync)
-- **Xác Thực Git Không Tương Tác:** Sử dụng Personal Access Token (PAT) nhúng thẳng vào URL của kho lưu trữ (`git remote set-url origin https://<TOKEN>@github.com/<user>/<repo>.git`). Thêm dòng `set GIT_TERMINAL_PROMPT=0` vào đầu file `.bat` để khóa Terminal Prompt.
-- **Git Pull Rebase Trước Khi Push (Rất Quan Trọng):** Để tránh xung đột (lỗi Fetch First) khi chạy kịch bản tự động trên nhiều máy tính khác nhau, file `.bat` phải LUÔN có lệnh kéo code mới về trước khi đẩy code lên:
-  ```cmd
-  git pull origin main --rebase
-  git push origin main
-  ```
-- **Logging:** Luôn ghi mọi diễn biến ra file văn bản (Ví dụ: `log.txt`) với Timestamp để theo dõi.
+- **Xác Thực Git Không Tương Tác:** Sử dụng URL HTTPS sạch (`git remote set-url origin https://github.com/hoten08031984-lab/khoNTB.git`). Thêm `set GIT_TERMINAL_PROMPT=0` và `set GCM_INTERACTIVE=never` vào đầu file `.bat` để khóa Terminal/GUI Prompt trên VPS.
+- **Tự Động Reset Hard Trước Khi Xử Lý (Bước 0 trong run.bat):** `run.bat` phải luôn gọi `git fetch origin main` & `git reset --hard origin/main` ở đầu file để VPS tự động xóa sạch mọi xung đột local và đồng bộ 100% code mới nhất từ Máy chính.
+- **Git Pull Rebase Trước Khi Push (Bước 3 trong run.bat):** Để tránh xung đột (lỗi Non-Fast-Forward Rejection), `run.bat` phải gọi `git pull origin main --rebase` ngay trước lệnh `git push origin main`.
+- **Logging:** Luôn ghi mọi diễn biến ra file văn bản (`log.txt`) với Timestamp để theo dõi.
 
 ## 16. Lỗi Căn Bản Task Scheduler (Thư mục Start in)
 - Khi tạo Action chạy file `.bat` trong Task Scheduler, **BẮT BUỘC** phải điền đường dẫn thư mục chứa dự án vào ô **`Start in (optional)`** (Ví dụ: `C:\Users\Administrator\Desktop\AI Báo cáo`). Nếu để trống, script sẽ chạy ở `C:\Windows\System32` và văng lỗi File Not Found.
