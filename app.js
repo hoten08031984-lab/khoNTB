@@ -1845,9 +1845,49 @@ function handleSortBC4(column) {
 
 // ── BẢNG CHI TIẾT GIAO DỊCH (LOẠI GIAO DỊCH 21035 & 29011) ─────────────────
 var searchQueryBC4Sub = '';
+var selectedKho11BC4SubValue = '';
+var allKho11BC4Sub = [];
 var currentSortColumnBC4Sub = 'KHO 1-1';
 var currentSortOrderBC4Sub = 'asc';
 var currentBC4SubFilteredRows = [];
+
+function extractAllKho11BC4Sub(rows) {
+  const kho11Set = new Set();
+  (rows || []).forEach(row => {
+    const kho11 = getSafeValue(row, ['KHO 1-1', 'KHO1-1']) || getSafeValue(row, ['TÊN KHO']) || getSafeValue(row, ['MÃ KHO']);
+    if (kho11 && typeof kho11 === 'string' && kho11.trim() !== '') {
+      kho11Set.add(kho11.trim());
+    }
+  });
+  allKho11BC4Sub = Array.from(kho11Set).sort((a, b) => a.localeCompare(b, 'vi'));
+
+  const selectEl = document.getElementById('select-kho11-bc4sub');
+  if (selectEl) {
+    const prevVal = selectedKho11BC4SubValue;
+    selectEl.innerHTML = '<option value="">-- Tất cả Kho 1-1 --</option>';
+    let foundPrev = false;
+    allKho11BC4Sub.forEach(kho => {
+      const opt = document.createElement('option');
+      opt.value = kho;
+      opt.textContent = kho;
+      if (kho === prevVal) {
+        opt.selected = true;
+        foundPrev = true;
+      }
+      selectEl.appendChild(opt);
+    });
+
+    if (!foundPrev && prevVal !== '') {
+      selectedKho11BC4SubValue = '';
+      selectEl.value = '';
+    }
+  }
+}
+
+function handleSelectKho11BC4Sub(val) {
+  selectedKho11BC4SubValue = val ? String(val).trim() : '';
+  renderBC4SubTable();
+}
 
 function handleSearchBC4Sub(val) {
   searchQueryBC4Sub = val ? String(val).toLowerCase().trim() : '';
@@ -1882,12 +1922,23 @@ function renderBC4SubTable(rows) {
   if (rows) currentBC4SubFilteredRows = rows;
   let filteredRows = currentBC4SubFilteredRows || [];
 
-  // Bộ lọc mặc định luôn lấy 2 giá trị LOẠI GIAO DỊCH (21035 và 29011)
+  // 1. Bộ lọc mặc định luôn lấy 2 giá trị LOẠI GIAO DỊCH (21035 và 29011)
   filteredRows = filteredRows.filter(row => {
     const loaiGD = getSafeValue(row, ['LOẠI GIAO DỊCH', 'Loại giao dịch']) || '';
     const loaiGDStr = String(loaiGD);
     return loaiGDStr.includes('21035') || loaiGDStr.includes('29011');
   });
+
+  // Trích xuất danh sách Kho 1-1 động vào ô chọn thả xuống
+  extractAllKho11BC4Sub(filteredRows);
+
+  // 2. Lọc theo Kho 1-1 được chọn
+  if (selectedKho11BC4SubValue) {
+    filteredRows = filteredRows.filter(row => {
+      const kho11 = getSafeValue(row, ['KHO 1-1', 'KHO1-1']) || getSafeValue(row, ['TÊN KHO']) || getSafeValue(row, ['MÃ KHO']) || 'Khác';
+      return String(kho11).trim() === selectedKho11BC4SubValue;
+    });
+  }
 
   // Gom nhóm theo [KHO 1-1] + [SỐ XE] + [MÃ HÀNG]
   const mapGroup = {};
