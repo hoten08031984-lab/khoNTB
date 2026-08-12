@@ -24,3 +24,5 @@ To https://github.com/hoten08031984-lab/khoNTB.git
    894bdc5..1ed3779  main -> main
 [11/08/2026 11:25:59,17] Git push thanh cong len GitHub. 
 [11/08/2026 11:26:18,76] === KET THUC === 
+[Wed 08/12/2026 12:25:34.64] Da kiem tra thu vien Python. 
+[Wed 08/12/2026 12:26:24.45] extract_data.py hoan tat thanh cong. 
