@@ -638,8 +638,8 @@ function bc1DrawChartMaHang(khos, dataMap, maHangs) {
       plugins: {
         legend: {
           display: true,
-          position: 'top',
-          labels: { font: { size: 11, weight: 'bold' }, usePointStyle: true, boxWidth: 8 }
+          position: 'bottom',
+          labels: { font: { size: 11, weight: 'bold' }, usePointStyle: true, boxWidth: 8, padding: 16 }
         },
         tooltip: {
           callbacks: {
@@ -704,8 +704,8 @@ function bc1DrawChartDVT(khos, dataMap, dvts) {
       plugins: {
         legend: {
           display: true,
-          position: 'top',
-          labels: { font: { size: 11, weight: 'bold' }, usePointStyle: true, boxWidth: 8 }
+          position: 'bottom',
+          labels: { font: { size: 11, weight: 'bold' }, usePointStyle: true, boxWidth: 8, padding: 16 }
         },
         tooltip: {
           callbacks: {
@@ -2521,8 +2521,8 @@ function renderBC5GlobalCharts(data) {
     data: {
       labels: khos,
       datasets: [
-        { label: 'Tổng Gửi', data: guiKho, backgroundColor: '#3b82f6', stack: 'Stack 0' },
-        { label: 'Bán Được', data: banKho, backgroundColor: '#f59e0b', stack: 'Stack 0' },
+        { label: 'Tổng Gửi', data: guiKho, backgroundColor: '#f59e0b', stack: 'Stack 0' },
+        { label: 'Bán Được', data: banKho, backgroundColor: '#3b82f6', stack: 'Stack 0' },
         { label: 'Tồn Thực Tế (Tổng)', data: tonKho, type: 'line', borderColor: '#10b981', backgroundColor: '#10b981', fill: false, tension: 0.1, datalabels: { align: 'top', anchor: 'end', color: '#10b981' } }
       ]
     },
@@ -2594,7 +2594,7 @@ function renderBC5GlobalCharts(data) {
         {
           label: 'Tồn Thực Tế (Quy Pallet)',
           data: palletTonKho,
-          backgroundColor: '#3b82f6',
+          backgroundColor: '#10b981',
           yAxisID: 'y',
           borderRadius: 4,
           datalabels: {
