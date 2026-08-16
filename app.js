@@ -3002,8 +3002,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Kết quả: Mã Hàng | Số Lượng Còn Lại
 // ══════════════════════════════════════════════════════════
 
-let bc3NppSortCol = 'SỐ LƯỢNG CÒN LẠI';
-let bc3NppSortOrder = 'desc';
+let bc3NppSortCol = 'MÃ HÀNG';
+let bc3NppSortOrder = 'asc';
 
 function initBC3NppFilter() {
   const dataC1 = window.DASHBOARD_DATA && window.DASHBOARD_DATA['data C1chitiet'];
@@ -3080,57 +3080,118 @@ function renderBC3NppTable() {
     return true;
   });
 
-  // Tổng hợp theo MÃ HÀNG
-  const grouped = {};
-  filtered.forEach(row => {
-    const maHang = (row['MÃ HÀNG'] || '').trim();
-    if (!maHang) return;
-    const soLuong = parseFloat(row['SỐ LƯỢNG CÒN LẠI']) || 0;
-    if (!grouped[maHang]) grouped[maHang] = { maHang, soLuong: 0 };
-    grouped[maHang].soLuong += soLuong;
-  });
-
-  let rows = Object.values(grouped);
+  // Chuyển thành danh sách chi tiết (từng dòng, không gom nhóm)
+  let rows = filtered.map(row => ({
+    maHang: (row['MÃ HÀNG'] || '').trim(),
+    soHoaDon: (row['SỐ HÓA ĐƠN'] || '').trim(),
+    ngayHD: (row['NGÀY RA HÓA ĐƠN'] || '').trim(),
+    soLuong: parseFloat(row['SỐ LƯỢNG CÒN LẠI']) || 0
+  })).filter(r => r.maHang);
 
   // Search filter theo mã hàng
   if (searchQ) {
     rows = rows.filter(r => r.maHang.toLowerCase().includes(searchQ));
   }
 
-  // Sort
-  rows.sort((a, b) => {
+  // Sort phụ trong mỗi nhóm MÃ HÀNG
+  const parseDateVal = (s) => {
+    const p = (s || '').split('/');
+    if (p.length === 3) return new Date(parseInt(p[2]), parseInt(p[1]) - 1, parseInt(p[0]));
+    return new Date(0);
+  };
+
+  const subSort = (a, b) => {
+    let cmp = 0;
     if (bc3NppSortCol === 'SỐ LƯỢNG CÒN LẠI') {
-      return bc3NppSortOrder === 'asc' ? a.soLuong - b.soLuong : b.soLuong - a.soLuong;
+      cmp = a.soLuong - b.soLuong;
+    } else if (bc3NppSortCol === 'SỐ HÓA ĐƠN') {
+      cmp = a.soHoaDon.localeCompare(b.soHoaDon, 'vi');
+    } else if (bc3NppSortCol === 'NGÀY RA HÓA ĐƠN') {
+      cmp = parseDateVal(a.ngayHD) - parseDateVal(b.ngayHD);
     } else {
-      const va = a.maHang.toLowerCase();
-      const vb = b.maHang.toLowerCase();
-      const cmp = va < vb ? -1 : va > vb ? 1 : 0;
-      return bc3NppSortOrder === 'asc' ? cmp : -cmp;
+      // MÃ HÀNG — đã gom sẵn, sort phụ theo SL giảm dần
+      cmp = b.soLuong - a.soLuong;
     }
+    return bc3NppSortOrder === 'asc' ? cmp : -cmp;
+  };
+
+  // Luôn gom nhóm theo MÃ HÀNG trước
+  const groups = {};
+  rows.forEach(r => {
+    if (!groups[r.maHang]) groups[r.maHang] = [];
+    groups[r.maHang].push(r);
   });
+
+  // Sắp xếp thứ tự nhóm theo MÃ HÀNG
+  const groupKeys = Object.keys(groups).sort((a, b) => {
+    const dir = bc3NppSortOrder === 'asc' ? 1 : -1;
+    return a.localeCompare(b, 'vi') * dir;
+  });
+
+  // Sort dòng con trong mỗi nhóm
+  groupKeys.forEach(key => groups[key].sort(subSort));
 
   // Render tbody
   if (rows.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="2" class="text-center" style="color:#64748b; padding:16px;">Không có dữ liệu phù hợp</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="4" class="text-center" style="color:#64748b; padding:16px;">Không có dữ liệu phù hợp</td></tr>`;
     if (tfoot) tfoot.innerHTML = '';
     return;
   }
 
   let html = '';
-  rows.forEach((r, idx) => {
-    const bgClass = idx % 2 === 0 ? '' : 'style="background: rgba(0,0,0,0.03);"';
-    html += `<tr ${bgClass}>
-      <td style="font-weight:600;">${r.maHang}</td>
-      <td style="text-align:right; font-weight:700;">${r.soLuong.toLocaleString('vi-VN')}</td>
-    </tr>`;
+  let rowIdx = 0;
+  groupKeys.forEach(maHang => {
+    const groupRows = groups[maHang];
+    let groupTotal = 0;
+
+    groupRows.forEach(r => {
+      // Tính tuổi hóa đơn (số ngày từ NGÀY RA HĐ đến hôm nay)
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const hdDate = parseDateVal(r.ngayHD);
+      const ageDays = Math.floor((today - hdDate) / (1000 * 60 * 60 * 24));
+
+      // Tô màu theo tuổi hóa đơn
+      let rowBg = ''; // trắng (< 7 ngày)
+      let rowColor = '';
+      if (ageDays >= 30) {
+        rowBg = 'background: rgba(220, 38, 38, 0.5);'; // đỏ
+        rowColor = 'color: #7f1d1d;';
+      } else if (ageDays >= 14) {
+        rowBg = 'background: rgba(245, 158, 11, 0.5);'; // cam
+        rowColor = 'color: #78350f;';
+      } else if (ageDays >= 7) {
+        rowBg = 'background: rgba(250, 204, 21, 0.2);'; // vàng
+        rowColor = 'color: #713f12;';
+      }
+
+      html += `<tr style="${rowBg}">
+        <td style="font-weight:600; ${rowColor}">${r.maHang}</td>
+        <td style="font-size:12px; color:#475569;">${r.soHoaDon}</td>
+        <td style="text-align:center; ${rowColor}">${r.ngayHD}</td>
+        <td style="text-align:right; font-weight:700; ${rowColor}">${r.soLuong.toLocaleString('vi-VN')}</td>
+      </tr>`;
+      groupTotal += r.soLuong;
+      rowIdx++;
+    });
+
+    // Dòng tổng phụ cho nhóm (chỉ hiện khi nhóm có > 1 dòng)
+    if (groupRows.length > 1) {
+      html += `<tr style="background: rgba(59,130,246,0.06); border-top:1px solid rgba(59,130,246,0.2);">
+        <td style="font-weight:700; color:#2563eb; font-style:italic; padding-left:12px;">Σ ${maHang}</td>
+        <td colspan="2"></td>
+        <td style="text-align:right; font-weight:800; color:#2563eb;">${groupTotal.toLocaleString('vi-VN')}</td>
+      </tr>`;
+    }
   });
   tbody.innerHTML = html;
 
-  // Footer tổng
+  // Footer tổng cộng
   const grandTotal = rows.reduce((s, r) => s + r.soLuong, 0);
   if (tfoot) {
     tfoot.innerHTML = `<tr style="font-weight:800; background:rgba(59,130,246,0.08); border-top:2px solid rgba(59,130,246,0.3);">
-      <td>TỔNG (${rows.length} mã)</td>
+      <td>TỔNG (${rows.length} dòng)</td>
+      <td colspan="2"></td>
       <td style="text-align:right;">${grandTotal.toLocaleString('vi-VN')}</td>
     </tr>`;
   }
@@ -3150,10 +3211,16 @@ function handleSortBC3NPP(col) {
 }
 
 function updateSortIconsBC3NPP() {
-  const mahangSpan = document.getElementById('sort-bc3npp-mahang');
-  const soluongSpan = document.getElementById('sort-bc3npp-soluong');
-  if (mahangSpan) mahangSpan.textContent = bc3NppSortCol === 'MÃ HÀNG' ? (bc3NppSortOrder === 'asc' ? '▲' : '▼') : '↕';
-  if (soluongSpan) soluongSpan.textContent = bc3NppSortCol === 'SỐ LƯỢNG CÒN LẠI' ? (bc3NppSortOrder === 'asc' ? '▲' : '▼') : '↕';
+  const cols = {
+    'MÃ HÀNG': 'sort-bc3npp-mahang',
+    'SỐ HÓA ĐƠN': 'sort-bc3npp-sohoadon',
+    'NGÀY RA HÓA ĐƠN': 'sort-bc3npp-ngayhd',
+    'SỐ LƯỢNG CÒN LẠI': 'sort-bc3npp-soluong'
+  };
+  Object.entries(cols).forEach(([colName, spanId]) => {
+    const span = document.getElementById(spanId);
+    if (span) span.textContent = bc3NppSortCol === colName ? (bc3NppSortOrder === 'asc' ? '▲' : '▼') : '↕';
+  });
 }
 
 // Khởi tạo bộ lọc NPP khi trang load xong
