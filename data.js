@@ -1,132 +1,237 @@
 // Auto-generated data file from báo cáo.xlsx
-window.LAST_UPDATED_TIME = '16/08/2026 16:21:01';
+window.LAST_UPDATED_TIME = '16/08/2026 20:03:08';
 window.DASHBOARD_DATA = {
   "baocao1": [
     {
       "Unnamed: 0": "today()",
       "Số chuyến Đã đến": "Số chuyến đang đi đường",
-      "1": 8,
+      "3": 6,
       "Unnamed: 3": null,
       "Unnamed: 4": null,
       "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
     },
     {
       "Unnamed: 0": "TRẠNG THÁI",
       "Số chuyến Đã đến": "KHO XUẤT",
-      "1": "SỐ XE",
+      "3": "SỐ XE",
       "Unnamed: 3": "MÃ HÀNG",
       "Unnamed: 4": "ĐƠN VỊ TÍNH",
       "Unnamed: 5": "Sum of SỐ LƯỢNG",
-      "Unnamed: 6": "Sum of SỐ LƯỢNG PL"
+      "Unnamed: 6": "Sum of SỐ LƯỢNG PL",
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
     },
     {
       "Unnamed: 0": "NEW",
       "Số chuyến Đã đến": "NM BSG Cù Chi",
-      "1": "50H23629",
+      "3": "50H23629",
       "Unnamed: 3": "SP33",
       "Unnamed: 4": "Thùng",
       "Unnamed: 5": 1560,
-      "Unnamed: 6": 12
+      "Unnamed: 6": 12,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
     },
     {
       "Unnamed: 0": "NEW",
       "Số chuyến Đã đến": "NM BSG Cù Chi",
-      "1": null,
+      "3": null,
       "Unnamed: 3": "PAT2",
       "Unnamed: 4": "Thùng",
       "Unnamed: 5": 1320,
-      "Unnamed: 6": 11
+      "Unnamed: 6": 11,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
     },
     {
       "Unnamed: 0": "NEW",
       "Số chuyến Đã đến": "NM BSG Cù Chi",
-      "1": "50E20372",
+      "3": "50E20372",
       "Unnamed: 3": "EXSL",
       "Unnamed: 4": "Thùng",
       "Unnamed: 5": 3380,
-      "Unnamed: 6": 26
+      "Unnamed: 6": 26,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
     },
     {
       "Unnamed: 0": "NEW",
       "Số chuyến Đã đến": "NM BSG Cù Chi",
-      "1": "50H45122",
+      "3": "50H79448",
       "Unnamed: 3": "LAKC",
       "Unnamed: 4": "Két",
       "Unnamed: 5": 1404,
-      "Unnamed: 6": 26
+      "Unnamed: 6": 26,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
     },
     {
       "Unnamed: 0": "NEW",
+      "Số chuyến Đã đến": "NM BSG Cần Thơ",
+      "3": "50H29971",
+      "Unnamed: 3": "LNP5",
+      "Unnamed: 4": "Két",
+      "Unnamed: 5": 1900,
+      "Unnamed: 6": 35.18518518518518,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
+    },
+    {
+      "Unnamed: 0": "NEW",
+      "Số chuyến Đã đến": "NM BSG Cần Thơ",
+      "3": "50E75681",
+      "Unnamed: 3": "LNP5",
+      "Unnamed: 4": "Két",
+      "Unnamed: 5": 1900,
+      "Unnamed: 6": 35.18518518518518,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
+    },
+    {
+      "Unnamed: 0": "NEW",
+      "Số chuyến Đã đến": "NM BSG Quảng Ngãi",
+      "3": "50H92949",
+      "Unnamed: 3": "LASG_26R5",
+      "Unnamed: 4": "Thùng",
+      "Unnamed: 5": 1680,
+      "Unnamed: 6": 14,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
+    },
+    {
+      "Unnamed: 0": "ARRIVED",
       "Số chuyến Đã đến": "NM BSG Cù Chi",
-      "1": null,
+      "3": "50H45122",
+      "Unnamed: 3": "LAKC",
+      "Unnamed: 4": "Két",
+      "Unnamed: 5": 1404,
+      "Unnamed: 6": 26,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
+    },
+    {
+      "Unnamed: 0": "ARRIVED",
+      "Số chuyến Đã đến": "NM BSG Cù Chi",
+      "3": null,
       "Unnamed: 3": "SPDR",
       "Unnamed: 4": "(blank)",
       "Unnamed: 5": 158,
-      "Unnamed: 6": 7.9
-    },
-    {
-      "Unnamed: 0": "NEW",
-      "Số chuyến Đã đến": "NM BSG Cù Chi",
-      "1": "50H79448",
-      "Unnamed: 3": "LAKC",
-      "Unnamed: 4": "Két",
-      "Unnamed: 5": 1404,
-      "Unnamed: 6": 26
-    },
-    {
-      "Unnamed: 0": "NEW",
-      "Số chuyến Đã đến": "NM BSG Cần Thơ",
-      "1": "50H29971",
-      "Unnamed: 3": "LNP5",
-      "Unnamed: 4": "Két",
-      "Unnamed: 5": 1900,
-      "Unnamed: 6": 35.18518518518518
-    },
-    {
-      "Unnamed: 0": "NEW",
-      "Số chuyến Đã đến": "NM BSG Cần Thơ",
-      "1": "50E75681",
-      "Unnamed: 3": "LNP5",
-      "Unnamed: 4": "Két",
-      "Unnamed: 5": 1900,
-      "Unnamed: 6": 35.18518518518518
-    },
-    {
-      "Unnamed: 0": "NEW",
-      "Số chuyến Đã đến": "NM BSG Quảng Ngãi",
-      "1": "50H92949",
-      "Unnamed: 3": "LASG_26R5",
-      "Unnamed: 4": "Thùng",
-      "Unnamed: 5": 1680,
-      "Unnamed: 6": 14
-    },
-    {
-      "Unnamed: 0": "NEW",
-      "Số chuyến Đã đến": "NM BSG Quảng Ngãi",
-      "1": "50H94124",
-      "Unnamed: 3": "LASG_26R5",
-      "Unnamed: 4": "Thùng",
-      "Unnamed: 5": 1680,
-      "Unnamed: 6": 14
+      "Unnamed: 6": 7.9,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
     },
     {
       "Unnamed: 0": "ARRIVED",
       "Số chuyến Đã đến": "NM BSG Quảng Ngãi",
-      "1": "50H93445",
+      "3": "50H93445",
       "Unnamed: 3": "LASG_26R5",
       "Unnamed: 4": "Thùng",
       "Unnamed: 5": 1680,
-      "Unnamed: 6": 14
+      "Unnamed: 6": 14,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
+    },
+    {
+      "Unnamed: 0": "ARRIVED",
+      "Số chuyến Đã đến": "NM BSG Quảng Ngãi",
+      "3": "50H94124",
+      "Unnamed: 3": "LASG_26R5",
+      "Unnamed: 4": "Thùng",
+      "Unnamed: 5": 1680,
+      "Unnamed: 6": 14,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
     },
     {
       "Unnamed: 0": "Grand Total",
       "Số chuyến Đã đến": null,
-      "1": null,
+      "3": null,
       "Unnamed: 3": null,
       "Unnamed: 4": null,
       "Unnamed: 5": 18066,
-      "Unnamed: 6": 221.2703703703704
+      "Unnamed: 6": 221.2703703703704,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Số chuyến Đã đến": null,
+      "3": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
+    },
+    {
+      "Unnamed: 0": "Sum of SỐ LƯỢNG",
+      "Số chuyến Đã đến": "MÃ HÀNG",
+      "3": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null
+    },
+    {
+      "Unnamed: 0": "MÃ KHO",
+      "Số chuyến Đã đến": "LAKC",
+      "3": "LNP5",
+      "Unnamed: 3": "SP33",
+      "Unnamed: 4": "PAT2",
+      "Unnamed: 5": "EXSL",
+      "Unnamed: 6": "LASG_26R5",
+      "Unnamed: 7": "SPDR",
+      "Unnamed: 8": "Grand Total"
+    },
+    {
+      "Unnamed: 0": "052",
+      "Số chuyến Đã đến": null,
+      "3": 1900,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": 1900
+    },
+    {
+      "Unnamed: 0": "05KH",
+      "Số chuyến Đã đến": 1404,
+      "3": 1900,
+      "Unnamed: 3": 1560,
+      "Unnamed: 4": 1320,
+      "Unnamed: 5": 3380,
+      "Unnamed: 6": 5040,
+      "Unnamed: 7": 158,
+      "Unnamed: 8": 14762
+    },
+    {
+      "Unnamed: 0": "05NT",
+      "Số chuyến Đã đến": 1404,
+      "3": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": 1404
+    },
+    {
+      "Unnamed: 0": "Grand Total",
+      "Số chuyến Đã đến": 2808,
+      "3": 3800,
+      "Unnamed: 3": 1560,
+      "Unnamed: 4": 1320,
+      "Unnamed: 5": 3380,
+      "Unnamed: 6": 5040,
+      "Unnamed: 7": 158,
+      "Unnamed: 8": 18066
     }
   ],
   "baocao6-HSD": [
@@ -139,321 +244,6 @@ window.DASHBOARD_DATA = {
     },
     {
       "Unnamed: 0": "052",
-      "Unnamed: 1": "CHCR",
-      "Unnamed: 2": "14/06/2026",
-      "bia % HSD <60%": 76.9231,
-      "Unnamed: 4": 157
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CHCR_26R2",
-      "Unnamed: 2": "22/07/2026",
-      "bia % HSD <60%": 90.8425,
-      "Unnamed: 4": 700
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CHLC_26R2",
-      "Unnamed: 2": "24/07/2026",
-      "bia % HSD <60%": 93.6986,
-      "Unnamed: 4": 879
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "03/08/2026",
-      "bia % HSD <60%": 96.4384,
-      "Unnamed: 4": 156
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "EXLC_26LE",
-      "Unnamed: 2": "22/05/2026",
-      "bia % HSD <60%": 76.4384,
-      "Unnamed: 4": 2987
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "07/06/2026",
-      "bia % HSD <60%": 80.8219,
-      "Unnamed: 4": 2028
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LAKC",
-      "Unnamed: 2": "21/07/2026",
-      "bia % HSD <60%": 92.8767,
-      "Unnamed: 4": 1566
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "23/07/2026",
-      "bia % HSD <60%": 93.4247,
-      "Unnamed: 4": 5778
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "17/07/2026",
-      "bia % HSD <60%": 91.7808,
-      "Unnamed: 4": 700
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "18/07/2026",
-      "bia % HSD <60%": 92.0548,
-      "Unnamed: 4": 1844
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "19/07/2026",
-      "bia % HSD <60%": 92.3288,
-      "Unnamed: 4": 4133
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "20/07/2026",
-      "bia % HSD <60%": 92.6027,
-      "Unnamed: 4": 7452
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "22/07/2026",
-      "bia % HSD <60%": 93.1507,
-      "Unnamed: 4": 3836
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "02/08/2026",
-      "bia % HSD <60%": 96.1644,
-      "Unnamed: 4": 2125
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "24/07/2026",
-      "bia % HSD <60%": 93.6986,
-      "Unnamed: 4": 864
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "03/08/2026",
-      "bia % HSD <60%": 96.4384,
-      "Unnamed: 4": 2946
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "04/08/2026",
-      "bia % HSD <60%": 96.7123,
-      "Unnamed: 4": 5027
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "05/08/2026",
-      "bia % HSD <60%": 96.9863,
-      "Unnamed: 4": 2592
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "06/08/2026",
-      "bia % HSD <60%": 97.2603,
-      "Unnamed: 4": 4698
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "08/08/2026",
-      "bia % HSD <60%": 97.8082,
-      "Unnamed: 4": 2543
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "07/08/2026",
-      "bia % HSD <60%": 97.5342,
-      "Unnamed: 4": 5170
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "10/08/2026",
-      "bia % HSD <60%": 98.3562,
-      "Unnamed: 4": 1728
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "09/08/2026",
-      "bia % HSD <60%": 98.0822,
-      "Unnamed: 4": 4005
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LASG",
-      "Unnamed: 2": "28/07/2026",
-      "bia % HSD <60%": 94.7945,
-      "Unnamed: 4": 7305
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "29/07/2026",
-      "bia % HSD <60%": 95.0685,
-      "Unnamed: 4": 22326
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "30/07/2026",
-      "bia % HSD <60%": 95.3425,
-      "Unnamed: 4": 28603
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "31/07/2026",
-      "bia % HSD <60%": 95.6164,
-      "Unnamed: 4": 4157
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "07/08/2026",
-      "bia % HSD <60%": 97.5342,
-      "Unnamed: 4": 600
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LNP5",
-      "Unnamed: 2": "21/07/2026",
-      "bia % HSD <60%": 90.4762,
-      "Unnamed: 4": 9500
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "23/07/2026",
-      "bia % HSD <60%": 91.2088,
-      "Unnamed: 4": 2946
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "22/07/2026",
-      "bia % HSD <60%": 90.8425,
-      "Unnamed: 4": 15050
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "09/07/2026",
-      "bia % HSD <60%": 86.0806,
-      "Unnamed: 4": 3456
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "10/07/2026",
-      "bia % HSD <60%": 86.4469,
-      "Unnamed: 4": 1282
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "11/07/2026",
-      "bia % HSD <60%": 86.8132,
-      "Unnamed: 4": 5512
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "04/08/2026",
-      "bia % HSD <60%": 95.6044,
-      "Unnamed: 4": 5772
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "05/08/2026",
-      "bia % HSD <60%": 95.9707,
-      "Unnamed: 4": 6482
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "06/08/2026",
-      "bia % HSD <60%": 96.337,
-      "Unnamed: 4": 1900
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LV12",
-      "Unnamed: 2": "19/05/2026",
-      "bia % HSD <60%": 75.6164,
-      "Unnamed: 4": 708
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "20/05/2026",
-      "bia % HSD <60%": 75.8904,
-      "Unnamed: 4": 230
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LX24",
-      "Unnamed: 2": "10/06/2026",
-      "bia % HSD <60%": 81.6438,
-      "Unnamed: 4": 152
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "PALC_26LE",
-      "Unnamed: 2": "09/06/2026",
-      "bia % HSD <60%": 81.3699,
-      "Unnamed: 4": 1652
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "10/06/2026",
-      "bia % HSD <60%": 81.6438,
-      "Unnamed: 4": 4056
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "29/05/2026",
-      "bia % HSD <60%": 78.3562,
-      "Unnamed: 4": 432
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "PAPB",
-      "Unnamed: 2": "24/03/2026",
-      "bia % HSD <60%": 60.274,
-      "Unnamed: 4": 97
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "PAPC",
-      "Unnamed: 2": "23/03/2026",
-      "bia % HSD <60%": 60,
-      "Unnamed: 4": 967
-    },
-    {
-      "Unnamed: 0": null,
       "Unnamed: 1": "PAT2",
       "Unnamed: 2": "29/01/2026",
       "bia % HSD <60%": 45.4795,
@@ -474,714 +264,14 @@ window.DASHBOARD_DATA = {
       "Unnamed: 4": 260
     },
     {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "TN24",
-      "Unnamed: 2": "13/07/2026",
-      "bia % HSD <60%": 90.6849,
-      "Unnamed: 4": 756
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "14/07/2026",
-      "bia % HSD <60%": 90.9589,
-      "Unnamed: 4": 432
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "16/07/2026",
-      "bia % HSD <60%": 91.5068,
-      "Unnamed: 4": 486
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "19/06/2026",
-      "bia % HSD <60%": 84.1096,
-      "Unnamed: 4": 185
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "EXSL",
-      "Unnamed: 2": "05/08/2026",
-      "bia % HSD <60%": 96.9863,
-      "Unnamed: 4": 2449
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CH20_26R2",
-      "Unnamed: 2": "04/08/2026",
-      "bia % HSD <60%": 96.7123,
-      "Unnamed: 4": 110
-    },
-    {
       "Unnamed: 0": "052 Total",
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "bia % HSD <60%": null,
-      "Unnamed: 4": 193373
-    },
-    {
-      "Unnamed: 0": "05KH",
-      "Unnamed: 1": "CHCR",
-      "Unnamed: 2": "14/06/2026",
-      "bia % HSD <60%": 76.9231,
-      "Unnamed: 4": 5
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CHCR_26R2",
-      "Unnamed: 2": "22/07/2026",
-      "bia % HSD <60%": 90.8425,
-      "Unnamed: 4": 750
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CHLC_26R2",
-      "Unnamed: 2": "25/07/2026",
-      "bia % HSD <60%": 93.9726,
-      "Unnamed: 4": 1500
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "EXLC_26LE",
-      "Unnamed: 2": "06/06/2026",
-      "bia % HSD <60%": 80.5479,
-      "Unnamed: 4": 5797
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "23/05/2026",
-      "bia % HSD <60%": 76.7123,
-      "Unnamed: 4": 894
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "22/05/2026",
-      "bia % HSD <60%": 76.4384,
-      "Unnamed: 4": 2508
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "07/06/2026",
-      "bia % HSD <60%": 80.8219,
-      "Unnamed: 4": 2159
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LAKC",
-      "Unnamed: 2": "21/07/2026",
-      "bia % HSD <60%": 92.8767,
-      "Unnamed: 4": 108
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "23/07/2026",
-      "bia % HSD <60%": 93.4247,
-      "Unnamed: 4": 1514
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "02/07/2026",
-      "bia % HSD <60%": 87.6712,
-      "Unnamed: 4": 1324
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "03/07/2026",
-      "bia % HSD <60%": 87.9452,
-      "Unnamed: 4": 1080
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "12/07/2026",
-      "bia % HSD <60%": 90.411,
-      "Unnamed: 4": 1134
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "13/07/2026",
-      "bia % HSD <60%": 90.6849,
-      "Unnamed: 4": 540
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "14/07/2026",
-      "bia % HSD <60%": 90.9589,
-      "Unnamed: 4": 1134
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "16/07/2026",
-      "bia % HSD <60%": 91.5068,
-      "Unnamed: 4": 1080
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "17/07/2026",
-      "bia % HSD <60%": 91.7808,
-      "Unnamed: 4": 1350
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "22/07/2026",
-      "bia % HSD <60%": 93.1507,
-      "Unnamed: 4": 2914
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "04/08/2026",
-      "bia % HSD <60%": 96.7123,
-      "Unnamed: 4": 864
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "05/08/2026",
-      "bia % HSD <60%": 96.9863,
-      "Unnamed: 4": 3240
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "06/08/2026",
-      "bia % HSD <60%": 97.2603,
-      "Unnamed: 4": 2160
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "08/08/2026",
-      "bia % HSD <60%": 97.8082,
-      "Unnamed: 4": 810
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "07/08/2026",
-      "bia % HSD <60%": 97.5342,
-      "Unnamed: 4": 810
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LASG",
-      "Unnamed: 2": "27/07/2026",
-      "bia % HSD <60%": 94.5205,
-      "Unnamed: 4": 13887
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "28/07/2026",
-      "bia % HSD <60%": 94.7945,
-      "Unnamed: 4": 11392
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "29/07/2026",
-      "bia % HSD <60%": 95.0685,
-      "Unnamed: 4": 7138
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "30/07/2026",
-      "bia % HSD <60%": 95.3425,
-      "Unnamed: 4": 89
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "07/08/2026",
-      "bia % HSD <60%": 97.5342,
-      "Unnamed: 4": 57
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LNP5",
-      "Unnamed: 2": "08/07/2026",
-      "bia % HSD <60%": 85.7143,
-      "Unnamed: 4": 21
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "09/07/2026",
-      "bia % HSD <60%": 86.0806,
-      "Unnamed: 4": 14
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "04/08/2026",
-      "bia % HSD <60%": 95.6044,
-      "Unnamed: 4": 5123
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "05/08/2026",
-      "bia % HSD <60%": 95.9707,
-      "Unnamed: 4": 13434
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "06/08/2026",
-      "bia % HSD <60%": 96.337,
-      "Unnamed: 4": 3666
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LV12",
-      "Unnamed: 2": "19/05/2026",
-      "bia % HSD <60%": 75.6164,
-      "Unnamed: 4": 1334
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LX24",
-      "Unnamed: 2": "15/05/2026",
-      "bia % HSD <60%": 74.5205,
-      "Unnamed: 4": 136
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "16/05/2026",
-      "bia % HSD <60%": 74.7945,
-      "Unnamed: 4": 214
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "PALC_26LE",
-      "Unnamed: 2": "09/06/2026",
-      "bia % HSD <60%": 81.3699,
-      "Unnamed: 4": 3784
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "10/06/2026",
-      "bia % HSD <60%": 81.6438,
-      "Unnamed: 4": 4575
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "12/06/2026",
-      "bia % HSD <60%": 82.1918,
-      "Unnamed: 4": 499
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "21/06/2026",
-      "bia % HSD <60%": 84.6575,
-      "Unnamed: 4": 780
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "PAPB",
-      "Unnamed: 2": "24/03/2026",
-      "bia % HSD <60%": 60.274,
-      "Unnamed: 4": 259
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "PAPC",
-      "Unnamed: 2": "23/03/2026",
-      "bia % HSD <60%": 60,
-      "Unnamed: 4": 2054
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "PAT2",
-      "Unnamed: 2": "13/07/2026",
-      "bia % HSD <60%": 90.6849,
-      "Unnamed: 4": 960
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "07/07/2026",
-      "bia % HSD <60%": 89.0411,
-      "Unnamed: 4": 260
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "SP33",
-      "Unnamed: 2": "06/06/2026",
-      "bia % HSD <60%": 80.5479,
-      "Unnamed: 4": 615
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "25/07/2026",
-      "bia % HSD <60%": 93.9726,
-      "Unnamed: 4": 762
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "26/07/2026",
-      "bia % HSD <60%": 94.2466,
-      "Unnamed: 4": 2098
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "TN24",
-      "Unnamed: 2": "16/07/2026",
-      "bia % HSD <60%": 91.5068,
-      "Unnamed: 4": 178
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CHLC",
-      "Unnamed: 2": "09/06/2026",
-      "bia % HSD <60%": 81.3699,
-      "Unnamed: 4": 91
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "24/05/2026",
-      "bia % HSD <60%": 76.9863,
-      "Unnamed: 4": 154
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "25/05/2026",
-      "bia % HSD <60%": 77.2603,
-      "Unnamed: 4": 156
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "EXSL",
-      "Unnamed: 2": "05/08/2026",
-      "bia % HSD <60%": 96.9863,
-      "Unnamed: 4": 5084
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "EXSL_26R3",
-      "Unnamed: 2": "05/04/2026",
-      "bia % HSD <60%": 63.5616,
-      "Unnamed: 4": 4
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LASG_26R2",
-      "Unnamed: 2": "22/05/2026",
-      "bia % HSD <60%": 76.4384,
-      "Unnamed: 4": 19
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LVCA",
-      "Unnamed: 2": "10/06/2026",
-      "bia % HSD <60%": 81.6438,
-      "Unnamed: 4": 327
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "01/08/2026",
-      "bia % HSD <60%": 95.8904,
-      "Unnamed: 4": 910
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CH20_26R2",
-      "Unnamed: 2": "04/08/2026",
-      "bia % HSD <60%": 96.7123,
-      "Unnamed: 4": 1311
-    },
-    {
-      "Unnamed: 0": "05KH Total",
-      "Unnamed: 1": null,
-      "Unnamed: 2": null,
-      "bia % HSD <60%": null,
-      "Unnamed: 4": 115060
+      "Unnamed: 4": 1856
     },
     {
       "Unnamed: 0": "05NT",
-      "Unnamed: 1": "CHCR_26R2",
-      "Unnamed: 2": "22/07/2026",
-      "bia % HSD <60%": 90.8425,
-      "Unnamed: 4": 268
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CHLC_26R2",
-      "Unnamed: 2": "24/07/2026",
-      "bia % HSD <60%": 93.6986,
-      "Unnamed: 4": 1184
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "EXLC_26LE",
-      "Unnamed: 2": "21/05/2026",
-      "bia % HSD <60%": 76.1644,
-      "Unnamed: 4": 2122
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LAKC",
-      "Unnamed: 2": "21/07/2026",
-      "bia % HSD <60%": 92.8767,
-      "Unnamed: 4": 7128
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "23/07/2026",
-      "bia % HSD <60%": 93.4247,
-      "Unnamed: 4": 3146
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "15/07/2026",
-      "bia % HSD <60%": 91.2329,
-      "Unnamed: 4": 1620
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "16/07/2026",
-      "bia % HSD <60%": 91.5068,
-      "Unnamed: 4": 1416
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "17/07/2026",
-      "bia % HSD <60%": 91.7808,
-      "Unnamed: 4": 1834
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "18/07/2026",
-      "bia % HSD <60%": 92.0548,
-      "Unnamed: 4": 3113
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "19/07/2026",
-      "bia % HSD <60%": 92.3288,
-      "Unnamed: 4": 1620
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "20/07/2026",
-      "bia % HSD <60%": 92.6027,
-      "Unnamed: 4": 370
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "22/07/2026",
-      "bia % HSD <60%": 93.1507,
-      "Unnamed: 4": 3672
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "24/07/2026",
-      "bia % HSD <60%": 93.6986,
-      "Unnamed: 4": 742
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "03/08/2026",
-      "bia % HSD <60%": 96.4384,
-      "Unnamed: 4": 4752
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "04/08/2026",
-      "bia % HSD <60%": 96.7123,
-      "Unnamed: 4": 4639
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "05/08/2026",
-      "bia % HSD <60%": 96.9863,
-      "Unnamed: 4": 3785
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "06/08/2026",
-      "bia % HSD <60%": 97.2603,
-      "Unnamed: 4": 864
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "08/08/2026",
-      "bia % HSD <60%": 97.8082,
-      "Unnamed: 4": 3240
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "07/08/2026",
-      "bia % HSD <60%": 97.5342,
-      "Unnamed: 4": 2484
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "10/08/2026",
-      "bia % HSD <60%": 98.3562,
-      "Unnamed: 4": 864
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LASG",
-      "Unnamed: 2": "12/07/2026",
-      "bia % HSD <60%": 90.411,
-      "Unnamed: 4": 8600
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "13/07/2026",
-      "bia % HSD <60%": 90.6849,
-      "Unnamed: 4": 8504
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "14/07/2026",
-      "bia % HSD <60%": 90.9589,
-      "Unnamed: 4": 19339
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "15/07/2026",
-      "bia % HSD <60%": 91.2329,
-      "Unnamed: 4": 33461
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "16/07/2026",
-      "bia % HSD <60%": 91.5068,
-      "Unnamed: 4": 7200
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "28/06/2026",
-      "bia % HSD <60%": 86.5753,
-      "Unnamed: 4": 7604
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "06/07/2026",
-      "bia % HSD <60%": 88.7671,
-      "Unnamed: 4": 13519
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "07/07/2026",
-      "bia % HSD <60%": 89.0411,
-      "Unnamed: 4": 4137
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "11/07/2026",
-      "bia % HSD <60%": 90.137,
-      "Unnamed: 4": 11400
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LNP5",
-      "Unnamed: 2": "21/07/2026",
-      "bia % HSD <60%": 90.4762,
-      "Unnamed: 4": 1900
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "23/07/2026",
-      "bia % HSD <60%": 91.2088,
-      "Unnamed: 4": 1900
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "22/07/2026",
-      "bia % HSD <60%": 90.8425,
-      "Unnamed: 4": 5700
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "10/07/2026",
-      "bia % HSD <60%": 86.4469,
-      "Unnamed: 4": 941
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "11/07/2026",
-      "bia % HSD <60%": 86.8132,
-      "Unnamed: 4": 1900
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "04/08/2026",
-      "bia % HSD <60%": 95.6044,
-      "Unnamed: 4": 1900
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "05/08/2026",
-      "bia % HSD <60%": 95.9707,
-      "Unnamed: 4": 3800
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LV12",
-      "Unnamed: 2": "20/05/2026",
-      "bia % HSD <60%": 75.8904,
-      "Unnamed: 4": 741
-    },
-    {
-      "Unnamed: 0": null,
       "Unnamed: 1": "LX24",
       "Unnamed: 2": "07/02/2026",
       "bia % HSD <60%": 47.9452,
@@ -1189,21 +279,7 @@ window.DASHBOARD_DATA = {
     },
     {
       "Unnamed: 0": null,
-      "Unnamed: 1": "PALC_26LE",
-      "Unnamed: 2": "21/06/2026",
-      "bia % HSD <60%": 84.6575,
-      "Unnamed: 4": 50
-    },
-    {
-      "Unnamed: 0": null,
       "Unnamed: 1": "PAPC",
-      "Unnamed: 2": "23/03/2026",
-      "bia % HSD <60%": 60,
-      "Unnamed: 4": 100
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
       "Unnamed: 2": "22/03/2026",
       "bia % HSD <60%": 59.726,
       "Unnamed: 4": 85
@@ -1218,13 +294,6 @@ window.DASHBOARD_DATA = {
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "TN24",
-      "Unnamed: 2": "07/06/2026",
-      "bia % HSD <60%": 80.8219,
-      "Unnamed: 4": 500
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
       "Unnamed: 2": "31/01/2026",
       "bia % HSD <60%": 46.0274,
       "Unnamed: 4": 837
@@ -1238,234 +307,38 @@ window.DASHBOARD_DATA = {
     },
     {
       "Unnamed: 0": null,
-      "Unnamed: 1": "EXSL",
-      "Unnamed: 2": "12/06/2026",
-      "bia % HSD <60%": 82.1918,
-      "Unnamed: 4": 260
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "05/08/2026",
-      "bia % HSD <60%": 96.9863,
-      "Unnamed: 4": 390
-    },
-    {
-      "Unnamed: 0": null,
       "Unnamed: 1": "LVCR",
       "Unnamed: 2": "18/03/2026",
       "bia % HSD <60%": 58.6301,
       "Unnamed: 4": 274
     },
     {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CH20_26R2",
-      "Unnamed: 2": "04/08/2026",
-      "bia % HSD <60%": 96.7123,
-      "Unnamed: 4": 170
-    },
-    {
       "Unnamed: 0": "05NT Total",
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "bia % HSD <60%": null,
-      "Unnamed: 4": 184278
+      "Unnamed: 4": 1399
     },
     {
       "Unnamed: 0": "SKH",
-      "Unnamed: 1": "EXLC_26LE",
-      "Unnamed: 2": "22/05/2026",
-      "bia % HSD <60%": 76.4384,
-      "Unnamed: 4": 198
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LASG",
-      "Unnamed: 2": "13/06/2026",
-      "bia % HSD <60%": 82.4658,
-      "Unnamed: 4": 12
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "30/06/2026",
-      "bia % HSD <60%": 87.1233,
-      "Unnamed: 4": 63
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "29/07/2026",
-      "bia % HSD <60%": 95.0685,
-      "Unnamed: 4": 4274
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "24/06/2026",
-      "bia % HSD <60%": 85.4795,
-      "Unnamed: 4": 264
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "01/07/2026",
-      "bia % HSD <60%": 87.3973,
-      "Unnamed: 4": 297
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "26/06/2026",
-      "bia % HSD <60%": 86.0274,
-      "Unnamed: 4": 2748
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "04/07/2026",
-      "bia % HSD <60%": 88.2192,
-      "Unnamed: 4": 2160
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "23/06/2026",
-      "bia % HSD <60%": 85.2055,
-      "Unnamed: 4": 2385
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "25/06/2026",
-      "bia % HSD <60%": 85.7534,
-      "Unnamed: 4": 11332
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "17/06/2026",
-      "bia % HSD <60%": 83.5616,
-      "Unnamed: 4": 1680
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "08/08/2026",
-      "bia % HSD <60%": 97.8082,
-      "Unnamed: 4": 5486
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "07/08/2026",
-      "bia % HSD <60%": 97.5342,
-      "Unnamed: 4": 240
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "PALC_26LE",
-      "Unnamed: 2": "21/06/2026",
-      "bia % HSD <60%": 84.6575,
-      "Unnamed: 4": 322
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "PAT2",
-      "Unnamed: 2": "13/07/2026",
-      "bia % HSD <60%": 90.6849,
-      "Unnamed: 4": 237
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "14/07/2026",
-      "bia % HSD <60%": 90.9589,
-      "Unnamed: 4": 240
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "SP33",
-      "Unnamed: 2": "06/06/2026",
-      "bia % HSD <60%": 80.5479,
-      "Unnamed: 4": 462
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "25/07/2026",
-      "bia % HSD <60%": 93.9726,
-      "Unnamed: 4": 1072
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": null,
-      "Unnamed: 2": "26/07/2026",
-      "bia % HSD <60%": 94.2466,
-      "Unnamed: 4": 228
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CH20",
-      "Unnamed: 2": "19/05/2026",
-      "bia % HSD <60%": 75.6164,
-      "Unnamed: 4": 3
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CHLC",
-      "Unnamed: 2": "29/06/2026",
-      "bia % HSD <60%": 86.8493,
-      "Unnamed: 4": 1858
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "EXSL",
-      "Unnamed: 2": "11/06/2026",
-      "bia % HSD <60%": 81.9178,
-      "Unnamed: 4": 561
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "LVCA",
-      "Unnamed: 2": "01/08/2026",
-      "bia % HSD <60%": 95.8904,
-      "Unnamed: 4": 212
-    },
-    {
-      "Unnamed: 0": null,
       "Unnamed: 1": "GSFE_25T",
       "Unnamed: 2": "23/12/2025",
       "bia % HSD <60%": 35.3425,
       "Unnamed: 4": 6
     },
     {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "TNTH",
-      "Unnamed: 2": "13/07/2026",
-      "bia % HSD <60%": 90.6849,
-      "Unnamed: 4": 119
-    },
-    {
-      "Unnamed: 0": null,
-      "Unnamed: 1": "CH20_26R2",
-      "Unnamed: 2": "04/08/2026",
-      "bia % HSD <60%": 96.7123,
-      "Unnamed: 4": 600
-    },
-    {
       "Unnamed: 0": "SKH Total",
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "bia % HSD <60%": null,
-      "Unnamed: 4": 37059
+      "Unnamed: 4": 6
     },
     {
       "Unnamed: 0": "Grand Total",
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "bia % HSD <60%": null,
-      "Unnamed: 4": 529770
+      "Unnamed: 4": 3261
     }
   ],
   "baocao5-vitri": [
@@ -2315,505 +1188,2146 @@ window.DASHBOARD_DATA = {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Sum of SỐ LƯỢNG",
       "Unnamed: 1": "Column Labels",
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Row Labels",
       "Unnamed: 1": "TP",
       "Unnamed: 2": "BB",
-      "Unnamed: 3": "PL"
+      "Unnamed: 3": "PL",
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Nhập",
       "Unnamed: 1": 83744,
       "Unnamed: 2": 56055,
-      "Unnamed: 3": 2549
+      "Unnamed: 3": 2549,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Xuất",
       "Unnamed: 1": 176743,
       "Unnamed: 2": 53988,
-      "Unnamed: 3": 2869
+      "Unnamed: 3": 2869,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Sum of SỐ LƯỢNG",
       "Unnamed: 1": "Column Labels",
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Row Labels",
       "Unnamed: 1": "Két",
       "Unnamed: 2": "Cái",
-      "Unnamed: 3": "Thùng"
+      "Unnamed: 3": "Thùng",
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Nhập",
       "Unnamed: 1": 110043,
       "Unnamed: 2": 2549,
-      "Unnamed: 3": 29756
+      "Unnamed: 3": 29756,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Xuất",
       "Unnamed: 1": 110418,
       "Unnamed: 2": 2869,
-      "Unnamed: 3": 120313
+      "Unnamed: 3": 120313,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "NGÀY",
       "Unnamed: 1": "(All)",
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Column Labels",
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Nhập",
       "Unnamed: 2": "Xuất",
-      "Unnamed: 3": "Grand Total"
+      "Unnamed: 3": "Grand Total",
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Sum of SỐ LƯỢNG",
       "Unnamed: 1": 142348,
       "Unnamed: 2": 233600,
-      "Unnamed: 3": 375948
+      "Unnamed: 3": 375948,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "NGÀY",
       "Unnamed: 1": "(All)",
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "NHÓM HÀNG",
       "Unnamed: 1": "(All)",
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "NGÀY",
+      "Unnamed: 9": "(All)",
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "cảm",
+      "Unnamed: 9": "(All)",
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Sum of SỐ LƯỢNG",
       "Unnamed: 1": "Column Labels",
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "LOẠI GIAO DỊCH",
+      "Unnamed: 9": "(Multiple Items)",
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "Row Labels",
       "Unnamed: 1": "Xuất",
       "Unnamed: 2": "Nhập",
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": null,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "CRK1",
       "Unnamed: 1": 25272,
       "Unnamed: 2": 26405,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "Sum of SỐ LƯỢNG",
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": "Loại hình",
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "CRK5",
       "Unnamed: 1": 28500,
       "Unnamed: 2": 27691,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "KHO 1-1",
+      "Unnamed: 9": "SỐ XE",
+      "Unnamed: 10": "MÃ HÀNG",
+      "Unnamed: 11": "Nhập",
+      "Unnamed: 12": "Xuất"
     },
     {
       "Unnamed: 0": "CHCR",
       "Unnamed: 1": 54,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "NM BSG Cần Thơ",
+      "Unnamed: 9": "50E14507",
+      "Unnamed: 10": "CRK5",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 3800
     },
     {
       "Unnamed: 0": "CHCR_26R2",
       "Unnamed: 1": 550,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LNP5",
+      "Unnamed: 11": 3800,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "CHLC",
       "Unnamed: 1": 283,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50E75681",
+      "Unnamed: 10": "CRK5",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 1900
     },
     {
       "Unnamed: 0": "CHLC_26R2",
       "Unnamed: 1": 791,
       "Unnamed: 2": 156,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LNP5",
+      "Unnamed: 11": 1900,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "EXLC_26LE",
       "Unnamed: 1": 1209,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H05106",
+      "Unnamed: 10": "CRK5",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 3800
     },
     {
       "Unnamed: 0": "EXSL",
       "Unnamed: 1": 4698,
       "Unnamed: 2": 7540,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LNP5",
+      "Unnamed: 11": 3800,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "KCD24",
       "Unnamed: 1": null,
       "Unnamed: 2": 182,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H15064",
+      "Unnamed: 10": "CRK5",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 3800
     },
     {
       "Unnamed: 0": "KCP33",
       "Unnamed: 1": null,
       "Unnamed: 2": 58,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LNP5",
+      "Unnamed: 11": 3800,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "KCX24",
       "Unnamed: 1": 216,
       "Unnamed: 2": 1061,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H29196",
+      "Unnamed: 10": "CRK5",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 3800
     },
     {
       "Unnamed: 0": "KCXC",
       "Unnamed: 1": null,
       "Unnamed: 2": 658,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LNP5",
+      "Unnamed: 11": 3800,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "LAKC",
       "Unnamed: 1": 26148,
       "Unnamed: 2": 25488,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H29971",
+      "Unnamed: 10": "CRK5",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 3800
     },
     {
       "Unnamed: 0": "LASG",
       "Unnamed: 1": 107552,
       "Unnamed: 2": 18080,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LNP5",
+      "Unnamed: 11": 3800,
+      "Unnamed: 12": null
     },
     {
       "Unnamed: 0": "LNP5",
       "Unnamed: 1": 28825,
       "Unnamed: 2": 28500,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "LX24",
-      "Unnamed: 1": 116,
-      "Unnamed: 2": null,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "NP",
-      "Unnamed: 1": 1398,
-      "Unnamed: 2": 1090,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "NP2",
-      "Unnamed: 1": 1471,
-      "Unnamed: 2": 1459,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "PALC_26LE",
-      "Unnamed: 1": 2351,
-      "Unnamed: 2": null,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "PAPB",
-      "Unnamed: 1": 96,
-      "Unnamed: 2": null,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "PAPC",
-      "Unnamed: 1": 226,
-      "Unnamed: 2": 100,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "PAT2",
-      "Unnamed: 1": 339,
-      "Unnamed: 2": null,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "SP33",
-      "Unnamed: 1": 808,
-      "Unnamed: 2": 2860,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "TN24",
-      "Unnamed: 1": 641,
-      "Unnamed: 2": null,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "TNTH",
-      "Unnamed: 1": 25,
-      "Unnamed: 2": null,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "LVCA",
-      "Unnamed: 1": 27,
-      "Unnamed: 2": null,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "CH20_26R2",
-      "Unnamed: 1": 1549,
-      "Unnamed: 2": 1020,
-      "Unnamed: 3": null
-    },
-    {
-      "Unnamed: 0": "EXSL_26R3",
-      "Unnamed: 1": 55,
-      "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H35178",
+      "Unnamed: 10": "CRK5",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 3800
     },
     {
       "Unnamed: 0": "LV12",
       "Unnamed: 1": 400,
       "Unnamed: 2": null,
-      "Unnamed: 3": null
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LNP5",
+      "Unnamed: 11": 3800,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": "LX24",
+      "Unnamed: 1": 116,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H91460",
+      "Unnamed: 10": "CRK5",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 3800
+    },
+    {
+      "Unnamed: 0": "NP",
+      "Unnamed: 1": 1398,
+      "Unnamed: 2": 1090,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LNP5",
+      "Unnamed: 11": 3800,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": "NP2",
+      "Unnamed: 1": 1471,
+      "Unnamed: 2": 1459,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "NM BSG Cần Thơ Total",
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": 28500,
+      "Unnamed: 12": 28500
+    },
+    {
+      "Unnamed: 0": "PALC_26LE",
+      "Unnamed: 1": 2351,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "NM BSG Cù Chi",
+      "Unnamed: 9": "50E18954",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 1728
+    },
+    {
+      "Unnamed: 0": "PAPB",
+      "Unnamed: 1": 96,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 1728,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": "PAPC",
+      "Unnamed: 1": 226,
+      "Unnamed: 2": 100,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 32,
+      "Unnamed: 12": 32
+    },
+    {
+      "Unnamed: 0": "PAT2",
+      "Unnamed: 1": 339,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50E19635",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 864
+    },
+    {
+      "Unnamed: 0": "SP33",
+      "Unnamed: 1": 808,
+      "Unnamed: 2": 2860,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 864,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": "TN24",
+      "Unnamed: 1": 641,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 16,
+      "Unnamed: 12": 16
+    },
+    {
+      "Unnamed: 0": "TNTH",
+      "Unnamed: 1": 25,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50E20372",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 2808
+    },
+    {
+      "Unnamed: 0": "LVCA",
+      "Unnamed: 1": 27,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 2808,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": "CH20_26R2",
+      "Unnamed: 1": 1549,
+      "Unnamed: 2": 1020,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 52,
+      "Unnamed: 12": 52
+    },
+    {
+      "Unnamed: 0": "EXSL_26R3",
+      "Unnamed: 1": 55,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H23235",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 2808
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "CHLC_26R2",
+      "Unnamed: 11": 156,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "EXSL",
+      "Unnamed: 11": 2470,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 2808,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LASG",
+      "Unnamed: 11": 600,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP",
+      "Unnamed: 11": 26,
+      "Unnamed: 12": 26
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 52,
+      "Unnamed: 12": 52
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "CH20_26R2",
+      "Unnamed: 11": 170,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H29639",
+      "Unnamed: 10": "EXSL",
+      "Unnamed: 11": 2860,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP",
+      "Unnamed: 11": 22,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H45122",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 1404
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "KCX24",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 216
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 1620,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 30,
+      "Unnamed: 12": 30
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H71744",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 864
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 864,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 16,
+      "Unnamed: 12": 16
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H75675",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 1620
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 1620,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 30,
+      "Unnamed: 12": 30
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H76433",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 1620
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 1620,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 30,
+      "Unnamed: 12": 30
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H76848",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 1620
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 1620,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 30,
+      "Unnamed: 12": 30
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H79660",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 2808
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 2808,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 52,
+      "Unnamed: 12": 52
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H93213",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 864
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 864,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 16,
+      "Unnamed: 12": 16
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H93647",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 1728
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 1728,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 32,
+      "Unnamed: 12": 32
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H93830",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 2808
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 2808,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 52,
+      "Unnamed: 12": 52
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H94561",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 864
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 864,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 16,
+      "Unnamed: 12": 16
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H94638",
+      "Unnamed: 10": "CRK1",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 864
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "LAKC",
+      "Unnamed: 11": 864,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP2",
+      "Unnamed: 11": 16,
+      "Unnamed: 12": 16
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "72H01098",
+      "Unnamed: 10": "NP",
+      "Unnamed: 11": 22,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "SP33",
+      "Unnamed: 11": 2860,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H00508",
+      "Unnamed: 10": "EXSL",
+      "Unnamed: 11": 2210,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP",
+      "Unnamed: 11": 22,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "CH20_26R2",
+      "Unnamed: 11": 850,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "NM BSG Cù Chi Total",
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": 38228,
+      "Unnamed: 12": 25986
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "NM BSG Khánh Hòa",
+      "Unnamed: 9": "KHONGVC",
+      "Unnamed: 10": "NP",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 84
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "KHONGVC164",
+      "Unnamed: 10": "LASG",
+      "Unnamed: 11": 10760,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP",
+      "Unnamed: 11": 91,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "NM BSG Khánh Hòa Total",
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": 10851,
+      "Unnamed: 12": 84
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "NM BSG Ninh Thuận",
+      "Unnamed: 9": "50H09658",
+      "Unnamed: 10": "LASG",
+      "Unnamed: 11": 3360,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP",
+      "Unnamed: 11": 28,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "50H67882",
+      "Unnamed: 10": "LASG",
+      "Unnamed: 11": 3360,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": null,
+      "Unnamed: 10": "NP",
+      "Unnamed: 11": 28,
+      "Unnamed: 12": null
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": null,
+      "Unnamed: 9": "KHONGVC",
+      "Unnamed: 10": "NP",
+      "Unnamed: 11": null,
+      "Unnamed: 12": 400
+    },
+    {
+      "Unnamed: 0": null,
+      "Unnamed: 1": null,
+      "Unnamed: 2": null,
+      "Unnamed: 3": null,
+      "Unnamed: 4": null,
+      "Unnamed: 5": null,
+      "Unnamed: 6": null,
+      "Unnamed: 7": null,
+      "Unnamed: 8": "NM BSG Ninh Thuận Total",
+      "Unnamed: 9": null,
+      "Unnamed: 10": null,
+      "Unnamed: 11": 6776,
+      "Unnamed: 12": 400
     }
   ],
   "baocao7-Tồn kho hàng gửi": [
@@ -2822,684 +3336,532 @@ window.DASHBOARD_DATA = {
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": "MÃ KHO",
       "Unnamed: 1": "ĐƠN VỊ TÍNH",
       "Unnamed: 2": "Sum of TỔNG GỬI",
       "Unnamed: 3": "Sum of SỐ LƯỢNG BÁN ĐƯỢC",
-      "Unnamed: 4": "Sum of TỒN THỰC TẾ",
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": "Sum of TỒN THỰC TẾ"
     },
     {
       "Unnamed: 0": "052",
       "Unnamed: 1": "(blank)",
       "Unnamed: 2": 0,
       "Unnamed: 3": 60,
-      "Unnamed: 4": 60,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 60
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Két",
       "Unnamed: 2": 58130,
       "Unnamed: 3": 73723,
-      "Unnamed: 4": 131853,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 131853
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Thùng",
       "Unnamed: 2": 3465,
       "Unnamed: 3": 78036,
-      "Unnamed: 4": 81501,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 81501
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Chai",
       "Unnamed: 2": 0,
       "Unnamed: 3": 26,
-      "Unnamed: 4": 26,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 26
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Cái",
       "Unnamed: 2": 0,
       "Unnamed: 3": 4934,
-      "Unnamed: 4": 4934,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 4934
     },
     {
       "Unnamed: 0": "05KH",
       "Unnamed: 1": "(blank)",
       "Unnamed: 2": 0,
       "Unnamed: 3": 313,
-      "Unnamed: 4": 313,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 313
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Két",
-      "Unnamed: 2": 28926,
-      "Unnamed: 3": 30270,
-      "Unnamed: 4": 59196,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 2": 25686,
+      "Unnamed: 3": 33510,
+      "Unnamed: 4": 59196
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Thùng",
-      "Unnamed: 2": 21215,
-      "Unnamed: 3": 49983,
-      "Unnamed: 4": 71198,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 2": 16225,
+      "Unnamed: 3": 54973,
+      "Unnamed: 4": 71198
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Cái",
       "Unnamed: 2": 0,
       "Unnamed: 3": 2715,
-      "Unnamed: 4": 2715,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 2715
     },
     {
       "Unnamed: 0": "05NT",
       "Unnamed: 1": "Két",
       "Unnamed: 2": 35774,
       "Unnamed: 3": 41556,
-      "Unnamed: 4": 77330,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 77330
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Thùng",
       "Unnamed: 2": 93920,
       "Unnamed: 3": 25111,
-      "Unnamed: 4": 119031,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 119031
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Cái",
       "Unnamed: 2": 0,
       "Unnamed: 3": 2818,
-      "Unnamed: 4": 2818,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 2818
     },
     {
       "Unnamed: 0": "SKH",
       "Unnamed: 1": "Thùng",
-      "Unnamed: 2": 7786,
-      "Unnamed: 3": 29273,
-      "Unnamed: 4": 37059,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 2": 7450,
+      "Unnamed: 3": 29609,
+      "Unnamed: 4": 37059
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": "Cái",
       "Unnamed: 2": 0,
       "Unnamed: 3": 907,
-      "Unnamed: 4": 907,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 907
     },
     {
       "Unnamed: 0": "Grand Total",
       "Unnamed: 1": null,
-      "Unnamed: 2": 249216,
-      "Unnamed: 3": 339725,
-      "Unnamed: 4": 588941,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 2": 240650,
+      "Unnamed: 3": 348291,
+      "Unnamed: 4": 588941
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": "ĐƠN VỊ TÍNH",
       "Unnamed: 1": "Sum of TỔNG GỬI",
       "Unnamed: 2": "Sum of TỒN THỰC TẾ",
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": "(blank)",
       "Unnamed: 1": 0,
       "Unnamed: 2": 373,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": "Két",
-      "Unnamed: 1": 122830,
+      "Unnamed: 1": 119590,
       "Unnamed: 2": 268379,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": "Thùng",
-      "Unnamed: 1": 126386,
+      "Unnamed: 1": 121060,
       "Unnamed: 2": 308789,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": "Chai",
       "Unnamed: 1": 0,
       "Unnamed: 2": 26,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": 194968.0
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": "Cái",
       "Unnamed: 1": 0,
       "Unnamed: 2": 11374,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": 238698.0
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": "Grand Total",
-      "Unnamed: 1": 249216,
+      "Unnamed: 1": 240650,
       "Unnamed: 2": 588941,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": 433666.0
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": null,
       "Unnamed: 1": null,
       "Unnamed: 2": null,
       "Unnamed: 3": null,
-      "Unnamed: 4": null,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": null
     },
     {
       "Unnamed: 0": "MÃ HÀNG",
       "Unnamed: 1": "Sum of TỔNG GỬI",
       "Unnamed: 2": null,
       "Unnamed: 3": "MÃ HÀNG",
-      "Unnamed: 4": "Sum of TỒN THỰC TẾ",
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": "Sum of TỒN THỰC TẾ"
     },
     {
       "Unnamed: 0": "LASG",
-      "Unnamed: 1": 114644,
+      "Unnamed: 1": 110465,
       "Unnamed: 2": null,
       "Unnamed: 3": "LASG",
-      "Unnamed: 4": 240259,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 240259
     },
     {
       "Unnamed: 0": "LAKC",
-      "Unnamed: 1": 60715,
+      "Unnamed: 1": 59851,
       "Unnamed: 2": null,
       "Unnamed: 3": "LAKC",
-      "Unnamed: 4": 122358,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 122358
     },
     {
       "Unnamed: 0": "LNP5",
-      "Unnamed: 1": 60642,
+      "Unnamed: 1": 58320,
       "Unnamed: 2": null,
       "Unnamed: 3": "LNP5",
-      "Unnamed: 4": 92199,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 92199
     },
     {
       "Unnamed: 0": "PALC_26LE",
-      "Unnamed: 1": 4722,
+      "Unnamed: 1": 4662,
       "Unnamed: 2": null,
       "Unnamed: 3": "EXLC_26LE",
-      "Unnamed: 4": 18693,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 18693
     },
     {
       "Unnamed: 0": "EXSL",
-      "Unnamed: 1": 3570,
+      "Unnamed: 1": 2970,
       "Unnamed: 2": null,
       "Unnamed: 3": "PALC_26LE",
-      "Unnamed: 4": 16150,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 16150
     },
     {
       "Unnamed: 0": "CHLC",
-      "Unnamed: 1": 1453,
+      "Unnamed: 1": 1450,
       "Unnamed: 2": null,
       "Unnamed: 3": "CRK5",
-      "Unnamed: 4": 13605,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 13605
     },
     {
       "Unnamed: 0": "CHCR_26R2",
-      "Unnamed: 1": 946,
+      "Unnamed: 1": 892,
       "Unnamed: 2": null,
       "Unnamed: 3": "CRK1",
-      "Unnamed: 4": 11362,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "CHLC_26R2",
-      "Unnamed: 1": 610,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "EXSL",
-      "Unnamed: 4": 8744,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 11362
     },
     {
       "Unnamed: 0": "EXLC_26LE",
       "Unnamed: 1": 581,
       "Unnamed: 2": null,
-      "Unnamed: 3": "SP33",
-      "Unnamed: 4": 6050,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 3": "EXSL",
+      "Unnamed: 4": 8744
     },
     {
-      "Unnamed: 0": "SP33",
-      "Unnamed: 1": 389,
+      "Unnamed: 0": "CHLC_26R2",
+      "Unnamed: 1": 520,
       "Unnamed: 2": null,
-      "Unnamed: 3": "NP",
-      "Unnamed: 4": 5675,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 3": "SP33",
+      "Unnamed: 4": 6050
     },
     {
       "Unnamed: 0": "TN24",
       "Unnamed: 1": 340,
       "Unnamed: 2": null,
-      "Unnamed: 3": "NP2",
-      "Unnamed: 4": 5262,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 3": "NP",
+      "Unnamed: 4": 5675
     },
     {
       "Unnamed: 0": "PAPC",
       "Unnamed: 1": 320,
       "Unnamed: 2": null,
-      "Unnamed: 3": "KCXC",
-      "Unnamed: 4": 5143,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 3": "NP2",
+      "Unnamed: 4": 5262
     },
     {
       "Unnamed: 0": "PAPB",
       "Unnamed: 1": 175,
       "Unnamed: 2": null,
-      "Unnamed: 3": "KCLV",
-      "Unnamed: 4": 5129,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 3": "KCXC",
+      "Unnamed: 4": 5143
     },
     {
       "Unnamed: 0": "PAT2",
-      "Unnamed: 1": 38,
+      "Unnamed: 1": 27,
       "Unnamed: 2": null,
-      "Unnamed: 3": "KC33",
-      "Unnamed: 4": 4861,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 3": "KCLV",
+      "Unnamed: 4": 5129
     },
     {
-      "Unnamed: 0": "CH20_26R2",
-      "Unnamed: 1": 28,
+      "Unnamed: 0": "SP33",
+      "Unnamed: 1": 21,
       "Unnamed: 2": null,
-      "Unnamed: 3": "CHLC_26R2",
-      "Unnamed: 4": 3719,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 3": "KC33",
+      "Unnamed: 4": 4861
     },
     {
       "Unnamed: 0": "LASG_26R2",
       "Unnamed: 1": 19,
       "Unnamed: 2": null,
+      "Unnamed: 3": "CHLC_26R2",
+      "Unnamed: 4": 3719
+    },
+    {
+      "Unnamed: 0": "CH20_26R2",
+      "Unnamed: 1": 16,
+      "Unnamed: 2": null,
       "Unnamed: 3": "TN24",
-      "Unnamed: 4": 3390,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 3390
     },
     {
       "Unnamed: 0": "LX24",
       "Unnamed: 1": 7,
       "Unnamed: 2": null,
       "Unnamed: 3": "KCX24",
-      "Unnamed: 4": 3316,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "LV12",
-      "Unnamed: 1": 5,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "PAPC",
-      "Unnamed: 4": 3206,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 3316
     },
     {
       "Unnamed: 0": "CHCR",
       "Unnamed: 1": 5,
       "Unnamed: 2": null,
+      "Unnamed: 3": "PAPC",
+      "Unnamed: 4": 3206
+    },
+    {
+      "Unnamed: 0": "LV12",
+      "Unnamed: 1": 5,
+      "Unnamed: 2": null,
       "Unnamed: 3": "LV12",
-      "Unnamed: 4": 3013,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 3013
     },
     {
       "Unnamed: 0": "EXSL_26R3",
       "Unnamed: 1": 4,
       "Unnamed: 2": null,
       "Unnamed: 3": "PAT2",
-      "Unnamed: 4": 2905,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "CH20",
-      "Unnamed: 1": 3,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "CHLC",
-      "Unnamed: 4": 2259,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "GSFE_25T",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "CH20_26R2",
-      "Unnamed: 4": 2191,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "KRLV",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "KCD24",
-      "Unnamed: 4": 2139,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "KCX24",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "KCP33",
-      "Unnamed: 4": 1793,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "QCV04022",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "CHCR_26R2",
-      "Unnamed: 4": 1718,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 2905
     },
     {
       "Unnamed: 0": "NP2",
       "Unnamed: 1": 0,
       "Unnamed: 2": null,
-      "Unnamed: 3": "LVCA",
-      "Unnamed: 4": 1449,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "NP",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "LX24",
-      "Unnamed: 4": 524,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "KCXC",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "PAPB",
-      "Unnamed: 4": 356,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "CS33",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "KG20",
-      "Unnamed: 4": 342,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "KCLV",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "QCB22020",
-      "Unnamed: 4": 337,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "CRK5",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "LVCR",
-      "Unnamed: 4": 274,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "LVCA",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "CHCR",
-      "Unnamed: 4": 162,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "KC33",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "TNTH",
-      "Unnamed: 4": 119,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 3": "CHLC",
+      "Unnamed: 4": 2259
     },
     {
       "Unnamed: 0": "LVCR",
       "Unnamed: 1": 0,
       "Unnamed: 2": null,
-      "Unnamed: 3": "QCV04022",
-      "Unnamed: 4": 100,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 3": "CH20_26R2",
+      "Unnamed: 4": 2191
     },
     {
-      "Unnamed: 0": "PE",
+      "Unnamed: 0": "NP",
       "Unnamed: 1": 0,
       "Unnamed: 2": null,
-      "Unnamed: 3": "KRLV",
-      "Unnamed: 4": 50,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "QCB22020",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "PE",
-      "Unnamed: 4": 31,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "TNTH",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "CS33",
-      "Unnamed: 4": 26,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
-    },
-    {
-      "Unnamed: 0": "CRK1",
-      "Unnamed: 1": 0,
-      "Unnamed: 2": null,
-      "Unnamed: 3": "LASG_26R2",
-      "Unnamed: 4": 19,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 3": "KCD24",
+      "Unnamed: 4": 2139
     },
     {
       "Unnamed: 0": "KG20",
       "Unnamed: 1": 0,
       "Unnamed: 2": null,
+      "Unnamed: 3": "KCP33",
+      "Unnamed: 4": 1793
+    },
+    {
+      "Unnamed: 0": "QCB22020",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "CHCR_26R2",
+      "Unnamed: 4": 1718
+    },
+    {
+      "Unnamed: 0": "KCX24",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "LVCA",
+      "Unnamed: 4": 1449
+    },
+    {
+      "Unnamed: 0": "KCP33",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "LX24",
+      "Unnamed: 4": 524
+    },
+    {
+      "Unnamed: 0": "KCLV",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "PAPB",
+      "Unnamed: 4": 356
+    },
+    {
+      "Unnamed: 0": "LVCA",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "KG20",
+      "Unnamed: 4": 342
+    },
+    {
+      "Unnamed: 0": "CRK5",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "QCB22020",
+      "Unnamed: 4": 337
+    },
+    {
+      "Unnamed: 0": "CRK1",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "LVCR",
+      "Unnamed: 4": 274
+    },
+    {
+      "Unnamed: 0": "CS33",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "CHCR",
+      "Unnamed: 4": 162
+    },
+    {
+      "Unnamed: 0": "KRLV",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "TNTH",
+      "Unnamed: 4": 119
+    },
+    {
+      "Unnamed: 0": "PE",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "QCV04022",
+      "Unnamed: 4": 100
+    },
+    {
+      "Unnamed: 0": "GSFE_25T",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "KRLV",
+      "Unnamed: 4": 50
+    },
+    {
+      "Unnamed: 0": "KCXC",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "PE",
+      "Unnamed: 4": 31
+    },
+    {
+      "Unnamed: 0": "QCV04022",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "CS33",
+      "Unnamed: 4": 26
+    },
+    {
+      "Unnamed: 0": "TNTH",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
+      "Unnamed: 3": "LASG_26R2",
+      "Unnamed: 4": 19
+    },
+    {
+      "Unnamed: 0": "KC33",
+      "Unnamed: 1": 0,
+      "Unnamed: 2": null,
       "Unnamed: 3": "GSFE_25T",
-      "Unnamed: 4": 6,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 6
     },
     {
       "Unnamed: 0": "KCD24",
       "Unnamed: 1": 0,
       "Unnamed: 2": null,
       "Unnamed: 3": "EXSL_26R3",
-      "Unnamed: 4": 4,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 4
     },
     {
-      "Unnamed: 0": "KCP33",
+      "Unnamed: 0": "CH20",
       "Unnamed: 1": 0,
       "Unnamed: 2": null,
       "Unnamed: 3": "CH20",
-      "Unnamed: 4": 3,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 3
     },
     {
       "Unnamed: 0": "Grand Total",
-      "Unnamed: 1": 249216,
+      "Unnamed: 1": 240650,
       "Unnamed: 2": null,
       "Unnamed: 3": "Grand Total",
-      "Unnamed: 4": 588941,
-      "Unnamed: 5": null,
-      "Unnamed: 6": null
+      "Unnamed: 4": 588941
     }
   ],
   "data1-đi đường": [
@@ -3655,7 +4017,7 @@ window.DASHBOARD_DATA = {
       "SỐ XE": "50H45122",
       "TÀI XẾ": "Trịnh Quốc Sơn",
       "MÃ CHUYẾN": 26081500003,
-      "TRẠNG THÁI": "NEW",
+      "TRẠNG THÁI": "ARRIVED",
       "MÃ HÀNG": "SPDR",
       "TÊN HÀNG": "Bia Keg Saigon Draught",
       "ĐƠN VỊ TÍNH": null,
@@ -3675,7 +4037,7 @@ window.DASHBOARD_DATA = {
       "SỐ XE": "50H45122",
       "TÀI XẾ": "Trịnh Quốc Sơn",
       "MÃ CHUYẾN": 26081500004,
-      "TRẠNG THÁI": "NEW",
+      "TRẠNG THÁI": "ARRIVED",
       "MÃ HÀNG": "LAKC",
       "TÊN HÀNG": "Bia chai SAIGON Lager 355",
       "ĐƠN VỊ TÍNH": "Két",
@@ -3715,7 +4077,7 @@ window.DASHBOARD_DATA = {
       "SỐ XE": "50H94124",
       "TÀI XẾ": "Lê Văn Trực",
       "MÃ CHUYẾN": 26081500011,
-      "TRẠNG THÁI": "NEW",
+      "TRẠNG THÁI": "ARRIVED",
       "MÃ HÀNG": "LASG_26R5",
       "TÊN HÀNG": "Bia lon Saigon Lager 330ml RCP5 2026",
       "ĐƠN VỊ TÍNH": "Thùng",
@@ -104571,11 +104933,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Két",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 750,
-      "TỔNG GỬI": 713,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 37,
+      "TỔNG GỬI": 659,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 91,
       "TỒN THỰC TẾ": 750,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 14.0,
+      "Pallet Hang gửi": 13.0,
       "Pallet Hàng Tồn": 14.0
     },
     {
@@ -104603,11 +104965,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 1500,
-      "TỔNG GỬI": 198,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 1302,
+      "TỔNG GỬI": 108,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 1392,
       "TỒN THỰC TẾ": 1500,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 2.0,
+      "Pallet Hang gửi": 1.0,
       "Pallet Hàng Tồn": 10.0
     },
     {
@@ -104667,11 +105029,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 5084,
-      "TỔNG GỬI": 1757,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 3327,
+      "TỔNG GỬI": 1157,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 3927,
       "TỒN THỰC TẾ": 5084,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 14.0,
+      "Pallet Hang gửi": 9.0,
       "Pallet Hàng Tồn": 40.0
     },
     {
@@ -104795,11 +105157,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Két",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 20062,
-      "TỔNG GỬI": 9190,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 10872,
+      "TỔNG GỬI": 8326,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 11736,
       "TỒN THỰC TẾ": 20062,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 171.0,
+      "Pallet Hang gửi": 155.0,
       "Pallet Hàng Tồn": 372.0
     },
     {
@@ -104811,11 +105173,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 32563,
-      "TỔNG GỬI": 14312,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 18251,
+      "TỔNG GỬI": 10405,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 22158,
       "TỒN THỰC TẾ": 32563,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 120.0,
+      "Pallet Hang gửi": 87.0,
       "Pallet Hàng Tồn": 272.0
     },
     {
@@ -104843,11 +105205,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Két",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 22258,
-      "TỔNG GỬI": 18702,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 3556,
+      "TỔNG GỬI": 16380,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 5878,
       "TỒN THỰC TẾ": 22258,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 347.0,
+      "Pallet Hang gửi": 304.0,
       "Pallet Hàng Tồn": 413.0
     },
     {
@@ -104939,8 +105301,8 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 9638,
-      "TỔNG GỬI": 4289,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 5349,
+      "TỔNG GỬI": 4229,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 5409,
       "TỒN THỰC TẾ": 9638,
       "Unnamed: 11": null,
       "Pallet Hang gửi": 33.0,
@@ -105003,11 +105365,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 3475,
-      "TỔNG GỬI": 339,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 3136,
+      "TỔNG GỬI": 6,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 3469,
       "TỒN THỰC TẾ": 3475,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 3.0,
+      "Pallet Hang gửi": 1.0,
       "Pallet Hàng Tồn": 27.0
     },
     {
@@ -105435,11 +105797,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 3,
-      "TỔNG GỬI": 3,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 0,
+      "TỔNG GỬI": 0,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 3,
       "TỒN THỰC TẾ": 3,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 1.0,
+      "Pallet Hang gửi": 0.0,
       "Pallet Hàng Tồn": 1.0
     },
     {
@@ -105451,11 +105813,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 600,
-      "TỔNG GỬI": 12,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 588,
+      "TỔNG GỬI": 0,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 600,
       "TỒN THỰC TẾ": 600,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 1.0,
+      "Pallet Hang gửi": 0.0,
       "Pallet Hàng Tồn": 4.0
     },
     {
@@ -105467,8 +105829,8 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 1858,
-      "TỔNG GỬI": 1453,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 405,
+      "TỔNG GỬI": 1450,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 408,
       "TỒN THỰC TẾ": 1858,
       "Unnamed: 11": null,
       "Pallet Hang gửi": 10.0,
@@ -105531,11 +105893,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 30941,
-      "TỔNG GỬI": 6272,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 24669,
+      "TỔNG GỬI": 6000,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 24941,
       "TỒN THỰC TẾ": 30941,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 53.0,
+      "Pallet Hang gửi": 50.0,
       "Pallet Hàng Tồn": 258.0
     },
     {
@@ -105611,11 +105973,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 477,
-      "TỔNG GỬI": 11,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 466,
+      "TỔNG GỬI": 0,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 477,
       "TỒN THỰC TẾ": 477,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 1.0,
+      "Pallet Hang gửi": 0.0,
       "Pallet Hàng Tồn": 4.0
     },
     {
@@ -105659,11 +106021,11 @@ window.DASHBOARD_DATA = {
       "ĐƠN VỊ TÍNH": "Thùng",
       "NHÓM HÀNG": "TP",
       "TỔNG SỐ LƯỢNG": 1762,
-      "TỔNG GỬI": 35,
-      "SỐ LƯỢNG BÁN ĐƯỢC": 1727,
+      "TỔNG GỬI": 0,
+      "SỐ LƯỢNG BÁN ĐƯỢC": 1762,
       "TỒN THỰC TẾ": 1762,
       "Unnamed: 11": null,
-      "Pallet Hang gửi": 1.0,
+      "Pallet Hang gửi": 0.0,
       "Pallet Hàng Tồn": 14.0
     },
     {
@@ -107830,6 +108192,23 @@ window.DASHBOARD_DATA = {
       "TÊN ĐƠN VỊ": "CTY CPTM BIA SÀI GÒN NAM TRUNG BỘ",
       "MÃ KHO": "05KH",
       "TÊN KHO": "Kho NTB tại NM BSG Khánh Hòa",
+      "MÃ C1": "CIZ1700-0050",
+      "TÊN C1": "CTY TNHH TM Lê Anh Huy",
+      "SỐ HÓA ĐƠN": "DD-00002908-0050-15/08/26",
+      "LOẠI HÓA ĐƠN": 23007,
+      "NGÀY RA HÓA ĐƠN": "15/08/2026",
+      "MÃ HÀNG": "LASG",
+      "TÊN HÀNG": "Bia lon SAIGON Lager",
+      "ĐƠN VỊ TÍNH": "Thùng",
+      "SỐ LƯỢNG BAN ĐẦU": 2800,
+      "SỐ LƯỢNG ĐÃ XUẤT": 0,
+      "SỐ LƯỢNG CÒN LẠI": 2800,
+      "NHÓM HÀNG": "TP"
+    },
+    {
+      "TÊN ĐƠN VỊ": "CTY CPTM BIA SÀI GÒN NAM TRUNG BỘ",
+      "MÃ KHO": "05KH",
+      "TÊN KHO": "Kho NTB tại NM BSG Khánh Hòa",
       "MÃ C1": "Z1700-KH",
       "TÊN C1": "PKD CN Nha Trang (Bia CT, KM)",
       "SỐ HÓA ĐƠN": "00002657-2663-0-KH-30/07/2026",
@@ -109184,23 +109563,6 @@ window.DASHBOARD_DATA = {
       "SỐ LƯỢNG BAN ĐẦU": 130,
       "SỐ LƯỢNG ĐÃ XUẤT": 0,
       "SỐ LƯỢNG CÒN LẠI": 130,
-      "NHÓM HÀNG": "TP"
-    },
-    {
-      "TÊN ĐƠN VỊ": "CTY CPTM BIA SÀI GÒN NAM TRUNG BỘ",
-      "MÃ KHO": "05KH",
-      "TÊN KHO": "Kho NTB tại NM BSG Khánh Hòa",
-      "MÃ C1": "CIZ1700-0050",
-      "TÊN C1": "CTY TNHH TM Lê Anh Huy",
-      "SỐ HÓA ĐƠN": "DD-00002908-0050-15/08/26",
-      "LOẠI HÓA ĐƠN": 23007,
-      "NGÀY RA HÓA ĐƠN": "15/08/2026",
-      "MÃ HÀNG": "LASG",
-      "TÊN HÀNG": "Bia lon SAIGON Lager",
-      "ĐƠN VỊ TÍNH": "Thùng",
-      "SỐ LƯỢNG BAN ĐẦU": 2800,
-      "SỐ LƯỢNG ĐÃ XUẤT": 0,
-      "SỐ LƯỢNG CÒN LẠI": 2800,
       "NHÓM HÀNG": "TP"
     },
     {
@@ -110787,39 +111149,6 @@ window.DASHBOARD_DATA = {
     },
     {
       "ntb-hoangtien": "Bạn chỉ cần chụp màn hình chỗ đó hoặc copy cái URL và dòng chữ trong Payload gửi cho mình là đủ rồi. Mỗi bảng báo cáo bạn thao tác lặp lại để lấy đúng link API nhé!"
-    },
-    {
-      "ntb-hoangtien": null
-    },
-    {
-      "ntb-hoangtien": null
-    },
-    {
-      "ntb-hoangtien": null
-    },
-    {
-      "ntb-hoangtien": null
-    },
-    {
-      "ntb-hoangtien": null
-    },
-    {
-      "ntb-hoangtien": null
-    },
-    {
-      "ntb-hoangtien": null
-    },
-    {
-      "ntb-hoangtien": null
-    },
-    {
-      "ntb-hoangtien": "git remote set-url origin https://***REDACTED***@github.com/hoten08031984-lab/khoNTB.git"
-    },
-    {
-      "ntb-hoangtien": null
-    },
-    {
-      "ntb-hoangtien": "***REDACTED***"
     }
   ],
   "Mã hàng": [
