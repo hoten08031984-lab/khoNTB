@@ -1,5 +1,5 @@
 // Auto-generated data file from báo cáo.xlsx
-window.LAST_UPDATED_TIME = '16/08/2026 12:26:24';
+window.LAST_UPDATED_TIME = '16/08/2026 16:21:01';
 window.DASHBOARD_DATA = {
   "baocao1": [
     {
