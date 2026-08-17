@@ -58,3 +58,5 @@ To https://github.com/hoten08031984-lab/khoNTB.git
 [16/08/2026 20:03:15,55] === KET THUC === 
 [Mon 08/17/2026 12:25:35.74] Da kiem tra thu vien Python. 
 [Mon 08/17/2026 12:26:29.77] extract_data.py hoan tat thanh cong. 
+[Mon 08/17/2026 16:20:07.57] Da kiem tra thu vien Python. 
+[Mon 08/17/2026 16:20:58.39] extract_data.py hoan tat thanh cong. 
