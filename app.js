@@ -1108,14 +1108,17 @@ function renderTableBC3Detail(data) {
           if (index < 5 && index !== 1) { // Bỏ qua index 1 (TÊN KHO)
               const alignClass = index >= 2 ? 'text-right' : '';
               let displayKey = key;
-              if (key.includes('PL ƯỚC TÍNH')) {
-                  displayKey = 'PL ƯỚC TÍNH (TP&BB)';
-              } else if (key.includes('PL VỊ TRÍ TP')) {
+              let customStyle = '';
+              const upperKey = key.toUpperCase();
+              if (upperKey.includes('PL ƯỚC TÍNH') || upperKey.includes('PL UOC TINH')) {
+                  displayKey = 'PL ước tính theo số tồn TP và BB (chia tỷ lệ xếp)';
+                  customStyle = 'color: #dc2626; font-weight: 800;';
+              } else if (upperKey.includes('PL VỊ TRÍ TP') || upperKey.includes('PL VI TRI TP')) {
                   displayKey = 'SWM: PL TP';
-              } else if (key.includes('PL VỊ TRÍ RỖNG')) {
+              } else if (upperKey.includes('PL VỊ TRÍ RỖNG') || upperKey.includes('PL VI TRI RONG')) {
                   displayKey = 'SWM: PL RỖNG';
               }
-              theadHtml += `<th style="cursor:pointer;" class="${alignClass}" onclick="handleSortBC3('${key}')">${displayKey} <span id="sort3-${key}" class="sort-icon">⇕</span></th>`;
+              theadHtml += `<th style="cursor:pointer; ${customStyle}" class="${alignClass}" onclick="handleSortBC3('${key}')">${displayKey} <span id="sort3-${key}" class="sort-icon">⇕</span></th>`;
           }
       });
       theadHtml += '</tr>';
@@ -3230,10 +3233,93 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 200);
 });
 
+let pendingExportReportId = null;
+
 /**
- * Kết xuất dữ liệu thô đã lọc của từng Báo cáo ra file Excel (.xlsx)
+ * Mở modal xác thực mật khẩu trước khi xuất dữ liệu
  */
 function exportReportToExcel(reportId) {
+  pendingExportReportId = reportId || currentReport || 'bc1';
+  openPasswordModal();
+}
+
+function openPasswordModal() {
+  const modal = document.getElementById('password-modal');
+  const input = document.getElementById('export-password-input');
+  const errorMsg = document.getElementById('password-error-msg');
+  if (modal && input) {
+    input.value = '';
+    input.type = 'password';
+    if (errorMsg) errorMsg.style.display = 'none';
+    modal.style.display = 'flex';
+    setTimeout(() => input.focus(), 100);
+  }
+}
+
+function closePasswordModal() {
+  const modal = document.getElementById('password-modal');
+  const input = document.getElementById('export-password-input');
+  const errorMsg = document.getElementById('password-error-msg');
+  if (modal) modal.style.display = 'none';
+  if (input) input.value = '';
+  if (errorMsg) errorMsg.style.display = 'none';
+  pendingExportReportId = null;
+}
+
+function togglePasswordVisibility() {
+  const input = document.getElementById('export-password-input');
+  const icon = document.getElementById('toggle-password-visibility');
+  if (input) {
+    if (input.type === 'password') {
+      input.type = 'text';
+      if (icon) icon.textContent = '🔒';
+    } else {
+      input.type = 'password';
+      if (icon) icon.textContent = '👁️';
+    }
+  }
+}
+
+function confirmExportWithPassword() {
+  const input = document.getElementById('export-password-input');
+  const errorMsg = document.getElementById('password-error-msg');
+  const enteredPass = input ? input.value.trim() : '';
+  const expectedPass = (window.EXPORT_PASSWORD != null ? String(window.EXPORT_PASSWORD) : 'khontb123@').trim();
+
+  if (enteredPass !== '' && enteredPass === expectedPass) {
+    const reportToExport = pendingExportReportId;
+    closePasswordModal();
+    executeExportReportToExcel(reportToExport);
+  } else {
+    if (errorMsg) {
+      errorMsg.textContent = '⚠️ Liên hệ Tiến để lấy pass';
+      errorMsg.style.display = 'block';
+    }
+    if (input) {
+      input.focus();
+      input.select();
+    }
+  }
+}
+
+// Bắt phím Enter và Escape cho modal mật khẩu
+document.addEventListener('keydown', (e) => {
+  const modal = document.getElementById('password-modal');
+  if (modal && modal.style.display === 'flex') {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      confirmExportWithPassword();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      closePasswordModal();
+    }
+  }
+});
+
+/**
+ * Thực thi kết xuất dữ liệu thô đã lọc của từng Báo cáo ra file Excel (.xlsx)
+ */
+function executeExportReportToExcel(reportId) {
   const target = reportId || currentReport || 'bc1';
   let dataToExport = [];
   let sheetName = 'DataTho';
@@ -3361,5 +3447,6 @@ function exportToCsvFallback(dataArray, fileName) {
   link.click();
   document.body.removeChild(link);
 }
+
 
 

@@ -512,13 +512,25 @@ def export_to_js():
             except Exception as e:
                 pass
 
+    # Trích xuất mật khẩu xuất data thô từ ô A3 của Sheet1
+    export_pass = "khontb123@"
+    try:
+        if 'Sheet1' in xl.sheet_names:
+            df_s1 = pd.read_excel(EXCEL_FILE, sheet_name='Sheet1', header=None)
+            if len(df_s1) >= 3 and not pd.isna(df_s1.iloc[2, 0]):
+                val = str(df_s1.iloc[2, 0]).strip()
+                if val and val.lower() != 'nan':
+                    export_pass = val
+    except Exception as e:
+        log(f" [!] Không đọc được pass từ Sheet1!A3: {e}")
+
     def default_converter(o):
         if isinstance(o, (datetime.date, datetime.datetime, pd.Timestamp)): return o.strftime('%d/%m/%Y')
         if pd.isna(o): return None
         return str(o)
         
     now_str = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    js_content = f"// Auto-generated data file from báo cáo.xlsx\nwindow.LAST_UPDATED_TIME = '{now_str}';\nwindow.DASHBOARD_DATA = " + json.dumps(data_store, ensure_ascii=False, indent=2, default=default_converter) + ";"
+    js_content = f"// Auto-generated data file from báo cáo.xlsx\nwindow.LAST_UPDATED_TIME = '{now_str}';\nwindow.EXPORT_PASSWORD = {json.dumps(export_pass, ensure_ascii=False)};\nwindow.DASHBOARD_DATA = " + json.dumps(data_store, ensure_ascii=False, indent=2, default=default_converter) + ";"
     
     # Khử trùng toàn bộ chuỗi ghp_ token nếu có lọt vào json
     import re

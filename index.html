@@ -703,6 +703,32 @@
     </main> <!-- end main-content -->
   </div> <!-- end dashboard-layout -->
 
+  <!-- Modal Xác Thực Mật Khẩu Xuất Data Thô -->
+  <div id="password-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">🔒 Xác Thực Xuất Dữ Liệu</div>
+        <button class="modal-close-btn" onclick="closePasswordModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--text-muted);">
+          Vui lòng nhập mật khẩu để tải file dữ liệu thô:
+        </p>
+        <div style="position: relative;">
+          <input type="password" id="export-password-input" class="modal-input" placeholder="Nhập mật khẩu..." autocomplete="off">
+          <span id="toggle-password-visibility" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; user-select: none; font-size: 14px; opacity: 0.7;">👁️</span>
+        </div>
+        <div id="password-error-msg" style="color: #dc2626; font-size: 12px; margin-top: 8px; display: none; font-weight: 700;">
+          ⚠️ Liên hệ Tiến để lấy pass
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" onclick="closePasswordModal()">Hủy</button>
+        <button class="btn-modal-confirm" onclick="confirmExportWithPassword()">Xác nhận tải</button>
+      </div>
+    </div>
+  </div>
+
   <script src="chart.umd.min.js"></script>
   <script src="chartjs-plugin-datalabels.min.js"></script>
   <script src="xlsx.full.min.js"></script>

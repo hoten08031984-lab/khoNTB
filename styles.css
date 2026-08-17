@@ -807,3 +807,132 @@ body {
     color: red !important;
     font-weight: bold !important;
 }
+
+/* =====================================================
+   PASSWORD AUTH MODAL (Xuất Data Thô)
+   ===================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeInModal 0.2s ease-out;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(30, 80, 180, 0.18);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+  width: 90%;
+  max-width: 380px;
+  padding: 20px;
+  animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.modal-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  border-radius: 4px;
+}
+.modal-close-btn:hover {
+  color: var(--text-main);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.modal-input {
+  width: 100%;
+  padding: 9px 36px 9px 12px;
+  border: 1px solid var(--border-excel);
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  background: var(--bg-input);
+  color: var(--text-main);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.modal-input:focus {
+  border-color: var(--accent-blue);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px var(--accent-blue-glow);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.btn-modal-cancel {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: #ffffff;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-modal-cancel:hover {
+  background: #f1f5f9;
+}
+
+.btn-modal-confirm {
+  padding: 7px 16px;
+  border-radius: 6px;
+  border: none;
+  background: #107c41;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(16, 124, 65, 0.3);
+  transition: all 0.15s;
+}
+.btn-modal-confirm:hover {
+  background: #0e6b37;
+  transform: translateY(-1px);
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
