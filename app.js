@@ -68,8 +68,8 @@ let currentSortOrderBC2Function = 'asc';
 // BC5 state
 let rawDataBC5 = [];
 let searchQueryBC5 = '';
-let currentSortColumnBC5 = 'TỒN THỰC TẾ';
-let currentSortOrderBC5 = 'desc';
+let currentSortColumnBC5 = 'MÃ HÀNG';
+let currentSortOrderBC5 = 'asc';
 
 // BC3 state
 let rawDataBC3 = [];
@@ -768,33 +768,71 @@ function updateSortIcons() {
   });
 }
 
+function getBC1NormalizedStatus(row) {
+  const raw = getSafeValue(row, ['TRẠNG THÁI']) ? String(getSafeValue(row, ['TRẠNG THÁI'])).trim().toUpperCase() : '';
+  if (raw === '16' || raw === 'ARRIVED') return 'ARRIVED';
+  if (raw === '0' || raw === 'NEW') return 'NEW';
+  return raw;
+}
+
 function sortRows(rows, column, order) {
   return [...rows].sort((a, b) => {
-    let valA = a[column] !== undefined && a[column] !== null ? a[column] : '';
-    let valB = b[column] !== undefined && b[column] !== null ? b[column] : '';
+    // 1. Cấp 1: Cột chính do người dùng chọn (Primary Sort)
+    let cmp = 0;
+    const valA = getSafeValue(a, [column]);
+    const valB = getSafeValue(b, [column]);
 
-    if (column === 'MÃ KHO') {
+    if (column === 'TRẠNG THÁI') {
+      const stA = getBC1NormalizedStatus(a);
+      const stB = getBC1NormalizedStatus(b);
+      let orderA = stA === 'ARRIVED' ? 1 : (stA === 'NEW' ? 2 : 3);
+      let orderB = stB === 'ARRIVED' ? 1 : (stB === 'NEW' ? 2 : 3);
+      cmp = order === 'asc' ? orderA - orderB : orderB - orderA;
+    } else if (column === 'MÃ KHO') {
       const ORDER = ["052", "05NT", "05KH", "SKH"];
       let ia = ORDER.indexOf(valA);
       let ib = ORDER.indexOf(valB);
-      if(ia === -1) ia = 999;
-      if(ib === -1) ib = 999;
+      if (ia === -1) ia = 999;
+      if (ib === -1) ib = 999;
       if (ia !== ib) {
-        return order === 'asc' ? ia - ib : ib - ia;
+        cmp = order === 'asc' ? ia - ib : ib - ia;
       }
-    }
-
-    if (column === 'SỐ LƯỢNG' || column === 'SỐ LƯỢNG PL') {
+    } else if (column === 'SỐ LƯỢNG' || column === 'SỐ LƯỢNG PL' || column === 'SL PL') {
       const numA = parseFloat(valA) || 0;
       const numB = parseFloat(valB) || 0;
-      return order === 'asc' ? numA - numB : numB - numA;
+      cmp = order === 'asc' ? numA - numB : numB - numA;
+    } else {
+      const strA = String(valA || '').toLowerCase();
+      const strB = String(valB || '').toLowerCase();
+      if (strA < strB) cmp = order === 'asc' ? -1 : 1;
+      else if (strA > strB) cmp = order === 'asc' ? 1 : -1;
     }
 
-    const strA = String(valA).toLowerCase();
-    const strB = String(valB).toLowerCase();
+    if (cmp !== 0) return cmp;
 
-    if (strA < strB) return order === 'asc' ? -1 : 1;
-    if (strA > strB) return order === 'asc' ? 1 : -1;
+    // 2. Cấp 2 trở đi: Sắp xếp phân cấp tự nhiên TRẠNG THÁI -> KHO XUẤT -> SỐ XE -> MÃ HÀNG
+    // Trạng thái (ARRIVED trước, NEW sau)
+    const stA = getBC1NormalizedStatus(a);
+    const stB = getBC1NormalizedStatus(b);
+    let orderA = stA === 'ARRIVED' ? 1 : (stA === 'NEW' ? 2 : 3);
+    let orderB = stB === 'ARRIVED' ? 1 : (stB === 'NEW' ? 2 : 3);
+    if (orderA !== orderB) return orderA - orderB;
+
+    // Kho xuất
+    const khoA = String(getSafeValue(a, ['KHO XUẤT']) || '').toLowerCase();
+    const khoB = String(getSafeValue(b, ['KHO XUẤT']) || '').toLowerCase();
+    if (khoA !== khoB) return khoA.localeCompare(khoB);
+
+    // Số xe (Đảm bảo cùng 1 xe luôn gom liền nhau)
+    const xeA = String(getSafeValue(a, ['SỐ XE']) || '').toLowerCase();
+    const xeB = String(getSafeValue(b, ['SỐ XE']) || '').toLowerCase();
+    if (xeA !== xeB) return xeA.localeCompare(xeB);
+
+    // Mã hàng
+    const mhA = String(getSafeValue(a, ['MÃ HÀNG']) || '').toLowerCase();
+    const mhB = String(getSafeValue(b, ['MÃ HÀNG']) || '').toLowerCase();
+    if (mhA !== mhB) return mhA.localeCompare(mhB);
+
     return 0;
   });
 }
@@ -2717,34 +2755,58 @@ function renderBC5Table(data) {
 
   // Sort
   filtered.sort(function(a, b) {
-    var getVal = function(r) {
-      switch(currentSortColumnBC5) {
+    var getVal = function(r, col) {
+      switch(col) {
         case 'MÃ KHO': return String(getSafeValue(r, ['MÃ KHO']) || '');
         case 'NHÓM HÀNG': return String(getSafeValue(r, ['NHÓM HÀNG']) || '').toLowerCase();
         case 'MÃ HÀNG': return String(getSafeValue(r, ['MÃ HÀNG']) || '').toLowerCase();
         case 'ĐVT': return String(getSafeValue(r, ['ĐƠN VỊ TÍNH', 'ĐVT']) || '').toLowerCase();
         case 'TỔNG GỬI': return Number(getSafeValue(r, ['TỔNG GỬI'])) || 0;
-        case 'BÁN ĐƯỢC': return Number(getSafeValue(r, ['SỐ LƯỢNG BÁN ĐƯỢC'])) || 0;
         case 'TỒN THỰC TẾ': return Number(getSafeValue(r, ['TỒN THỰC TẾ'])) || 0;
+        case 'Số có thể up (số Bravo)':
+        case 'BÁN ĐƯỢC': return Number(getSafeValue(r, ['SỐ LƯỢNG BÁN ĐƯỢC'])) || 0;
         default: return 0;
       }
     };
-    var valA = getVal(a);
-    var valB = getVal(b);
+
+    var valA = getVal(a, currentSortColumnBC5);
+    var valB = getVal(b, currentSortColumnBC5);
     
     if (currentSortColumnBC5 === 'MÃ KHO') {
       const ORDER = ["052", "05NT", "05KH", "SKH"];
       let ia = ORDER.indexOf(valA);
       let ib = ORDER.indexOf(valB);
-      if(ia === -1) ia = 999;
-      if(ib === -1) ib = 999;
+      if (ia === -1) ia = 999;
+      if (ib === -1) ib = 999;
       if (ia !== ib) {
         return currentSortOrderBC5 === 'asc' ? ia - ib : ib - ia;
       }
+    } else if (typeof valA === 'number' && typeof valB === 'number') {
+      if (valA !== valB) {
+        return currentSortOrderBC5 === 'asc' ? valA - valB : valB - valA;
+      }
+    } else {
+      let strA = String(valA || '').toLowerCase();
+      let strB = String(valB || '').toLowerCase();
+      if (strA < strB) return currentSortOrderBC5 === 'asc' ? -1 : 1;
+      if (strA > strB) return currentSortOrderBC5 === 'asc' ? 1 : -1;
     }
     
-    if (valA < valB) return currentSortOrderBC5 === 'asc' ? -1 : 1;
-    if (valA > valB) return currentSortOrderBC5 === 'asc' ? 1 : -1;
+    // Cấp phụ 1: MÃ HÀNG (A->Z) nếu cột chọn không phải MÃ HÀNG
+    if (currentSortColumnBC5 !== 'MÃ HÀNG') {
+      let mhA = String(getSafeValue(a, ['MÃ HÀNG']) || '').toLowerCase();
+      let mhB = String(getSafeValue(b, ['MÃ HÀNG']) || '').toLowerCase();
+      if (mhA !== mhB) return mhA.localeCompare(mhB);
+    }
+
+    // Cấp phụ 2: MÃ KHO (052, 05NT, 05KH, SKH) để các kho của cùng 1 mã hàng gom lại liền nhau
+    const KHO_ORDER = ["052", "05NT", "05KH", "SKH"];
+    let ka = KHO_ORDER.indexOf(getSafeValue(a, ['MÃ KHO']));
+    let kb = KHO_ORDER.indexOf(getSafeValue(b, ['MÃ KHO']));
+    if (ka === -1) ka = 999;
+    if (kb === -1) kb = 999;
+    if (ka !== kb) return ka - kb;
+
     return 0;
   });
 
@@ -2752,13 +2814,13 @@ function renderBC5Table(data) {
     count++;
     var tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${getSafeValue(row, ['MÃ KHO']) || ''}</td>
+      <td><strong>${getSafeValue(row, ['MÃ KHO']) || ''}</strong></td>
       <td>${getSafeValue(row, ['NHÓM HÀNG']) || ''}</td>
-      <td>${getSafeValue(row, ['MÃ HÀNG']) || ''}</td>
+      <td><code style="color: var(--primary); font-weight: 700;">${getSafeValue(row, ['MÃ HÀNG']) || ''}</code></td>
       <td>${getSafeValue(row, ['ĐƠN VỊ TÍNH', 'ĐVT']) || ''}</td>
       <td style="text-align: right;">${(Number(getSafeValue(row, ['TỔNG GỬI'])) || 0).toLocaleString()}</td>
-      <td style="text-align: right;">${(Number(getSafeValue(row, ['SỐ LƯỢNG BÁN ĐƯỢC'])) || 0).toLocaleString()}</td>
       <td style="text-align: right;"><strong>${(Number(getSafeValue(row, ['TỒN THỰC TẾ'])) || 0).toLocaleString()}</strong></td>
+      <td style="text-align: right;">${(Number(getSafeValue(row, ['SỐ LƯỢNG BÁN ĐƯỢC'])) || 0).toLocaleString()}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -2766,10 +2828,29 @@ function renderBC5Table(data) {
   if (count === 0) {
     tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #64748b; padding: 20px;">Không có dữ liệu phù hợp</td></tr>';
   }
+
+  updateSortIconsBC5();
+}
+
+function updateSortIconsBC5() {
+  var cols = ['MÃ KHO', 'NHÓM HÀNG', 'MÃ HÀNG', 'ĐVT', 'TỔNG GỬI', 'TỒN THỰC TẾ', 'Số có thể up (số Bravo)'];
+  var ths = document.querySelectorAll('#table-bc5 thead th');
+  ths.forEach(function(th, idx) {
+    var iconSpan = th.querySelector('.sort-icon');
+    if (iconSpan) {
+      if (cols[idx] === currentSortColumnBC5) {
+        iconSpan.textContent = currentSortOrderBC5 === 'asc' ? ' ▲' : ' ▼';
+        iconSpan.style.color = 'var(--primary)';
+      } else {
+        iconSpan.textContent = ' ↕';
+        iconSpan.style.color = 'rgba(0,0,0,0.2)';
+      }
+    }
+  });
 }
 
 function sortBC5Table(colIndex) {
-  var cols = ['MÃ KHO', 'NHÓM HÀNG', 'MÃ HÀNG', 'ĐVT', 'TỔNG GỬI', 'BÁN ĐƯỢC', 'TỒN THỰC TẾ'];
+  var cols = ['MÃ KHO', 'NHÓM HÀNG', 'MÃ HÀNG', 'ĐVT', 'TỔNG GỬI', 'TỒN THỰC TẾ', 'Số có thể up (số Bravo)'];
   var col = cols[colIndex];
   if (currentSortColumnBC5 === col) {
     currentSortOrderBC5 = currentSortOrderBC5 === 'asc' ? 'desc' : 'asc';
