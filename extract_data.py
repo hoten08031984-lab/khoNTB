@@ -471,6 +471,234 @@ def clean_value(val):
         s = re.sub(r'ghp_[A-Za-z0-9_]+', '***REDACTED***', s)
     return s
 
+def scan_checkloi_rules(data_store, xl_obj=None):
+    """
+    Đọc sheet 'CheckLoi' (hoặc dùng quy tắc mặc định nếu chưa tạo sheet)
+    và quét lỗi trên tất cả các sheet dữ liệu.
+    """
+    rules = []
+    
+    # 1. Đọc sheet CheckLoi từ Excel nếu có
+    if xl_obj is not None and 'CheckLoi' in xl_obj.sheet_names:
+        try:
+            df_check = pd.read_excel(EXCEL_FILE, sheet_name='CheckLoi', header=None)
+            header_row = -1
+            for r_idx in range(min(10, len(df_check))):
+                row_text = ' '.join([str(v) for v in df_check.iloc[r_idx].values if pd.notna(v)]).lower()
+                if 'tên sheet' in row_text or 'cột' in row_text or 'lỗi' in row_text:
+                    header_row = r_idx
+                    break
+            
+            start_r = header_row + 1 if header_row != -1 else 2
+            for r_idx in range(start_r, len(df_check)):
+                row_vals = df_check.iloc[r_idx].values
+                sheet_name = str(row_vals[0]).strip() if len(row_vals) > 0 and pd.notna(row_vals[0]) else ''
+                col_spec = str(row_vals[1]).strip() if len(row_vals) > 1 and pd.notna(row_vals[1]) else ''
+                err_val = str(row_vals[2]).strip() if len(row_vals) > 2 and pd.notna(row_vals[2]) else ''
+                desc = str(row_vals[3]).strip() if len(row_vals) > 3 and pd.notna(row_vals[3]) else 'ra dữ liệu dòng đó'
+                
+                # Bỏ qua dòng tiêu đề hoặc dòng rỗng
+                if (sheet_name and sheet_name.lower() != 'nan' 
+                    and 'tên sheet' not in sheet_name.lower() 
+                    and 'cơ chế check' not in sheet_name.lower()
+                    and err_val and err_val.lower() != 'nan'
+                    and 'lỗi xuất hiện' not in err_val.lower()):
+                    rules.append({
+                        'sheet_name': sheet_name,
+                        'col_spec': col_spec,
+                        'error_val': err_val,
+                        'desc': desc
+                    })
+        except Exception as e:
+            log(f" [!] Lỗi khi đọc sheet CheckLoi: {e}")
+
+    # Nếu chưa có cấu hình hoặc sheet chưa tạo, dùng 2 quy tắc chuẩn theo yêu cầu
+    if not rules:
+        rules = [
+            {
+                'sheet_name': 'data7-tồn kho theo ngày',
+                'col_spec': 'Cột O',
+                'error_val': 'Mã hàng chưa cập nhật',
+                'desc': 'ra dữ liệu dòng đó'
+            },
+            {
+                'sheet_name': 'Append1 Nhập- Xuất',
+                'col_spec': 'Cột G',
+                'error_val': 'XNPP',
+                'desc': 'ra dữ liệu dòng đó'
+            }
+        ]
+
+    # 2. Thực hiện quét lỗi thông minh
+    check_results = []
+    
+    def extract_col_indices(col_str):
+        """Tách các cột từ chuỗi như 'Cột O', 'Cột I', 'Cột H và cột K', 'H, K'"""
+        import re
+        # Tìm tất cả chữ cái đơn đại diện cho cột (A, B, ..., Z, AA, AB...)
+        found = re.findall(r'\b[A-Za-z]{1,3}\b', str(col_str))
+        cols = []
+        for f in found:
+            f_up = f.upper()
+            if f_up in ['CỘT', 'COT', 'VÀ', 'VA', 'AND', 'SUM']: continue
+            idx = 0
+            for char in f_up:
+                idx = idx * 26 + (ord(char) - ord('A') + 1)
+            cols.append(idx - 1)
+        return cols
+
+    def parse_numeric_condition(err_text):
+        """Phân tích các điều kiện như '< 0', '<= 0', '> 0', '>= 0', '= 0', '<> 0', 'kết quả < 0'"""
+        import re
+        m = re.search(r'([<>!=]=?|<>)\s*(-?\d+(\.\d+)?)', str(err_text))
+        if m:
+            op = m.group(1)
+            val = float(m.group(2))
+            return op, val
+        return None, None
+
+    for rule in rules:
+        target_sheet = rule['sheet_name']
+        col_spec = rule['col_spec']
+        err_raw = str(rule['error_val']).strip()
+        target_err_lower = err_raw.lower()
+        
+        matched_sheet_key = None
+        for k in data_store.keys():
+            if k.strip().lower() == target_sheet.strip().lower():
+                matched_sheet_key = k
+                break
+        
+        if not matched_sheet_key or not data_store[matched_sheet_key]:
+            continue
+            
+        sheet_rows = data_store[matched_sheet_key]
+        if not sheet_rows:
+            continue
+            
+        sample_row = sheet_rows[0]
+        col_keys = list(sample_row.keys())
+        col_indices = extract_col_indices(col_spec)
+
+        # -------------------------------------------------------------
+        # TRƯỜNG HỢP 1: SO SÁNH TỔNG CỘT (SUM CỘT H <> SUM CỘT K - CÁCH B)
+        # -------------------------------------------------------------
+        if 'sum' in target_err_lower and len(col_indices) >= 2:
+            idx1, idx2 = col_indices[0], col_indices[1]
+            key1 = col_keys[idx1] if 0 <= idx1 < len(col_keys) else None
+            key2 = col_keys[idx2] if 0 <= idx2 < len(col_keys) else None
+            
+            if key1 and key2:
+                sum1 = sum(float(r.get(key1) or 0) for r in sheet_rows if r.get(key1) is not None and str(r.get(key1)).replace('.','',1).replace('-','',1).isdigit())
+                sum2 = sum(float(r.get(key2) or 0) for r in sheet_rows if r.get(key2) is not None and str(r.get(key2)).replace('.','',1).replace('-','',1).isdigit())
+                
+                is_sum_diff = abs(sum1 - sum2) > 0.001
+                if is_sum_diff:
+                    # Xuất tất cả các dòng có phát sinh chênh lệch giữa 2 cột này
+                    for row_idx, row in enumerate(sheet_rows):
+                        v1 = float(row.get(key1) or 0) if str(row.get(key1)).replace('.','',1).replace('-','',1).isdigit() else 0
+                        v2 = float(row.get(key2) or 0) if str(row.get(key2)).replace('.','',1).replace('-','',1).isdigit() else 0
+                        diff_row = v1 - v2
+                        
+                        if abs(diff_row) > 0.001:
+                            ma_kho = row.get('MÃ KHO') or row.get('Mã Kho') or row.get('whseid') or ''
+                            ma_hang = row.get('MÃ HÀNG') or row.get('Mã Hàng') or row.get('sku') or ''
+                            ten_hang = row.get('TÊN HÀNG') or row.get('Tên Hàng') or row.get('descr') or ''
+                            so_luong = row.get('SỐ LƯỢNG') or row.get('TỔNG SỐ LƯỢNG') or row.get('TỒN THỰC TẾ') or ''
+                            ngay = row.get('NGÀY') or row.get('NGÀY NHẬP') or ''
+                            so_xe = row.get('SỐ XE') or ''
+                            
+                            check_results.append({
+                                'id': f"ERR_{len(check_results)+1}",
+                                'sheet_name': matched_sheet_key,
+                                'rule_col': col_spec,
+                                'col_name_matched': f"{key1} ({v1:,.0f}) & {key2} ({v2:,.0f})",
+                                'error_expected': rule['error_val'],
+                                'actual_value': f"Tổng {key1} ({sum1:,.0f}) <> Tổng {key2} ({sum2:,.0f}) | Lệch dòng: {diff_row:+,.0f}",
+                                'rule_desc': rule['desc'],
+                                'row_idx': row_idx + 2,
+                                'ma_kho': str(ma_kho).strip(),
+                                'ma_hang': str(ma_hang).strip(),
+                                'ten_hang': str(ten_hang).strip(),
+                                'so_luong': so_luong,
+                                'ngay': str(ngay).strip(),
+                                'so_xe': str(so_xe).strip(),
+                                'full_row': row
+                            })
+            continue
+
+        # -------------------------------------------------------------
+        # TRƯỜNG HỢP 2 & 3: KIỂM TRA ĐƠN CỘT (SỐ HỌC < 0 HOẶC CHUỖI VĂN BẢN)
+        # -------------------------------------------------------------
+        col_idx = col_indices[0] if len(col_indices) > 0 else None
+        target_col_key = None
+        if col_idx is not None and 0 <= col_idx < len(col_keys):
+            target_col_key = col_keys[col_idx]
+            
+        if not target_col_key or col_spec.strip() in col_keys:
+            for k in col_keys:
+                if k.strip().lower() == col_spec.strip().lower():
+                    target_col_key = k
+                    break
+                    
+        if not target_col_key:
+            target_col_key = col_spec
+
+        op, target_num = parse_numeric_condition(err_raw)
+
+        for row_idx, row in enumerate(sheet_rows):
+            val = row.get(target_col_key)
+            if val is None and col_idx is not None and 0 <= col_idx < len(col_keys):
+                val = row.get(col_keys[col_idx])
+                
+            is_match = False
+            
+            # So sánh số học (< 0, > 0, = 0...)
+            if op is not None and val is not None:
+                try:
+                    num_val = float(val)
+                    if op == '<' and num_val < target_num: is_match = True
+                    elif op == '<=' and num_val <= target_num: is_match = True
+                    elif op == '>' and num_val > target_num: is_match = True
+                    elif op == '>=' and num_val >= target_num: is_match = True
+                    elif (op == '=' or op == '==') and abs(num_val - target_num) < 0.0001: is_match = True
+                    elif (op == '<>' or op == '!=') and abs(num_val - target_num) >= 0.0001: is_match = True
+                except (ValueError, TypeError):
+                    pass
+            # So sánh văn bản (chứa chuỗi)
+            else:
+                val_str = str(val).strip().lower() if val is not None else ''
+                if target_err_lower and (target_err_lower in val_str or val_str == target_err_lower):
+                    is_match = True
+            
+            if is_match:
+                ma_kho = row.get('MÃ KHO') or row.get('Mã Kho') or row.get('whseid') or ''
+                ma_hang = row.get('MÃ HÀNG') or row.get('Mã Hàng') or row.get('sku') or ''
+                ten_hang = row.get('TÊN HÀNG') or row.get('Tên Hàng') or row.get('descr') or ''
+                so_luong = row.get('SỐ LƯỢNG') or row.get('TỔNG SỐ LƯỢNG') or row.get('TỒN THỰC TẾ') or row.get('SỐ LƯỢNG CÒN LẠI') or ''
+                ngay = row.get('NGÀY') or row.get('NGÀY NHẬP') or row.get('NGÀY RA HÓA ĐƠN') or ''
+                so_xe = row.get('SỐ XE') or ''
+                
+                check_results.append({
+                    'id': f"ERR_{len(check_results)+1}",
+                    'sheet_name': matched_sheet_key,
+                    'rule_col': col_spec,
+                    'col_name_matched': target_col_key,
+                    'error_expected': rule['error_val'],
+                    'actual_value': str(val) if val is not None else '',
+                    'rule_desc': rule['desc'],
+                    'row_idx': row_idx + 2,
+                    'ma_kho': str(ma_kho).strip(),
+                    'ma_hang': str(ma_hang).strip(),
+                    'ten_hang': str(ten_hang).strip(),
+                    'so_luong': so_luong,
+                    'ngay': str(ngay).strip(),
+                    'so_xe': str(so_xe).strip(),
+                    'full_row': row
+                })
+                
+    return rules, check_results
+
 def export_to_js():
     log("Trích xuất Excel sang data.js...")
     xl = pd.ExcelFile(EXCEL_FILE)
@@ -512,8 +740,15 @@ def export_to_js():
             except Exception as e:
                 pass
 
-    # Trích xuất mật khẩu xuất data thô từ ô A3 của Sheet1
+    # Quét lỗi theo quy tắc CheckLoi
+    rules, check_results = scan_checkloi_rules(data_store, xl)
+    data_store['CheckLoi_Rules'] = rules
+    data_store['check_loi_results'] = check_results
+    log(f" -> Quét lỗi CheckLoi: Đã áp dụng {len(rules)} quy tắc, phát hiện {len(check_results)} dòng cần kiểm tra.")
+
+    # Trích xuất mật khẩu xuất data thô từ ô A3 và mật khẩu xem CheckLoi từ ô A4 của Sheet1
     export_pass = "khontb123@"
+    checkloi_pass = "khontb456@"
     try:
         if 'Sheet1' in xl.sheet_names:
             df_s1 = pd.read_excel(EXCEL_FILE, sheet_name='Sheet1', header=None)
@@ -521,8 +756,12 @@ def export_to_js():
                 val = str(df_s1.iloc[2, 0]).strip()
                 if val and val.lower() != 'nan':
                     export_pass = val
+            if len(df_s1) >= 4 and not pd.isna(df_s1.iloc[3, 0]):
+                val4 = str(df_s1.iloc[3, 0]).strip()
+                if val4 and val4.lower() != 'nan':
+                    checkloi_pass = val4
     except Exception as e:
-        log(f" [!] Không đọc được pass từ Sheet1!A3: {e}")
+        log(f" [!] Không đọc được pass từ Sheet1: {e}")
 
     def default_converter(o):
         if isinstance(o, (datetime.date, datetime.datetime, pd.Timestamp)): return o.strftime('%d/%m/%Y')
@@ -530,7 +769,7 @@ def export_to_js():
         return str(o)
         
     now_str = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    js_content = f"// Auto-generated data file from báo cáo.xlsx\nwindow.LAST_UPDATED_TIME = '{now_str}';\nwindow.EXPORT_PASSWORD = {json.dumps(export_pass, ensure_ascii=False)};\nwindow.DASHBOARD_DATA = " + json.dumps(data_store, ensure_ascii=False, indent=2, default=default_converter) + ";"
+    js_content = f"// Auto-generated data file from báo cáo.xlsx\nwindow.LAST_UPDATED_TIME = '{now_str}';\nwindow.EXPORT_PASSWORD = {json.dumps(export_pass, ensure_ascii=False)};\nwindow.CHECKLOI_PASSWORD = {json.dumps(checkloi_pass, ensure_ascii=False)};\nwindow.DASHBOARD_DATA = " + json.dumps(data_store, ensure_ascii=False, indent=2, default=default_converter) + ";"
     
     # Khử trùng toàn bộ chuỗi ghp_ token nếu có lọt vào json
     import re

@@ -94,6 +94,15 @@ let currentSortColumnBC4 = 'MÃ HÀNG';
 let currentSortOrderBC4 = 'asc';
 let currentBC4FilteredRows = [];
 
+// CheckLoi state
+let rawDataCheckLoi = [];
+let checkLoiRules = [];
+let searchCheckLoiQuery = '';
+let filterCheckLoiSheet = '';
+let filterCheckLoiKho = '';
+let sortColCheckLoi = 'row_idx';
+let sortOrderCheckLoi = 'asc';
+
 const TARGET_KHO_LIST = ['052', '05NT', '05KH', 'SKH'];
 const TARGET_NHOMHANG_LIST = ['TP', 'BB', 'PL'];
 const TARGET_TRANGTHAI_LIST = ['ARRIVED', 'NEW'];
@@ -195,7 +204,9 @@ function initDashboard() {
   applyFiltersAndRenderBC2();
   applyFiltersAndRenderBC3();
   renderBC4();
-    if (typeof applyFiltersAndRenderBC5 === 'function') applyFiltersAndRenderBC5();
+  if (typeof applyFiltersAndRenderBC5 === 'function') applyFiltersAndRenderBC5();
+  if (typeof initCheckLoiData === 'function') initCheckLoiData();
+  if (typeof renderCheckLoiReport === 'function') renderCheckLoiReport();
     
   switchReport('bc1'); // Show default report
 }
@@ -267,17 +278,19 @@ function renderCheckboxList(elementId, items, selectedSet, filterType) {
         renderBC4Table();
       } else if (filterType === 'ngay-bc4') {
         renderBC4();
-    if (typeof applyFiltersAndRenderBC5 === 'function') applyFiltersAndRenderBC5();
-    if (typeof applyFiltersAndRenderBC6 === 'function') applyFiltersAndRenderBC6();
-    if (typeof renderBC3NppTable === 'function') renderBC3NppTable();
+        if (typeof applyFiltersAndRenderBC5 === 'function') applyFiltersAndRenderBC5();
+        if (typeof applyFiltersAndRenderBC6 === 'function') applyFiltersAndRenderBC6();
+        if (typeof renderBC3NppTable === 'function') renderBC3NppTable();
+        if (typeof renderCheckLoiReport === 'function') renderCheckLoiReport();
       } else {
         applyFiltersAndRender();
         applyFiltersAndRenderBC2();
         applyFiltersAndRenderBC3();
         renderBC4();
-    if (typeof applyFiltersAndRenderBC5 === 'function') applyFiltersAndRenderBC5();
-    if (typeof applyFiltersAndRenderBC6 === 'function') applyFiltersAndRenderBC6();
-    if (typeof renderBC3NppTable === 'function') renderBC3NppTable();
+        if (typeof applyFiltersAndRenderBC5 === 'function') applyFiltersAndRenderBC5();
+        if (typeof applyFiltersAndRenderBC6 === 'function') applyFiltersAndRenderBC6();
+        if (typeof renderBC3NppTable === 'function') renderBC3NppTable();
+        if (typeof renderCheckLoiReport === 'function') renderCheckLoiReport();
       }
     });
 
@@ -1218,7 +1231,15 @@ function escapeHtml(str) {
 // ═══════════════════════════════════════════════
 // TAB NAV – Chuyển đổi báo cáo (hiển thị / ẩn)
 // ═══════════════════════════════════════════════
+let isCheckLoiUnlocked = (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('checkloi_unlocked') === 'true');
+
 function switchReport(reportId) {
+  // Kiểm tra khóa bảo mật cho Báo Cáo 7
+  if (reportId === 'checkloi' && !isCheckLoiUnlocked) {
+    openCheckLoiAuthModal();
+    return;
+  }
+
   // Hide all reports
   document.querySelectorAll('.report-section').forEach(sec => {
     sec.style.display = 'none';
@@ -3385,14 +3406,25 @@ function confirmExportWithPassword() {
 
 // Bắt phím Enter và Escape cho modal mật khẩu
 document.addEventListener('keydown', (e) => {
-  const modal = document.getElementById('password-modal');
-  if (modal && modal.style.display === 'flex') {
+  const exportModal = document.getElementById('password-modal');
+  if (exportModal && exportModal.style.display === 'flex') {
     if (e.key === 'Enter') {
       e.preventDefault();
       confirmExportWithPassword();
     } else if (e.key === 'Escape') {
       e.preventDefault();
       closePasswordModal();
+    }
+  }
+
+  const checkLoiModal = document.getElementById('checkloi-auth-modal');
+  if (checkLoiModal && checkLoiModal.style.display === 'flex') {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      confirmCheckLoiPassword();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      closeCheckLoiAuthModal();
     }
   }
 });
@@ -3529,5 +3561,397 @@ function exportToCsvFallback(dataArray, fileName) {
   document.body.removeChild(link);
 }
 
+// ═══════════════════════════════════════════════
+// BÁO CÁO 7: KIỂM TRA LỖI DỮ LIỆU TỪ SHEET CHECKLOI
+// ═══════════════════════════════════════════════
 
+function initCheckLoiData() {
+  rawDataCheckLoi = (window.DASHBOARD_DATA && window.DASHBOARD_DATA['check_loi_results']) || [];
+  checkLoiRules = (window.DASHBOARD_DATA && window.DASHBOARD_DATA['CheckLoi_Rules']) || [];
 
+  const totalErrors = rawDataCheckLoi.length;
+
+  // 1. Cập nhật Banner Cảnh Báo Nhanh
+  const banner = document.getElementById('data-error-banner');
+  const bannerCount = document.getElementById('banner-error-count');
+  if (banner && bannerCount) {
+    if (totalErrors > 0) {
+      banner.style.display = 'flex';
+      bannerCount.textContent = totalErrors;
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+
+  // 2. Cập nhật Badge trên Nav Pill
+  const badgeCount = document.getElementById('badge-checkloi-count');
+  if (badgeCount) {
+    if (totalErrors > 0) {
+      badgeCount.style.display = 'inline-block';
+      badgeCount.textContent = totalErrors;
+    } else {
+      badgeCount.style.display = 'none';
+    }
+  }
+
+  // 3. Khởi tạo dropdown filter Quy Tắc / Sheet
+  const sheetFilter = document.getElementById('checkloi-sheet-filter');
+  if (sheetFilter) {
+    sheetFilter.innerHTML = '<option value="">-- Tất cả Quy Tắc --</option>';
+    const sheetSet = new Set();
+    rawDataCheckLoi.forEach(item => {
+      if (item.sheet_name) sheetSet.add(item.sheet_name);
+    });
+    checkLoiRules.forEach(r => {
+      if (r.sheet_name) sheetSet.add(r.sheet_name);
+    });
+    Array.from(sheetSet).sort().forEach(sName => {
+      const opt = document.createElement('option');
+      opt.value = sName;
+      opt.textContent = sName;
+      sheetFilter.appendChild(opt);
+    });
+
+    sheetFilter.onchange = (e) => {
+      filterCheckLoiSheet = e.target.value;
+      renderCheckLoiReport();
+    };
+  }
+
+  // 4. Khởi tạo dropdown filter Kho
+  const khoFilter = document.getElementById('checkloi-kho-filter');
+  if (khoFilter) {
+    khoFilter.innerHTML = '<option value="">-- Tất cả Kho --</option>';
+    TARGET_KHO_LIST.forEach(k => {
+      const opt = document.createElement('option');
+      opt.value = k;
+      opt.textContent = k;
+      khoFilter.appendChild(opt);
+    });
+
+    khoFilter.onchange = (e) => {
+      filterCheckLoiKho = e.target.value;
+      renderCheckLoiReport();
+    };
+  }
+
+  // 5. Search box
+  const searchInput = document.getElementById('checkloi-search');
+  if (searchInput && !searchInput.dataset.bound) {
+    searchInput.addEventListener('input', (e) => {
+      searchCheckLoiQuery = e.target.value.trim().toLowerCase();
+      renderCheckLoiReport();
+    });
+    searchInput.dataset.bound = 'true';
+  }
+}
+
+function renderCheckLoiReport() {
+  const tbody = document.getElementById('tbody-checkloi');
+  const tfoot = document.getElementById('tfoot-checkloi');
+  const kpiContainer = document.getElementById('checkloi-kpi-container');
+  if (!tbody) return;
+
+  const data = rawDataCheckLoi || [];
+
+  // Lọc dữ liệu
+  let filtered = data.filter(item => {
+    // Lọc theo Sheet / Quy tắc
+    if (filterCheckLoiSheet && item.sheet_name !== filterCheckLoiSheet) return false;
+
+    // Lọc theo Kho
+    if (filterCheckLoiKho) {
+      if (item.ma_kho && item.ma_kho !== filterCheckLoiKho) return false;
+    } else if (selectedKho && selectedKho.size > 0) {
+      if (item.ma_kho && !selectedKho.has(item.ma_kho)) return false;
+    }
+
+    // Tìm kiếm từ khóa
+    if (searchCheckLoiQuery) {
+      const fullText = [
+        item.sheet_name,
+        item.rule_col,
+        item.actual_value,
+        item.ma_kho,
+        item.ma_hang,
+        item.ten_hang,
+        item.so_xe,
+        item.error_expected
+      ].join(' ').toLowerCase();
+      if (!fullText.includes(searchCheckLoiQuery)) return false;
+    }
+
+    return true;
+  });
+
+  // Render KPI Cards
+  if (kpiContainer) {
+    let kpiHTML = `
+      <div class="checkloi-kpi-card">
+        <span class="checkloi-kpi-title">Tổng Số Dòng Cần Kiểm Tra</span>
+        <span class="checkloi-kpi-val">${filtered.length.toLocaleString('vi-VN')}</span>
+        <span class="checkloi-kpi-sub">${filtered.length === 0 ? '✅ Dữ liệu hoàn toàn sạch lỗi' : '⚠️ Cần đối chiếu & cập nhật'}</span>
+      </div>
+    `;
+
+    const countBySheet = {};
+    filtered.forEach(r => {
+      countBySheet[r.sheet_name] = (countBySheet[r.sheet_name] || 0) + 1;
+    });
+
+    Object.entries(countBySheet).forEach(([sName, count]) => {
+      kpiHTML += `
+        <div class="checkloi-kpi-card" style="border-left-color: #f59e0b;">
+          <span class="checkloi-kpi-title">${sName}</span>
+          <span class="checkloi-kpi-val" style="color: #b45309;">${count.toLocaleString('vi-VN')}</span>
+          <span class="checkloi-kpi-sub">Dòng vi phạm quy tắc</span>
+        </div>
+      `;
+    });
+
+    if (Object.keys(countBySheet).length === 0 && checkLoiRules.length > 0) {
+      checkLoiRules.forEach(r => {
+        kpiHTML += `
+          <div class="checkloi-kpi-card" style="border-left-color: #107c41;">
+            <span class="checkloi-kpi-title">${r.sheet_name}</span>
+            <span class="checkloi-kpi-val" style="color: #107c41;">0</span>
+            <span class="checkloi-kpi-sub">Không phát hiện lỗi</span>
+          </div>
+        `;
+      });
+    }
+
+    kpiContainer.innerHTML = kpiHTML;
+  }
+
+  // Sắp xếp
+  filtered.sort((a, b) => {
+    let valA = a[sortColCheckLoi];
+    let valB = b[sortColCheckLoi];
+
+    if (sortColCheckLoi === 'row_idx' || sortColCheckLoi === 'so_luong') {
+      valA = parseFloat(valA) || 0;
+      valB = parseFloat(valB) || 0;
+      return sortOrderCheckLoi === 'asc' ? valA - valB : valB - valA;
+    }
+
+    valA = String(valA || '').toLowerCase();
+    valB = String(valB || '').toLowerCase();
+    const cmp = valA.localeCompare(valB, 'vi');
+    return sortOrderCheckLoi === 'asc' ? cmp : -cmp;
+  });
+
+  // Render Table Body
+  if (filtered.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="11" class="text-center" style="padding: 30px; color: #166534; background: #f0fdf4; font-weight: 600;">
+          🎉 Không phát hiện dòng dữ liệu nào vi phạm quy tắc kiểm tra lỗi!
+        </td>
+      </tr>
+    `;
+    if (tfoot) tfoot.innerHTML = '';
+    return;
+  }
+
+  let html = '';
+  filtered.forEach((item, idx) => {
+    const qtyFormatted = item.so_luong != null && item.so_luong !== '' ? Number(item.so_luong).toLocaleString('vi-VN') : '-';
+    const dateOrCar = [item.ngay, item.so_xe].filter(Boolean).join(' - ') || '-';
+
+    html += `
+      <tr style="background: rgba(254, 242, 242, 0.6);">
+        <td style="text-align: center; font-weight: 600; color: #64748b;">${idx + 1}</td>
+        <td style="font-weight: 700; color: #1e293b;"><span class="badge-tag arrived" style="font-size: 10px; margin-right: 4px;">SHEET</span>${item.sheet_name}</td>
+        <td style="color: #475569; font-weight: 600;">${item.rule_col}</td>
+        <td style="color: #b91c1c; font-weight: 700; background: rgba(254, 226, 226, 0.8);">
+          ⚠️ ${item.actual_value}
+        </td>
+        <td style="text-align: center; font-weight: 700; color: #2563eb;">Dòng ${item.row_idx}</td>
+        <td style="text-align: center; font-weight: 700;">${item.ma_kho || '-'}</td>
+        <td style="font-weight: 600; color: #0f172a;">${item.ma_hang || '-'}</td>
+        <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${item.ten_hang}">${item.ten_hang || '-'}</td>
+        <td style="text-align: right; font-weight: 700; color: #1e293b;">${qtyFormatted}</td>
+        <td style="text-align: center; font-size: 11px; color: #475569;">${dateOrCar}</td>
+        <td style="text-align: center;">
+          <button onclick="openRowDetailModal('${item.id}')" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; cursor: pointer; color: #2563eb; transition: all 0.15s;">
+            👁️ Chi tiết
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+
+  tbody.innerHTML = html;
+
+  // Footer tổng
+  if (tfoot) {
+    tfoot.innerHTML = `
+      <tr style="font-weight: 800; background: rgba(220, 38, 38, 0.08); border-top: 2px solid rgba(220, 38, 38, 0.3);">
+        <td colspan="3">TỔNG CỘNG: ${filtered.length} DÒNG LỖI CẦN KIỂM TRA</td>
+        <td colspan="8" style="text-align: right; color: #991b1b; font-style: italic;">
+          Vui lòng kiểm tra và cập nhật lại danh mục/dữ liệu trên hệ thống
+        </td>
+      </tr>
+    `;
+  }
+}
+
+function handleSortCheckLoi(colName) {
+  if (sortColCheckLoi === colName) {
+    sortOrderCheckLoi = sortOrderCheckLoi === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortColCheckLoi = colName;
+    sortOrderCheckLoi = 'asc';
+  }
+  renderCheckLoiReport();
+}
+
+function openRowDetailModal(errorId) {
+  const item = (rawDataCheckLoi || []).find(r => r.id === errorId);
+  if (!item || !item.full_row) return;
+
+  const modal = document.getElementById('row-detail-modal');
+  const tbody = document.getElementById('modal-row-detail-tbody');
+  const titleBadge = document.getElementById('modal-row-title-badge');
+  if (!modal || !tbody) return;
+
+  if (titleBadge) {
+    titleBadge.textContent = `${item.sheet_name} • Dòng ${item.row_idx}`;
+  }
+
+  let html = '';
+  Object.entries(item.full_row).forEach(([k, v]) => {
+    const isErrorCol = (item.col_name_matched && k === item.col_name_matched);
+    const rowStyle = isErrorCol ? 'background: #fee2e2; font-weight: 700; color: #991b1b;' : '';
+    const displayVal = v == null ? '<span style="color:#94a3b8; font-style:italic;">(Trống)</span>' : v;
+
+    html += `
+      <tr style="${rowStyle}">
+        <td style="font-weight: 600; color: #334155;">${isErrorCol ? '⚠️ ' + k : k}</td>
+        <td>${displayVal}</td>
+      </tr>
+    `;
+  });
+
+  tbody.innerHTML = html;
+  modal.style.display = 'flex';
+}
+
+function closeRowDetailModal() {
+  const modal = document.getElementById('row-detail-modal');
+  if (modal) modal.style.display = 'none';
+}
+
+function exportCheckLoiReportToExcel() {
+  const data = rawDataCheckLoi || [];
+  if (data.length === 0) {
+    alert("Không có dòng dữ liệu lỗi nào để xuất file!");
+    return;
+  }
+
+  const exportRows = data.map((item, idx) => {
+    const obj = {
+      'STT': idx + 1,
+      'Sheet Nguồn': item.sheet_name,
+      'Cột Lỗi': item.rule_col,
+      'Lỗi Phát Hiện': item.actual_value,
+      'Dòng Excel Gốc': item.row_idx
+    };
+    if (item.full_row) {
+      Object.assign(obj, item.full_row);
+    }
+    return obj;
+  });
+
+  const now = new Date();
+  const dateStr = now.getFullYear() +
+    String(now.getMonth() + 1).padStart(2, '0') +
+    String(now.getDate()).padStart(2, '0') + '_' +
+    String(now.getHours()).padStart(2, '0') +
+    String(now.getMinutes()).padStart(2, '0');
+
+  const fileName = `BaoCao_CheckLoiDuLieu_${dateStr}.xlsx`;
+
+  if (typeof XLSX !== 'undefined') {
+    const ws = XLSX.utils.json_to_sheet(exportRows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "DanhSachLoi");
+    XLSX.writeFile(wb, fileName);
+  } else {
+    exportToCsvFallback(exportRows, `BaoCao_CheckLoiDuLieu_${dateStr}.csv`);
+  }
+}
+
+// ═══════════════════════════════════════════════
+// XÁC THỰC MẬT KHẨU BÁO CÁO 7 (CHECK LỖI)
+// ═══════════════════════════════════════════════
+
+function openCheckLoiAuthModal() {
+  const modal = document.getElementById('checkloi-auth-modal');
+  const input = document.getElementById('checkloi-password-input');
+  const errorMsg = document.getElementById('checkloi-pass-error-msg');
+  if (modal && input) {
+    input.value = '';
+    input.type = 'password';
+    if (errorMsg) errorMsg.style.display = 'none';
+    modal.style.display = 'flex';
+    setTimeout(() => input.focus(), 100);
+  }
+}
+
+function closeCheckLoiAuthModal() {
+  const modal = document.getElementById('checkloi-auth-modal');
+  const input = document.getElementById('checkloi-password-input');
+  const errorMsg = document.getElementById('checkloi-pass-error-msg');
+  if (modal) modal.style.display = 'none';
+  if (input) input.value = '';
+  if (errorMsg) errorMsg.style.display = 'none';
+}
+
+function toggleCheckLoiPasswordVisibility() {
+  const input = document.getElementById('checkloi-password-input');
+  const icon = document.getElementById('toggle-checkloi-pass-visibility');
+  if (input) {
+    if (input.type === 'password') {
+      input.type = 'text';
+      if (icon) icon.textContent = '🔒';
+    } else {
+      input.type = 'password';
+      if (icon) icon.textContent = '👁️';
+    }
+  }
+}
+
+function confirmCheckLoiPassword() {
+  const input = document.getElementById('checkloi-password-input');
+  const errorMsg = document.getElementById('checkloi-pass-error-msg');
+  const enteredPass = input ? input.value.trim() : '';
+  const expectedPass = (window.CHECKLOI_PASSWORD != null ? String(window.CHECKLOI_PASSWORD) : 'khontb456@').trim();
+
+  if (enteredPass !== '' && enteredPass === expectedPass) {
+    isCheckLoiUnlocked = true;
+    if (typeof sessionStorage !== 'undefined') {
+      sessionStorage.setItem('checkloi_unlocked', 'true');
+    }
+    closeCheckLoiAuthModal();
+    switchReport('checkloi');
+  } else {
+    if (errorMsg) {
+      errorMsg.textContent = '⚠️ Mật khẩu không chính xác! Liên hệ Tiến để lấy pass';
+      errorMsg.style.display = 'block';
+    }
+    if (input) {
+      input.focus();
+      input.select();
+    }
+  }
+}
+
+function lockCheckLoiReport() {
+  isCheckLoiUnlocked = false;
+  if (typeof sessionStorage !== 'undefined') {
+    sessionStorage.removeItem('checkloi_unlocked');
+  }
+  switchReport('bc1');
+}
