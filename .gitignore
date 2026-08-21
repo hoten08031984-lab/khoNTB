@@ -1,7 +1,8 @@
-# File Excel goc - KHONG dua len GitHub (du lieu nhay cam)
+# File Excel goc va file Excel rac - KHONG dua len GitHub (du lieu nhay cam)
 báo cáo.xlsx
+*.xlsx
 ~$*
-~$báo cáo.xlsx
+~$*.xlsx
 
 # File debug - chi dung tren may local
 debug*.py
