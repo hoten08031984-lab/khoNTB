@@ -202,7 +202,7 @@ def map_shelflife(item, ma_kho):
         str(item.get("lottable03", "")).strip(), # KMDB
         format_date(item.get("lottable04", "")), # NSX
         format_date(item.get("lottable05", "")), # HSD
-        to_number(item.get("qty", 0)),    # SỐ LƯỢNG
+        to_number(item.get("qtyavailable") if item.get("qtyavailable") is not None else item.get("qty", 0)), # SỐ LƯỢNG (Khả dụng)
         int(math.ceil(float(item.get("qtyavailablepl") or 0))) if item.get("qtyavailablepl") is not None else 0, # SỐ LƯỢNG PL
         to_number(item.get("percentshl", 0)), # (%) HSD
         to_number(item.get("dayoff", 0)), # SỐ NGÀY CÒN LẠI
