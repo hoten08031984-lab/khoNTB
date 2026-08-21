@@ -98,3 +98,5 @@ To https://github.com/hoten08031984-lab/khoNTB.git
 [21/08/2026 14:34:07,63] extract_data.py hoan tat thanh cong. 
 [Fri 08/21/2026 14:37:32,29] Da kiem tra thu vien Python. 
 [Fri 08/21/2026 14:38:38,80] extract_data.py hoan tat thanh cong. 
+[21/08/2026 14:42:05,28] Da kiem tra thu vien Python. 
+[21/08/2026 14:42:30,55] extract_data.py hoan tat thanh cong. 
